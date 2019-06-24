@@ -1,0 +1,97 @@
+# User-specific stuff:
+.idea/**
+*.iml
+
+# Sensitive or high-churn files:
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.xml
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+### Java template
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Asciidoctor plugin
+.asciidoctor
+
+### Maven template
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+### Eclipse template
+.metadata
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.project
+.classpath
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
+
+# Emacs backup files
+*~
+.scannerwork
+
+spock-reports
+
+# Other exclusions
+
+.DS_Store
+elasticsearch-data/
+jqassistant/
+
+# Exclude the C++ libs
+plc4cpp/libs/libs/
+plc4cpp/.idea/
+plc4cpp/cmake-build-debug/
+
+    # Ignore VisualStudio related files
+**/CMakeSettings.json
+**/.vs/**
+
+# Exclude temporary python stuff
+plc4py/venv/
+**/__pycache__/**/*
+/plc4cpp/.vscode/ipch

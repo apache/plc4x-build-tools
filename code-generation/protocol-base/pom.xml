@@ -29,7 +29,7 @@
 
   <artifactId>plc4x-code-generation-protocol-base</artifactId>
 
-  <name>Sandbox: Code Generation: Protocol Base</name>
+  <name>PLC4X Build Tools: Code Generation: Protocol Base</name>
   <description>Base stuff for building protocols</description>
 
   <dependencies>

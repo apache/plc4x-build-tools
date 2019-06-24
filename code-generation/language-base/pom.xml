@@ -29,7 +29,7 @@
 
   <artifactId>plc4x-code-generation-language-base</artifactId>
 
-  <name>Sandbox: Code Generation: Language Template Base</name>
+  <name>PLC4X Build Tools: Code Generation: Language Base</name>
   <description>Base stuff for building language templates</description>
 
   <dependencies>

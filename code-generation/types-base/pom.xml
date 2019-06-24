@@ -29,7 +29,7 @@
 
   <artifactId>plc4x-code-generation-types-base</artifactId>
 
-  <name>Sandbox: Code Generation: Base Types</name>
+  <name>PLC4X Build Tools: Code Generation: Base Types</name>
   <description>Base used throughout the code-generation.</description>
 
 </project>
