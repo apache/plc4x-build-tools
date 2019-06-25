@@ -28,6 +28,7 @@
   <packaging>pom</packaging>
 
   <name>PLC4X Build-Tools</name>
+  <description>This is just a pom to ease importing the repo into a Maven supporting IDE</description>
 
   <modules>
     <module>code-generation</module>
