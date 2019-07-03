@@ -19,9 +19,11 @@
 
 package org.apache.plc4x.plugins.codegenerator.types.fields;
 
+import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
+
 public interface Field {
 
     String getTypeName();
-    String[] getParams();
+    Term[] getParams();
 
 }
