@@ -130,7 +130,7 @@ public class GenerateMojo extends AbstractMojo {
             language.generate(outputDir, "org.apache.plc4x." + languageName.toLowerCase() +
                 "." + protocolName.toLowerCase(), types);
         } catch (GenerationException e) {
-            getLog().error("Error generating sources", e);
+            throw new MojoExecutionException("Error generating sources", e);
         }
 
         // Add the generated sources to the project internally.
