@@ -34,7 +34,8 @@ public interface ArrayField extends PropertyField {
 
     enum LengthType {
         COUNT,
-        LENGTH
+        LENGTH,
+        TERMINATED
     }
 
 }
