@@ -28,15 +28,17 @@ public interface ManualArrayField extends PropertyField {
         return "manualArray";
     }
 
-    LengthType getLengthType();
+    LoopType getLoopType();
 
-    Term getLengthExpression();
+    Term getLoopExpression();
 
     Term getSerializationExpression();
 
     Term getDeserializationExpression();
 
-    enum LengthType {
+    Term getLengthExpression();
+
+    enum LoopType {
         COUNT,
         LENGTH,
         TERMINATED

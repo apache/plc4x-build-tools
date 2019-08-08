@@ -28,11 +28,11 @@ public interface ArrayField extends PropertyField {
         return "array";
     }
 
-    LengthType getLengthType();
+    LoopType getLoopType();
 
-    Term getLengthExpression();
+    Term getLoopExpression();
 
-    enum LengthType {
+    enum LoopType {
         COUNT,
         LENGTH,
         TERMINATED
