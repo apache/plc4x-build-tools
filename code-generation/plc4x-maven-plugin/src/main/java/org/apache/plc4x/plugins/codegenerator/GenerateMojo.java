@@ -18,6 +18,7 @@ under the License.
 */
 package org.apache.plc4x.plugins.codegenerator;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -127,7 +128,7 @@ public class GenerateMojo extends AbstractMojo {
             Map<String, ComplexTypeDefinition> types = protocol.getTypeDefinitions();
 
             // Generate output for the type definitions.
-            language.generate(outputDir, "org.apache.plc4x." + languageName.toLowerCase() +
+            language.generate(outputDir, getPackageName(languageName) +
                 "." + protocolName.toLowerCase(), types);
         } catch (GenerationException e) {
             throw new MojoExecutionException("Error generating sources", e);
@@ -135,6 +136,10 @@ public class GenerateMojo extends AbstractMojo {
 
         // Add the generated sources to the project internally.
         project.addCompileSourceRoot(outputDir.getPath());
+    }
+
+    private String getPackageName(String languageName) {
+        return "org.apache.plc4x." + StringUtils.remove(languageName.toLowerCase(), '-');
     }
 
 }
