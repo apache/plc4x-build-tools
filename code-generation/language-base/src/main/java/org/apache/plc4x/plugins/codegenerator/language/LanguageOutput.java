@@ -34,7 +34,7 @@ public interface LanguageOutput {
      */
     String getName();
 
-    void generate(File outputDir, String packageName, Map<String, ComplexTypeDefinition> types)
+    void generate(File outputDir, String languageName, String protocolName, Map<String, ComplexTypeDefinition> types)
         throws GenerationException;
 
 }

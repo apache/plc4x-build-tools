@@ -128,18 +128,13 @@ public class GenerateMojo extends AbstractMojo {
             Map<String, ComplexTypeDefinition> types = protocol.getTypeDefinitions();
 
             // Generate output for the type definitions.
-            language.generate(outputDir, getPackageName(languageName) +
-                "." + protocolName.toLowerCase(), types);
+            language.generate(outputDir, languageName, protocolName, types);
         } catch (GenerationException e) {
             throw new MojoExecutionException("Error generating sources", e);
         }
 
         // Add the generated sources to the project internally.
         project.addCompileSourceRoot(outputDir.getPath());
-    }
-
-    private String getPackageName(String languageName) {
-        return "org.apache.plc4x." + StringUtils.remove(languageName.toLowerCase(), '-');
     }
 
 }
