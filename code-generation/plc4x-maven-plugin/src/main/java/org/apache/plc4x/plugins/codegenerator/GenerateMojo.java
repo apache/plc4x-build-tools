@@ -18,7 +18,6 @@ under the License.
 */
 package org.apache.plc4x.plugins.codegenerator;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -66,6 +65,12 @@ public class GenerateMojo extends AbstractMojo {
      */
     @Parameter(required = true)
     private String languageName;
+
+    /**
+     * The name of the output flavor that will be used to generate the driver. Quite common options are 'read-write', 'read-only', 'passive'.
+     */
+    @Parameter(required = true)
+    private String outputFlavor;
 
     public void execute()
         throws MojoExecutionException {
@@ -122,13 +127,20 @@ public class GenerateMojo extends AbstractMojo {
             throw new MojoExecutionException(
                 "Unable to find language output module '" + languageName + "' on modules classpath");
         }
+        // Check if the selected language flavor is supported by the selected language module.
+        if(!language.supportedOutputFlavors().contains(outputFlavor)) {
+            throw new MojoExecutionException(
+                    "The selected language output module: " + languageName +
+                            " doesn't support the output flavor: " + outputFlavor + "." +
+                            " Supported output flavors are: " + String.join(", ", language.supportedOutputFlavors()));
+        }
 
         try {
             // Parse the type definitions.
             Map<String, ComplexTypeDefinition> types = protocol.getTypeDefinitions();
 
             // Generate output for the type definitions.
-            language.generate(outputDir, languageName, protocolName, types);
+            language.generate(outputDir, languageName, protocolName, outputFlavor, types);
         } catch (GenerationException e) {
             throw new MojoExecutionException("Error generating sources", e);
         }

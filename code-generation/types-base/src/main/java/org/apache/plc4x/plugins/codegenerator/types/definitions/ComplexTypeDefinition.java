@@ -19,10 +19,7 @@
 
 package org.apache.plc4x.plugins.codegenerator.types.definitions;
 
-import org.apache.plc4x.plugins.codegenerator.types.fields.ConstField;
-import org.apache.plc4x.plugins.codegenerator.types.fields.Field;
-import org.apache.plc4x.plugins.codegenerator.types.fields.PropertyField;
-import org.apache.plc4x.plugins.codegenerator.types.fields.SimpleField;
+import org.apache.plc4x.plugins.codegenerator.types.fields.*;
 
 import java.util.List;
 
@@ -57,6 +54,13 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return all simple and optional fields ;-)
      */
     List<PropertyField> getPropertyFields();
+
+    /**
+     * Get any fields which are of type VirtualField.
+     *
+     * @return all virtual fields ;-)
+     */
+    List<VirtualField> getVirtualFields();
 
     /**
      * In contrast to getFields, this also gets all property fields of any parent type.
