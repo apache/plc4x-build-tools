@@ -126,7 +126,7 @@ pipeline {
             // Only the official build nodes have the credentials to deploy setup.
             agent {
                 node {
-                    label 'ubuntu'
+                    label 'nexus-deploy'
                 }
             }
             steps {
