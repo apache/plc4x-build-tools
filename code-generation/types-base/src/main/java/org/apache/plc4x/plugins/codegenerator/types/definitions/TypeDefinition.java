@@ -25,6 +25,8 @@ public interface TypeDefinition {
 
     Argument[] getParserArguments();
 
+    String[] getTags();
+
     TypeDefinition getParentType();
 
 }
