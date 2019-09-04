@@ -31,4 +31,6 @@ public interface ManualField extends PropertyField {
 
     Term getDeserializationExpression();
 
+    Term getLengthExpression();
+
 }
