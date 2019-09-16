@@ -27,7 +27,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
 import org.apache.plc4x.plugins.codegenerator.language.LanguageOutput;
-import org.apache.plc4x.plugins.codegenerator.types.definitions.ComplexTypeDefinition;
+import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
 import org.apache.plc4x.plugins.codegenerator.types.exceptions.GenerationException;
 import org.apache.plc4x.plugins.codegenerator.protocol.Protocol;
 
@@ -137,7 +137,7 @@ public class GenerateMojo extends AbstractMojo {
 
         try {
             // Parse the type definitions.
-            Map<String, ComplexTypeDefinition> types = protocol.getTypeDefinitions();
+            Map<String, TypeDefinition> types = protocol.getTypeDefinitions();
 
             // Generate output for the type definitions.
             language.generate(outputDir, languageName, protocolName, outputFlavor, types);

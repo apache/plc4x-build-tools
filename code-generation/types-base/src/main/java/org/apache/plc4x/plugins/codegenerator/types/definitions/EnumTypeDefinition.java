@@ -19,30 +19,17 @@
 
 package org.apache.plc4x.plugins.codegenerator.types.definitions;
 
-import java.util.List;
+import org.apache.plc4x.plugins.codegenerator.types.enums.EnumValue;
+import org.apache.plc4x.plugins.codegenerator.types.references.TypeReference;
 
 public interface EnumTypeDefinition extends TypeDefinition {
 
-    TypeDefinition getBaseType();
+    TypeReference getType();
 
-    List<EnumValue> getValues();
+    EnumValue[] getEnumValues();
 
-    class EnumValue {
-        private final String name;
-        private final Object value;
+    String[] getConstantNames();
 
-        public EnumValue(String name, Object value) {
-            this.name = name;
-            this.value = value;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-    }
+    TypeReference getConstantType(String constantName);
 
 }

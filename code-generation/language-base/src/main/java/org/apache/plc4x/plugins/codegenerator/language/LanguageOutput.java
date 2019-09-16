@@ -19,7 +19,7 @@
 
 package org.apache.plc4x.plugins.codegenerator.language;
 
-import org.apache.plc4x.plugins.codegenerator.types.definitions.ComplexTypeDefinition;
+import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
 import org.apache.plc4x.plugins.codegenerator.types.exceptions.GenerationException;
 
 import java.io.File;
@@ -37,7 +37,7 @@ public interface LanguageOutput {
 
     List<String> supportedOutputFlavors();
 
-    void generate(File outputDir, String languageName, String protocolName, String outputFlavor, Map<String, ComplexTypeDefinition> types)
+    void generate(File outputDir, String languageName, String protocolName, String outputFlavor, Map<String, TypeDefinition> types)
         throws GenerationException;
 
 }

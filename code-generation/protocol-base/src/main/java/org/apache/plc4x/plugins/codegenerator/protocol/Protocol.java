@@ -19,7 +19,7 @@
 
 package org.apache.plc4x.plugins.codegenerator.protocol;
 
-import org.apache.plc4x.plugins.codegenerator.types.definitions.ComplexTypeDefinition;
+import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
 import org.apache.plc4x.plugins.codegenerator.types.exceptions.GenerationException;
 
 import java.util.Map;
@@ -34,11 +34,11 @@ public interface Protocol {
     String getName();
 
     /**
-     * Returns a map of complex type definitions for which code has to be generated.
+     * Returns a map of type definitions for which code has to be generated.
      *
      * @return the Map of types that need to be generated.
      * @throws GenerationException if anything goes wrong parsing.
      */
-    Map<String, ComplexTypeDefinition> getTypeDefinitions() throws GenerationException;
+    Map<String, TypeDefinition> getTypeDefinitions() throws GenerationException;
 
 }
