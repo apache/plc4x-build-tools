@@ -1,0 +1,25 @@
+==============================================================
+Apache PLC4X Build-Tools 1.0.0-SNAPSHOT
+==============================================================
+
+This is the first official release of Apache PLC4X
+Build-Tools.
+
+It mainly contains a maven plugin for generating code
+in the Apache PLC4X project, however without any actual
+code generation modules (These are part of the main project)
+
+New Features
+------------
+
+- New `plc4x-maven-plugin`
+
+Incompatible changes
+--------------------
+
+- none
+
+Bug Fixes
+---------
+
+- none
