@@ -33,7 +33,7 @@
 
   <groupId>org.apache.plc4x.plugins</groupId>
   <artifactId>plc4x-code-generaton</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>pom</packaging>
 
   <name>PLC4X Build Tools: Code Generation</name>
@@ -52,7 +52,7 @@
     <connection>scm:git:https://gitbox.apache.org/repos/asf/plc4x-build-tools.git</connection>
     <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/plc4x-build-tools.git</developerConnection>
     <url>https://github.com/apache/plc4x-build-tools</url>
-    <tag>rel/1.0</tag>
+    <tag>release/code-generation/1.0.0-rc3</tag>
   </scm>
 
   <modules>
