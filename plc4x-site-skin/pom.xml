@@ -25,6 +25,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sitePluginVersion>3.7.1</sitePluginVersion>
     <mpirVersion>3.0.0</mpirVersion>
+
+    <fontawesome.version>5.2.0</fontawesome.version>
   </properties>
 
   <scm>
@@ -36,17 +38,99 @@
 
   <build>
     <plugins>
+      <!--
+        Download Fontawesome.
+      -->
+      <plugin>
+        <groupId>com.googlecode.maven-download-plugin</groupId>
+        <artifactId>download-maven-plugin</artifactId>
+        <version>1.4.1</version>
+        <executions>
+          <execution>
+            <id>get-fontawesome</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>https://use.fontawesome.com/releases/v${fontawesome.version}/fontawesome-free-${fontawesome.version}-web.zip</url>
+              <unpack>true</unpack>
+              <outputDirectory>${project.build.directory}/dependency/fontawesome</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <configuration>
+        <executions>
+          <execution>
+            <id>copy-site-resources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>
+                    ${project.build.directory}/dependency/fontawesome/fontawesome-free-${fontawesome.version}-web
+                  </directory>
+                  <includes>
+                    <include>css/all.min.css</include>
+                  </includes>
+                </resource>
+                <resource>
+                  <directory>
+                    ${project.build.directory}/dependency/fontawesome/fontawesome-free-${fontawesome.version}-web/webfonts
+                  </directory>
+                  <targetPath>fonts</targetPath>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+        <!--configuration>
           <delimiters>
             <delimiter>@</delimiter>
           </delimiters>
           <useDefaultDelimiters>false</useDefaultDelimiters>
-        </configuration>
+        </configuration-->
+      </plugin>
+
+      <!--
+        The bootstrap uses "fonts" as directory for locating fonts and fontawesome uses "webfonts".
+        This plugin updates the css to also use "fonts".
+      -->
+      <plugin>
+        <groupId>com.google.code.maven-replacer-plugin</groupId>
+        <artifactId>replacer</artifactId>
+        <version>1.5.3</version>
+        <executions>
+          <execution>
+            <id>streamline-font-urls</id>
+            <!-- Only execute this for the parent module -->
+            <inherited>false</inherited>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>replace</goal>
+            </goals>
+            <configuration>
+              <file>${project.build.outputDirectory}/css/all.min.css</file>
+              <replacements>
+                <replacement>
+                  <token>../webfonts/</token>
+                  <value>../fonts/</value>
+                </replacement>
+              </replacements>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
+
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
@@ -89,6 +173,7 @@
       </plugins>
     </pluginManagement>
   </build>
+
   <profiles>
     <profile>
       <id>run-its</id>
@@ -126,6 +211,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>minify</id>
       <build>
@@ -157,6 +243,7 @@
             </includes>
           </resource>
         </resources>
+
         <plugins>
           <plugin>
             <groupId>com.samaxes.maven</groupId>
