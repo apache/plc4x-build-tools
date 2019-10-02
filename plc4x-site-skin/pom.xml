@@ -26,6 +26,7 @@
     <sitePluginVersion>3.7.1</sitePluginVersion>
     <mpirVersion>3.0.0</mpirVersion>
 
+    <bootstrap.version>4.3.1</bootstrap.version>
     <fontawesome.version>5.2.0</fontawesome.version>
   </properties>
 
@@ -46,6 +47,18 @@
         <artifactId>download-maven-plugin</artifactId>
         <version>1.4.1</version>
         <executions>
+          <execution>
+            <id>get-bootstrap</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>https://github.com/twbs/bootstrap/releases/download/v${bootstrap.version}/bootstrap-${bootstrap.version}-dist.zip</url>
+              <unpack>true</unpack>
+              <outputDirectory>${project.build.directory}/dependency/bootstrap</outputDirectory>
+            </configuration>
+          </execution>
           <execution>
             <id>get-fontawesome</id>
             <phase>generate-resources</phase>
@@ -74,6 +87,18 @@
             <configuration>
               <outputDirectory>${project.build.outputDirectory}</outputDirectory>
               <resources>
+                <resource>
+                  <directory>${project.build.directory}/dependency/bootstrap/bootstrap-${bootstrap.version}-dist</directory>
+                  <includes>
+                    <include>css/*</include>
+                  </includes>
+                </resource>
+                <resource>
+                  <directory>${project.build.directory}/dependency/bootstrap/bootstrap-${bootstrap.version}-dist</directory>
+                  <includes>
+                    <include>js/*</include>
+                  </includes>
+                </resource>
                 <resource>
                   <directory>
                     ${project.build.directory}/dependency/fontawesome/fontawesome-free-${fontawesome.version}-web
