@@ -19,20 +19,9 @@
 
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
-public interface SimpleTypeReference extends TypeReference {
+public interface FloatTypeReference  extends SimpleTypeReference {
 
-    SimpleBaseType getBaseType();
+    int getExponent();
+    int getMantissa();
 
-    int getSizeInBits();
-
-    enum SimpleBaseType {
-
-        BIT,
-        UINT,
-        INT,
-        FLOAT,
-        UFLOAT,
-        STRING
-
-    }
 }
