@@ -27,9 +27,9 @@ public interface ManualField extends PropertyField {
         return "manual";
     }
 
-    Term getSerializationExpression();
+    Term getParseExpression();
 
-    Term getDeserializationExpression();
+    Term getSerializeExpression();
 
     Term getLengthExpression();
 

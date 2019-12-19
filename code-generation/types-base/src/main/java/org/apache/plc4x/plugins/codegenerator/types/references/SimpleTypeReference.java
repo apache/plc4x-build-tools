@@ -32,7 +32,10 @@ public interface SimpleTypeReference extends TypeReference {
         INT,
         FLOAT,
         UFLOAT,
-        STRING
+        STRING,
+        TIME,
+        DATE,
+        DATETIME
 
     }
 }

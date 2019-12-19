@@ -29,6 +29,6 @@ public interface ImplicitField extends TypedField {
 
     String getName();
 
-    Term getSerializationExpression();
+    Term getSerializeExpression();
 
 }

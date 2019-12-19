@@ -32,9 +32,9 @@ public interface ManualArrayField extends PropertyField {
 
     Term getLoopExpression();
 
-    Term getSerializationExpression();
+    Term getParseExpression();
 
-    Term getDeserializationExpression();
+    Term getSerializeExpression();
 
     Term getLengthExpression();
 
