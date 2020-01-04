@@ -1,9 +1,13 @@
 ==============================================================
-Apache PLC4X Build-Tools Code-Generation 1.1.0 (Unreleased)
+Apache PLC4X Build-Tools Code-Generation 1.1.0
 ==============================================================
 
 New Features
 ------------
+- Added new Integer and Float type references
+- Added support for "dataIo" types in MSpec
+- Added support for temporal fields
+- Added support for string fields
 
 Incompatible changes
 --------------------
