@@ -59,7 +59,7 @@
 #**##end
 #end
 ##
-#macro ( banner $banner $id )
+#macro ( banner $banner $id $class)
 #**##if ( $banner )
 #*  *##if( $banner.href )
 #*    *##set ( $hrf = $banner.href )
@@ -72,7 +72,7 @@
 #*    *##end
 #*    *#<a href="$hrf" id="$id"#if( $banner.alt ) title="$banner.alt"#end>##
 #*  *##else
-#*  *#<div id="$id">
+#*  *#<div id="$id" class="$class">
 #*  *##end
 ##
 #*  *##if( $banner.src )
@@ -402,7 +402,7 @@
 #*    *##if( $item.img )
 #*      *##set ( $img = $item.img )
 #*    *##else
-#*      *##set ( $img = "images/logos/maven-feather.png" )
+#*      *##set ( $img = "images/maven-feather.png" )
 #*    *##end
 ##
 #*    *##if ( !$decoration.isLink( $img ) )
@@ -444,31 +444,13 @@
 #*  *##end
 #*  *##if( $poweredBy.isEmpty() )
       <a href="http://maven.apache.org/" title="$i18n.getString( "site-renderer", $locale, "template.builtby" ) Maven" class="poweredBy">
-        <img class="poweredBy" alt="$i18n.getString( "site-renderer", $locale, "template.builtby" ) Maven" src="$relativePath/images/logos/maven-feather.png" />
+        <img class="poweredBy" alt="$i18n.getString( "site-renderer", $locale, "template.builtby" ) Maven" src="$relativePath/images/maven-feather.png" />
       </a>
 #*  *##end
 #**##else
     <a href="http://maven.apache.org/" title="$i18n.getString( "site-renderer", $locale, "template.builtby" ) Maven" class="poweredBy">
-      <img class="poweredBy" alt="$i18n.getString( "site-renderer", $locale, "template.builtby" ) Maven" src="$relativePath/images/logos/maven-feather.png" />
+      <img class="poweredBy" alt="$i18n.getString( "site-renderer", $locale, "template.builtby" ) Maven" src="$relativePath/images/maven-feather.png" />
     </a>
 #**##end
 #end
 ##
-#macro ( googleAnalytics $accountId )
-#**##if( $accountId && $accountId != "" )
-    <!-- Google Analytics -->
-    <script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', '$accountId']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
-    </script>
-#**##end
-#end
