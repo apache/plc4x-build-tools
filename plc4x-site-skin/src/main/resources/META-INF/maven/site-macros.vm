@@ -220,6 +220,55 @@
   </li>
 #end
 ##
+#macro ( filteredMainMenu $menus )
+    ## Calculate the currently selected section of the website.
+    ## Cut off all leading "../" segments, so we'll have the url start with the main section name.
+    #set ( $sectionName = $alignedFileName.replaceAll( '\.\./', '') )
+    ## If the remaining par doesn't contain a "/" we're in the root section, which we call "home".
+    #if ( !$sectionName.contains('/'))
+        #set ( $sectionName = "home" )
+    #else
+        #set ( $sectionName = $sectionName.substring(0, $sectionName.indexOf('/')) )
+    #end
+
+    ## Iterate over all menus defined in the site.xml
+    #foreach( $menu in $menus )
+        ## Iterate over all menu items in the current menu.
+        #foreach( $item in $menu.items )
+            ## Calculate the relative address of this item.
+            #set ( $currentItemHref = $PathTool.calculateLink( $item.href, $relativePath ) )
+            #set ( $currentItemHref = $currentItemHref.replaceAll( '\\', '/' ) )
+
+            ## Extract the item's section.
+            #set ( $currentItemSectionName = $currentItemHref.replaceAll( '\.\./', '') )
+            #if ( !$currentItemSectionName.contains('/'))
+                #set ( $currentItemSectionName = "home" )
+            #else
+                #set ( $currentItemSectionName = $currentItemSectionName.substring(0, $currentItemSectionName.indexOf('/')) )
+            #end
+
+            ## If the items section matches that of the current page, output the link.
+            #if ($currentItemSectionName == $sectionName)
+                #if ( !$showMenu )
+                    ## We only want to output the menu if there is any content,
+                    ## so check if it has been initialized. If not, do it.
+                    <nav class="col-sm-push col-md-2 sidebar">
+                    <div class="sidebar-sticky">
+                    <div id="navcolumn">
+                    #set ( $showMenu = true )
+                #end
+                #menuItem( $item )
+            #end
+        #end
+    #end
+    ## If the menu is output, we need to close it.
+    #if ( $showMenu )
+        </div>
+        </div>
+        </nav>
+    #end
+#end
+##
 #macro ( mainMenu $menus )
 #**##foreach( $menu in $menus )
 #*  *##if ( $menu.name )

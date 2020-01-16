@@ -46,9 +46,6 @@
   </bannerRight>
 
   <body>
-    <menu name="Deciders">
-      <item name="Section Home" href="deciders/index.html"/>
-    </menu>
     <menu name="Users">
       <item name="Section Home" href="users/index.html"/>
       <item name="Download" href="users/download.html"/>
@@ -71,7 +68,6 @@
       <item name="Continuous Integration" href="developers/ci.html"/>
       <item name="Contributing" href="developers/contributing.html"/>
       <item name="Decision Making" href="developers/decisions.html"/>
-      <!--item name="JQassistant" href="developers/jqassistant.html"/-->
       <item name="Maturity" href="developers/maturity.html"/>
       <item name="Preparing your Computer" href="developers/preparing.html"/>
       <item name="Releasing" href="developers/release.html"/>
