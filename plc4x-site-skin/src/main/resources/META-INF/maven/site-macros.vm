@@ -221,16 +221,6 @@
 #end
 ##
 #macro ( filteredMainMenu $menus )
-    ## Calculate the currently selected section of the website.
-    ## Cut off all leading "../" segments, so we'll have the url start with the main section name.
-    #set ( $sectionName = $alignedFileName.replaceAll( '\.\./', '') )
-    ## If the remaining par doesn't contain a "/" we're in the root section, which we call "home".
-    #if ( !$sectionName.contains('/'))
-        #set ( $sectionName = "home" )
-    #else
-        #set ( $sectionName = $sectionName.substring(0, $sectionName.indexOf('/')) )
-    #end
-
     ## Iterate over all menus defined in the site.xml
     #foreach( $menu in $menus )
         ## Iterate over all menu items in the current menu.

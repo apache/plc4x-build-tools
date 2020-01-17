@@ -4,6 +4,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"#if ( $locale ) xml:lang="$locale.language" lang="$locale.language"#end>
 <head>
     #set( $showMenu = false )
+    ## Calculate the currently selected section of the website.
+    ## Cut off all leading "../" segments, so we'll have the url start with the main section name.
+    #set ( $sectionName = $alignedFileName.replaceAll( '\.\./', '') )
+    ## If the remaining par doesn't contain a "/" we're in the root section, which we call "home".
+    #if ( !$sectionName.contains('/'))
+        #set ( $sectionName = "home" )
+    #else
+        #set ( $sectionName = $sectionName.substring(0, $sectionName.indexOf('/')) )
+    #end
     <meta http-equiv="Content-Type" content="text/html; charset=${outputEncoding}"/>
     <title>$title</title>
     <script src="$relativePath/js/jquery.slim.min.js" type="javascript"></script>
@@ -38,16 +47,24 @@
     </button>
     <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
         <ul class="navbar-nav w-100 justify-content-center">
+            #if ($sectionName == "home" )
             <li class="nav-item active">
-                <a class="nav-link" href="$relativePath/index.html">Home <span class="sr-only">(current)</span></a>
+            #else
+            <li class="nav-item">
+            #end
+                <a class="nav-link" href="$relativePath/index.html">Home</a>
             </li>
             ## Output only navigation options for the highest level menus
             ## The convention is that if a name is "Hurz", that there is a directory called "hurz"
             ## in the site and this contains an index.html
             #foreach( $menu in $decoration.body.menus )
-            <li class="nav-item">
-                <a class="nav-link" href="$relativePath/$menu.name.toLowerCase()/index.html">$menu.name</a>
-            </li>
+                #if ($sectionName == $menu.name.toLowerCase())
+                <li class="nav-item active">
+                #else
+                <li class="nav-item">
+                #end
+                    <a class="nav-link" href="$relativePath/$menu.name.toLowerCase()/index.html">$menu.name</a>
+                </li>
             #end
         </ul>
         <ul class="nav navbar-nav ml-auto justify-content-end">
