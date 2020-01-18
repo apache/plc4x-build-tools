@@ -1,4 +1,4 @@
-#macro ( link $href $name $target $img $position $alt $border $width $height $title )
+#macro ( link $href $name $target $img $position $alt $border $width $height $title $class )
 #**##set ( $linkTitle = ' title="' + $name + '"' )
 #**##if( $target )
 #*  *##set ( $linkTarget = ' target="' + $target + '"' )
@@ -167,57 +167,25 @@
 #end
 ##
 #macro ( menuItem $item )
-#**##set ( $collapse = "none" )
-#**##set ( $currentItemHref = $PathTool.calculateLink( $item.href, $relativePath ) )
-#**##set ( $currentItemHref = $currentItemHref.replaceAll( '\\', '/' ) )
-##
-#**##if ( $item && $item.items && $item.items.size() > 0 )
-#*  *##if ( $item.collapse == false )
-#*    *##set ( $collapse = "expanded" )
-#*  *##else
-#*    *### By default collapsed
-#*    *##set ( $collapse = "collapsed" )
-#*  *##end
-##
-#*  *##set ( $display = false )
-#*  *##displayTree( $display $item )
-##
-#*  *##if ( $alignedFileName == $currentItemHref || $display )
-#*    *##set ( $collapse = "expanded" )
-#*  *##end
-#**##end
-  <li class="$collapse">##
-#**##if ( $item.img )
-#*  *##if ( $item.position == "left" )
-#*    *##if ( $alignedFileName == $currentItemHref )
-#*      *#<strong>#image($item.img $item.alt $item.border $item.width $item.height $item.title) $item.name</strong>
-#*    *##else
-#*      *##link($currentItemHref $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $item.title)
-#*    *##end
-#*  *##else
-#*    *##if ( $alignedFileName == $currentItemHref )
-#*      *#<strong>$item.name #image($item.img $item.alt $item.border $item.width $item.height $item.title)</strong>
-#*    *##else
-#*      *##link($currentItemHref $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $item.title)
-#*    *##end
-#*  *##end
-#**##else
-#*  *##if ( $alignedFileName == $currentItemHref )
-#*    *#<strong>$item.name</strong>
-#*  *##else
-#*    *##link( $currentItemHref $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $item.title )
-#*  *##end
-#**##end
-#**##if ( $item && $item.items && $item.items.size() > 0 )
-#*  *##if ( $collapse == "expanded" )
-      <ul>
-#*    *##foreach( $subitem in $item.items )
-#*      *##menuItem( $subitem )
-#*    *##end
-      </ul>
-#*  *##end
-#**##end
-  </li>
+    #set ( $currentItemHref = $PathTool.calculateLink( $item.href, $relativePath ) )
+    #set ( $currentItemHref = $currentItemHref.replaceAll( '\\', '/' ) )
+    ## Output the navigation item
+    <li class="nav-item">
+        ## If the item is the currently selected page, don't output a link, but just present it bold
+        #if ( $alignedFileName == $currentItemHref )
+            <strong class="nav-link">$item.name</strong>
+        #else
+            <a href="$currentItemHref" class="nav-link">$item.name</a>
+        #end
+        ## Output any sub-menu
+        #if ( $item && $item.items && $item.items.size() > 0 )
+            <ul class="flex-column pl-4 nav">
+                #foreach( $subitem in $item.items )
+                    #menuItem( $subitem )
+                #end
+            </ul>
+        #end
+    </li>
 #end
 ##
 #macro ( filteredMainMenu $menus )
@@ -242,9 +210,9 @@
                 #if ( !$showMenu )
                     ## We only want to output the menu if there is any content,
                     ## so check if it has been initialized. If not, do it.
-                    <nav class="col-sm-push col-md-2 sidebar">
+                    <nav class="col-sm-push col-md-2 pt-5 sidebar">
                     <div class="sidebar-sticky">
-                    <div id="navcolumn">
+                    <ul class="nav flex-column">
                     #set ( $showMenu = true )
                 #end
                 #menuItem( $item )
@@ -253,7 +221,7 @@
     #end
     ## If the menu is output, we need to close it.
     #if ( $showMenu )
-        </div>
+        </ul>
         </div>
         </nav>
     #end

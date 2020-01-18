@@ -50,8 +50,21 @@
       <item name="Section Home" href="users/index.html"/>
       <item name="Download" href="users/download.html"/>
       <item name="Getting Started" href="users/gettingstarted.html"/>
-      <item name="PLC4X without a PLC and Unit Testing" href="users/testing.html"/>
-      <item name="Object PLC Mapping (OPM)" href="users/opm.html"/>
+      <item name="Integrations" href="users/integrations/index.html">
+        <item name="Apache Calcite" href="users/integrations/apache-calcite.html"/>
+        <item name="Apache Camel" href="users/integrations/apache-camel.html"/>
+        <item name="Apache Edgent" href="users/integrations/apache-edgent.html"/>
+        <item name="Apache IoTDB" href="users/integrations/apache-iotdb.html"/>
+        <item name="Apache Kafka" href="users/integrations/apache-kafka.html"/>
+        <item name="Apache NiFi" href="users/integrations/apache-nifi.html"/>
+        <item name="Apache StreamPipes" href="users/integrations/apache-streampipes.html"/>
+        <item name="Eclipse Ditto" href="users/integrations/eclipse-ditto.html"/>
+        <item name="Elastic Logstash " href="users/integrations/elastic-logstash.html"/>
+      </item>
+      <item name="Tools" href="users/tools/index.html">
+        <item name="PLC4X without a PLC and Unit Testing" href="users/testing.html"/>
+        <item name="Object PLC Mapping (OPM)" href="users/opm.html"/>
+      </item>
       <item name="Industry 4.0 with Apache" href="users/industry40.html"/>
       <item name="Security" href="users/security.html"/>
     </menu>
