@@ -84,7 +84,7 @@
         #else
             #set ( $mainStyles = "")
         #end
-        <main role="main" class="ml-sm-auto px-4 $mainStyles">
+        <main role="main" class="ml-sm-auto px-4 pt-3 $mainStyles">
             $bodyContent
         </main>
         <footer class="pt-4 my-md-5 pt-md-5 w-100 border-top">

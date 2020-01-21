@@ -210,7 +210,7 @@
                 #if ( !$showMenu )
                     ## We only want to output the menu if there is any content,
                     ## so check if it has been initialized. If not, do it.
-                    <nav class="col-sm-push col-md-2 pt-5 sidebar">
+                    <nav class="col-sm-push col-md-2 pt-3 sidebar">
                     <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                     #set ( $showMenu = true )
