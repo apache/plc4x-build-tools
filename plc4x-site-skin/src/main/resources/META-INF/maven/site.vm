@@ -20,7 +20,7 @@
     <script src="$relativePath/js/bootstrap.bundle.min.js" type="javascript"></script>
     <link rel="stylesheet" href="$relativePath/css/all.min.css" type="text/css"/>
     <link rel="stylesheet" href="$relativePath/css/bootstrap.min.css" type="text/css"/>
-    <link rel="stylesheet" href="$relativePath/css/amaven-base.css" type="text/css"/>
+    <link rel="stylesheet" href="$relativePath/css/maven-base.css" type="text/css"/>
     <link rel="stylesheet" href="$relativePath/css/maven-theme.css" type="text/css"/>
     <link rel="stylesheet" href="$relativePath/css/site.css" type="text/css"/>
     <link rel="stylesheet" href="$relativePath/css/print.css" type="text/css" media="print"/>
@@ -84,7 +84,7 @@
         #else
             #set ( $mainStyles = "")
         #end
-        <main role="main" class="ml-sm-auto px-4 pt-3 $mainStyles">
+        <main role="main" class="ml-sm-auto px-4 $mainStyles">
             $bodyContent
         </main>
         <footer class="pt-4 my-md-5 pt-md-5 w-100 border-top">

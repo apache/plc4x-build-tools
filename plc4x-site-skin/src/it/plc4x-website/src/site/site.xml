@@ -49,7 +49,9 @@
     <menu name="Users">
       <item name="Section Home" href="users/index.html"/>
       <item name="Download" href="users/download.html"/>
-      <item name="Getting Started" href="users/gettingstarted.html"/>
+      <item name="Getting Started" href="users/gettingstarted.html">
+        <item name="Java" href="users/plc4j/gettingstarted.html"/>
+      </item>
       <item name="Integrations" href="users/integrations/index.html">
         <item name="Apache Calcite" href="users/integrations/apache-calcite.html"/>
         <item name="Apache Camel" href="users/integrations/apache-camel.html"/>
