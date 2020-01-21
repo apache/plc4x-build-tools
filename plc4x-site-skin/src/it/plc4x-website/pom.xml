@@ -188,6 +188,7 @@
         </executions>
       </plugin>
 
+      <!-- Download a set of different themes -->
       <plugin>
         <groupId>com.googlecode.maven-download-plugin</groupId>
         <artifactId>download-maven-plugin</artifactId>
@@ -201,9 +202,33 @@
               <goal>wget</goal>
             </goals>
             <configuration>
-              <url>https://github.com/darshandsoni/asciidoctor-skins/raw/gh-pages/css/${asciidoctor-theme}.css</url>
-              <outputDirectory>${project.build.directory}/site/css</outputDirectory>
-              <outputFileName>site.css</outputFileName>
+              <url>https://github.com/darshandsoni/asciidoctor-skins/archive/gh-pages.zip</url>
+              <unpack>true</unpack>
+              <outputDirectory>${project.build.directory}/dependency</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-site-themes</id>
+            <phase>pre-site</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/site/css/themes</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}/dependency/asciidoctor-skins-gh-pages/css</directory>
+                  <includes>
+                    <include>*.css</include>
+                  </includes>
+                </resource>
+              </resources>
             </configuration>
           </execution>
         </executions>
