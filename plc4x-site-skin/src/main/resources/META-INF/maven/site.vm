@@ -143,7 +143,7 @@
         #if ($showMenu)
             #set ( $mainStyles = "col-sm-pull col-md-9 col-lg-10")
         #else
-            #set ( $mainStyles = "")
+            #set ( $mainStyles = "w-100")
         #end
         <main role="main" class="ml-sm-auto px-4 $mainStyles">
             $bodyContent

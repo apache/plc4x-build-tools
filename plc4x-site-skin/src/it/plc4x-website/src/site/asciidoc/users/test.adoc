@@ -1,0 +1,238 @@
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+:imagesdir: ../images/
+:icons: font
+
+== Users
+
+This part of the PLC4X website is dedicated to people wanting to use Apache PLC4X.
+
+It will provide information on the features and how to use them as well as documentation on how to use the different integration modules.
+
+[width=100%,cols="^.^,^.^,^.^"]
+|===
+a|image::apache_calcite_logo.svg[width=80%,link=https://calcite.apache.org] a|image::apache_camel_logo.png[width=80%,link=https://camel.apache.org] a|image::apache_edgent_logo.png[width=80%,link=https://edgent.apache.org]
+|icon:check[role=green] https://calcite.apache.org[Apache Calcite™]         |icon:check[role=green] https://camel.apache.org[Apache Camel™]         |icon:check[role=green] https://edgent.apache.org[Apache Edgent™ (retired)]
+a|image::apache_iotdb_logo.png[width=80%,link=https://iotdb.apache.org]     a|image::apache_kafka_logo.png[width=80%,link=https://kafka.apache.org] a|image::apache_nifi_logo.svg[width=80%,link=https://nifi.apache.org]
+|icon:check[role=green] https://iotdb.apache.org[Apache IoTDB™ (incubating)]|icon:check[role=green] https://kafka.apache.org[Apache Kafka™]         |icon:wrench[role=green] https://nifi.apache.org[Apache Nifi™]
+a|image::apache_streampipes_logo.png[width=80%,link=https://streampipes.apache.org]     a|image::eclipse_ditto_logo.svg[link=https://www.eclipse.org/ditto/] a|image::elastic_logstash_logo.svg[width=80%,link=https://www.elastic.co/de/products/logstash]
+|icon:wrench[role=yellow] https://mynewt.apache.org[Apache StreamPipes™ (incubating)]   |icon:wrench[role=yellow] https://kafka.apache.org[Apache Kafka™]              |icon:wrench[role=green] https://www.elastic.co/de/products/logstash[Elastic Logstash™]
+|===
+
+=== Using the PLC4X API directly
+
+In order to write a valid PLC4X Java application, all you need, is to add a dependency to the `api module`.
+When using Maven, all you need to do is add this dependency:
+
+[subs=attributes+]
+----
+    <dependency>
+      <groupId>org.apache.plc4x</groupId>
+      <artifactId>plc4j-api</artifactId>
+      <version>{project-version}</version>
+    </dependency>
+----
+
+This will allow you to write a valid application, that compiles fine.
+However in order to actually connect to a device using a given protocol, you need to add this protocol implementation to the classpath.
+
+If this line is empty, the output is skipped for this instance.
+
+=== Example `Java` output
+
+....
+package org.apache.plc4x.language.java;
+
+import freemarker.template.*;
+import org.apache.plc4x.plugins.codegenerator.protocol.freemarker.FreemarkerLanguageOutput;
+import org.apache.plc4x.plugins.codegenerator.protocol.freemarker.FreemarkerLanguageTemplateHelper;
+import org.apache.plc4x.plugins.codegenerator.types.definitions.ComplexTypeDefinition;
+
+import java.io.*;
+import java.util.*;
+
+public class JavaLanguageOutput extends FreemarkerLanguageOutput {
+
+    @Override
+    public String getName() {
+        return "Java";
+    }
+
+    protected List<Template> getTemplates(Configuration freemarkerConfiguration) throws IOException {
+        return Arrays.asList(
+            freemarkerConfiguration.getTemplate("templates/java/pojo-template.ftlh"),
+            freemarkerConfiguration.getTemplate("templates/java/io-template.ftlh"));
+    }
+
+    protected FreemarkerLanguageTemplateHelper getHelper(Map<String, ComplexTypeDefinition> types) {
+        return new JavaLanguageTemplateHelper(types);
+    }
+
+}
+....
+
+=== Current Releases
+
+[#release-0.5.0]
+==== 0.5.0 Official https://www.apache.org/dyn/closer.lua/plc4x/0.5.0/apache-plc4x-0.5.0-source-release.zip[source release] [ https://www.apache.org/dist/plc4x/0.5.0/apache-plc4x-0.5.0-source-release.zip.sha512[SHA512] ] [ https://www.apache.org/dist/plc4x/0.5.0/apache-plc4x-0.5.0-source-release.zip.asc[ASC] ]
+
+This is the first release containing our new generated drivers (AB-ETH)
+
+===== New Features
+
+- Implemented a new Apache Kafka Connect integration module
+- Implemented a new Apache NiFi integration module
+- Implemented a new Logstash integration module
+- Implemented a driver for the AB-ETH protocol
+- Implemented Apache Karaf features for S7 OSGI drivers
+- PLC4X-121	Develop Code Generation to allow Generated Drivers in multiple Languages
+
+Sandbox (Beta-Features)
+- Implemented a new BACnet/IP passive mode driver
+- Implemented a new Serial DF1 driver
+
+===== Incompatible changes
+
+===== Bug Fixes
+
+- PLC4X-104	S7 Driver Datatype TIME_OF_DAY causes ArrayOutOfBoundException
+- PLC4X-134	S7 is terminating the connection during handshake
+- PLC4X-139	PLC4X leaks sockets in case of connection problems
+- PLC4X-141	String with real length of greater 127 throw an exception
+- PLC4X-144	When requesting invalid addresses, the DefaultS7MessageProcessor produces errors
+
+=== Options to communicating with PLCs
+
+In general there are two options for communicating with industrial PLCs:
+
+* Using a protocol converter
+** Hardware protocol converter
+** Software protocol converter
+* Using a driver for direct communication
+** Commercial drivers
+** Open-Source drivers
+
+Well protocol converters are all software in the end, but while a "hardware converter" is usually a closed hardware box that runs some sort of software, a "software converter" is usually an installable service or program that runs on a host system.
+
+== Example: DF1 MSpec
+
+The DF1 protocol has three basic messages: a command message, acknowledge and not acknowledge.
+A `0x10` is used as delimiter to differentiate between the messages and parts of the command message.
+
+[width="25%",cols="^,^"]
+|============
+|ACK | NAK
+
+|10 06 |10 15
+|============
+
+This is what a read command message looks like in full-duplex mode using CRC as checksum:
+[cols="^,^,^,^,^,^,^,^,^,^,^,^,^"]
+|===
+|Name | DLE | STX | DST | SRC | CMD | STS | TNS | ADDR | SIZE | DLE | ETX | CRC
+
+|Value | 10 | 02 | XX | XX | 01 | 00 | XX XX | XX XX | 02 | 10 | 03 | XX XX
+|===
+
+The according response with the requested byte data:
+[cols="^,^,^,^,^,^,^,^,^,^,^,^,^"]
+|===
+|Name | DLE | STX | DST | SRC | CMD | STS | TNS | DATA | SIZE | DLE | ETX | CRC
+
+|Value | 10 | 02 | XX | XX | 41 | 00 | XX XX | XX XX | 02 | 10 | 03 | XX XX
+|===
+
+== Code Generation
+
+As hand-writing code for a lot of drivers in multiple languages would be quite a nightmare, we have invested a very large amount of time into finding a way to automate this.
+
+So in the end we need 3 parts:
+
+1. Protocol definition
+2. Language template
+3. A maven plugin which generates the code
+
+This maven plugin uses a given protocol definition as well as a language template and generates code for reading/writing data in that protocol with the given language.
+
+[ditaa,code-generation-intro]
+....
+                  +------------+
+                  |c05A        |
+                  |  Language  |
+       +--------->|    Base    |------------+
+       |          |            |            |
+       |          +------------+            v
++------------+                       +------------+      +------------+
+|c05A        |                       |c05A        |      |            |
+|   Types    |                       |   PLC4X    |      |            |
+|    Base    |                       |   Maven    |----->|    Code    |
+|            |                       |   Plugin   |      |            |
++------------+                       +------------+      +------------+
+       |          +------------+            ^
+       |          |c05A        |            |
+       |          |  Protocol  |            |
+       +--------->|    Base    |------------+
+                  |            |
+                  +------------+
+....
+
+=== Building the PLC4X Website with Maven
+
+The PLC4X Website is also part of the same GIT repository that contains the code and it is built by Maven as well.
+
+In order to build the website the following command should be sufficient:
+
+    mvn site
+
+However this will generate the website for each module inside it's `target/site` directory.
+Opening this in a browser and navigating from pages of one module to another will not work as these links expect a different directory structure.
+In order to create a fully navigatable version of the Website, the following command should be sufficient:
+
+    mvn site site:stage
+
+This will generate an additional `target/staging` directory which contains the fully functional version.
+
+A lot of documentation on Maven suggests to use the `site:site` goal directly instead of calling the `site` phase, but in case of PLC4X there is more than just the site generation that has to be executed.
+
+This is just a quick-start version of the site generation, for a fully detailed documentation please read the http://plc4x.apache.org/developers/website.html[Website] documentation page.
+
+== Conferences & Events
+
+On this page we are listing options to attend talks and events around PLC4X.
+
+[width="100%",cols="2,^2,2,^2,^3",options="header"]
+|=========================================================
+|Date |Location |Type |Event | Title
+|18th June 2019 |Erfurt (GER) |Meetup |https://www.meetup.com/de-DE/iothde/events/260140057/[IoT Thüringen] |Industrie & IoT: Die perfekte Verbindung mit Flexibus & Apache PLC4X
+|24th May 2019  |Frankfurt (GER) |Meetup |https://www.meetup.com/de-DE/IoT-Hessen/events/261422034/[IoT Hessen] |Industrial IoT goes Open Source: Apache PLC4X Talks & Party
+|3th April 2019 |Cologne (GER) |Conference |https://www.buildingiot.de[Building IoT] |Apache PLC4X: Industry 4.0 done our way
+|8th March 2019 |Solingen (GER) |Conference |https://www.codecentric.de/2019/02/05/industrial-iot-day-solingen[Industrial IoT Day] |Apache PLC4X: Industry 4.0 done our way
+|21th February 2019 |Aachen (GER) |Meetup | http://www.euregjug.eu/2019/01/29/episode-iv-a-new-hope-industry-40-done-our-way[EURegJUG Maas-Rhine] |Episode IV - A New Hope: Industry 4.0 Done Our Way
+|15th February 2019 |Nürtingen (GER) |Meetup | PLC4X Meetup |Special Hackathon looking deeper into some new Protocols
+|15th November 2018 |Düsseldorf (GER) |Meetup |RheinJUG |http://www.rheinjug.de/rheinjug/event/2018/11/15/wie-wir-mit-apache-plc4x-die-silos-in-der-automatisierungsindustrie-aufbrechen.html[Wie wir mit Apache PLC4X die Silos in der Automatisierungsindustrie aufbrechen]
+|12th-13th November 2018 |Berlin (GER) |Conference |https://www.sv-veranstaltungen.de/fachbereiche/big-data-3/[3. Fachkonferenz: Industrial Analytics & Big Data in der Industrie] |Kommunikation mit Industrieanlagen ohne Umbau- und Lizenzkosten
+|22th-24th October 2018 |Edinburgh (GB) |Conference |https://events.linuxfoundation.org/events/open-source-summit-europe-2018/[Open-Source Summit Europe] |Revolutionizing the production industry with Apache PLC4X
+|24th-19th September 2018 |Montreal (CAN) |Conference |http://apachecon.com/acna18/?ref=apachecon.com[ApacheCon NA 2018] |https://apachecon.dukecon.org/acna/2018/#/scheduledEvent/51feeb6f55f250c39[Revolutionizing the Production Industry with Apache PLC4X (incubating)]
+|20th September 2018 |Nürtingen (GER) |Meetup |PLC4X Meetup |First general committer meetup
+|13th-14th June 2018 |Berlin (GER) |Conference |http://www.apachecon.com/euroadshow18/#[Apache EU Roadshow] |https://foss-backstage.de/session/revolutionizing-production-industry-apache-plc4x[Revolutionizing the production industry with Apache PLC4X]
+|4th June 2018 |Cologne (GER) |Conference |https://www.buildingiot.de/[Building IoT] |https://www.buildingiot.de/veranstaltung-6815-industrial-iot-und-edge-computing-mit-apache-plc4x-und-apache-edgent-%5Bsponsored-talk%5D.html?id=6815[Industrial IoT und Edge Computing mit Apache PLC4X und Apache Edgent]
+|5th April 2018 |Hamburg (GER) |Conference |https://techcamp.hamburg/[TechCamp Hamburg] |https://techcamp.hamburg/events/revolutionizing-industrial-iot-with-apache-plc4x/[Revolutionizing Industrial IoT with Apache PLC4X]
+|21th January 2018 |Hamburg (GER) |Conference |https://www.nortec-hamburg.de/[Nortec] |Mehr für Weniger? Aber Sicher!
+|4th-5th May 2019 |Brussels (BE) |Hackathon |https://eufossahackathon.bemyapp.com[EU FOSSA Apache Hackathon] | Co-creating the future of open source
+|=========================================================
+
+Looking forward to meeting you.

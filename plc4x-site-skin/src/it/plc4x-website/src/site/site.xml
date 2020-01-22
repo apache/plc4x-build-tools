@@ -48,6 +48,7 @@
   <body>
     <menu name="Users">
       <item name="Section Home" href="users/index.html"/>
+      <item name="Demo-Page" href="users/test.html"/>
       <item name="Download" href="users/download.html"/>
       <item name="Getting Started" href="users/gettingstarted.html">
         <item name="Java" href="users/plc4j/gettingstarted.html"/>
