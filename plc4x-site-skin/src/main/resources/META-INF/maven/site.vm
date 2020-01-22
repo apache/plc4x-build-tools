@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="$relativePath/css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="$relativePath/css/maven-base.css" type="text/css"/>
     <link rel="stylesheet" href="$relativePath/css/maven-theme.css" type="text/css"/>
-    <link rel="stylesheet" href="$relativePath/css/themes/asciidoctor.css" type="text/css" id="pagestyle"/>
+    <link rel="stylesheet" href="$relativePath/css/themes/chris.css" type="text/css" id="pagestyle"/>
     <link rel="stylesheet" href="$relativePath/css/print.css" type="text/css" media="print"/>
 
     #foreach( $author in $authors )
@@ -98,6 +98,7 @@
         <option value="template">template</option>
         <option value="tufte">tufte</option>
         <option value="ubuntu">ubuntu</option>
+        <option value="chris">chris</option>
     </select>
 </div>
 <nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center border-bottom">
