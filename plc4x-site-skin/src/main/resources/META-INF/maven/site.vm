@@ -46,7 +46,7 @@
     </script>
 </head>
 <body class="composite">
-<div>
+<div class="fixed-top">
     <!-- TODO: Remove this -->
     <select name="cars" onchange="swapStyleSheet('$relativePath/css/themes/' + this.value + '.css')">
         <option value="adoc-colony">adoc-colony</option>
