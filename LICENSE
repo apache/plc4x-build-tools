@@ -216,3 +216,7 @@ mvnw
 mvnw.cmd
 Are provided from the Github Project: https://github.com/takari/maven-wrapper
 which is distributed under the Apache 2.0 license.
+
+The File:
+plc4x-site-skin/src/main/resources/css/plc4x.css
+is a customized version of a field copied from https://github.com/darshandsoni/asciidoctor-skins/blob/gh-pages/css/adoc-foundation.css
