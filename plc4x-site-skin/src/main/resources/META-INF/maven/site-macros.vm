@@ -198,11 +198,15 @@
             #set ( $currentItemHref = $currentItemHref.replaceAll( '\\', '/' ) )
 
             ## Extract the item's section.
-            #set ( $currentItemSectionName = $currentItemHref.replaceAll( '\.\./', '') )
-            #if ( !$currentItemSectionName.contains('/'))
-                #set ( $currentItemSectionName = "home" )
+            #if ( $currentItemHref.startsWith("https://www.apache.org/"))
+                #set ( $currentItemSectionName = "apache")
             #else
-                #set ( $currentItemSectionName = $currentItemSectionName.substring(0, $currentItemSectionName.indexOf('/')) )
+                #set ( $currentItemSectionName = $currentItemHref.replaceAll( '\.\./', '') )
+                #if ( !$currentItemSectionName.contains('/'))
+                    #set ( $currentItemSectionName = "home" )
+                #else
+                    #set ( $currentItemSectionName = $currentItemSectionName.substring(0, $currentItemSectionName.indexOf('/')) )
+                #end
             #end
 
             ## If the items section matches that of the current page, output the link.

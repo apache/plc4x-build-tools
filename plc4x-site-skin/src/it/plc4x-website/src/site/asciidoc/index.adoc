@@ -18,58 +18,58 @@
 :icons: font
 
 ++++
-    <header class="bg-light text-white">
-        <div class="container text-center">
+    <header class="bg-light text-white align-middle" style="height: 300px;">
+        <div class="container text-center pt-5">
             <h1>The universal protocol adapter for Industrial IoT</h1>
             <p class="lead">Building bridges between IT and OT</p>
         </div>
     </header>
-    <section id="no-retrofit">
-        <div class="container text-center">
+    <section id="no-retrofit" class="align-middle" style="height: 300px;">
+        <div class="container text-center pt-5">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <h2>Connect your shopfloor assets without retrofit</h2>
+                    <h2>Connect your shopfloor assets without having to retrofit them</h2>
                     <p class="lead">In contrast to other approches, Apache PLC4X lets you connect your industrial assets without needing to modify them.</p>
                 </div>
             </div>
         </div>
     </section>
-    <section id="secure" class="bg-light">
-        <div class="container text-center">
+    <section id="secure" class="bg-light align-middle" style="height: 300px;">
+        <div class="container text-center pt-5">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <h2>Secure by design</h2>
-                    <p class="lead">Not only are PLC4X drivers implemented with security in mind, also do our <b>passive-mode drivers</b> bring to you guaranteed side-effect-freeness without the need to pay for validated software.</p>
+                    <p class="lead">Not only are Apache PLC4X drivers implemented with security in mind, also do our <b>passive-mode drivers</b> bring to you guaranteed side-effect-freeness without the need to pay for validated software.</p>
                 </div>
             </div>
         </div>
     </section>
-    <section id="performant">
-        <div class="container text-center">
+    <section id="performant" class="align-middle" style="height: 300px;">
+        <div class="container text-center pt-5">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <h2>Get the performance you need</h2>
-                    <p class="lead">Most approaches like OPC-UA currently don't deliver the performance needed for machine learning, deep learning and AI. PLC4X allows you to get the data volumes in the resolutons needed, without stressing out your industial hardware.</p>
+                    <p class="lead">Most approaches like OPC-UA currently don't deliver the performance needed for machine learning, deep learning and AI. Apache PLC4X allows you to get the data volumes in the resolutons needed, without stressing out your industial hardware.</p>
                 </div>
             </div>
         </div>
     </section>
-    <section id="costs" class="bg-light">
-        <div class="container text-center">
+    <section id="costs" class="bg-light align-middle" style="height: 300px;">
+        <div class="container text-center pt-5">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <h2>No license-costs, no restrictive licenses</h2>
-                    <p class="lead">Being open-source, PLC4X is <b>free of charge</b>. Start experimenting without worrying about license costs or shady license agreements. The Apache 2.0 is one of the worlds <b>most trusted and adopted</b> open-source licenses out there.</p>
+                    <p class="lead">Being open-source, Apache PLC4X is <b>free of charge</b>. Start experimenting without worrying about license costs or shady license agreements. The Apache 2.0 is one of the worlds <b>most trusted and adopted</b> open-source licenses out there.</p>
                 </div>
             </div>
         </div>
     </section>
-    <section id="with-support">
-        <div class="container text-center">
+    <section id="with-support" class="align-middle" style="height: 300px;">
+        <div class="container text-center pt-5">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <h2>Get the commercial support you need</h2>
-                    <p class="lead">Just because you can download and use PLC4X for free doesn't mean that your're left on your own. Some of our community member's comapnies can also provide your with the <b>commercial support</b> you need.</p>
+                    <p class="lead">Just because you can download and use Apache PLC4X for free doesn't mean that your're left on your own. Some of our community member's comapnies can also provide your with the <b>commercial support</b> you need.</p>
                 </div>
             </div>
         </div>
