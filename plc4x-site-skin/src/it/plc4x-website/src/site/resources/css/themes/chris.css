@@ -618,3 +618,236 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 .conum + b { display: none; }
 .conum:after { content: attr(data-value); }
 .conum:not([data-value]):empty { display: none; }
+
+
+
+.jumbotron {
+  background: white;
+  margin-bottom:0px;
+}
+
+.px-4 {
+  padding-left: 0px !important;
+  padding-right:0px !important;
+}
+
+
+div.bubble {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  line-height: 1.4em;
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  font-family: sans-serif;
+  padding: 20px;
+  font-size: large;
+}
+
+div.thought {
+  width: 100%;
+  border-radius: 20px;
+  padding: 30px;
+}
+
+div.bubble:before,
+div.bubble:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+
+div.thought:before,
+div.thought:after {
+  left: 10px;
+  bottom: -30px;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border: 8px solid #333;
+  -webkit-border-radius: 28px;
+  -moz-border-radius: 28px;
+  border-radius: 28px;
+}
+
+div.thought:after {
+  width: 20px;
+  height: 20px;
+  left: 5px;
+  bottom: -40px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  border-radius: 18px;
+}
+
+.teaser-img {
+  position: relative;
+  background: #FFFFFF;
+  overflow: hidden;
+}
+
+.teaser-img:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.9;
+  background-image: url('../../images/background-index-2.png');
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.teaser-box {
+  background:white;
+  border: 5px solid #A42052;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  padding:35px;
+  border-radius:15px;
+  display:inline-block;
+  margin: 50px 30px;
+}
+
+.apache-teaser {
+  position: relative;
+  padding-left: 1em;
+  /*border-left: 0.2em solid #A42052;*/
+  font-size: 16pt;
+  font-weight: 100;
+  margin-bottom:20px;
+}
+
+.apache-teaser:before, .apache-teaser:after {
+  content: '\201C';
+  color: rgb(27, 20, 100);
+}
+
+.apache-teaser:after {
+  content: '\201D';
+}
+
+.header-apache-text {
+  line-height:1.2;
+  font-family: 'Heebo', sans-serif;
+  font-size:32pt;
+  margin-bottom:20px;
+  font-weight:800;
+}
+
+.plc4x-button {
+  display: inline-block ;
+  vertical-align: middle;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+  line-height: 1em;
+  padding: 0.75em 1.25em;
+  margin-right:0.125em;
+  margin-left: 0.125em;
+  margin-top:0px;
+}
+
+.plc4x-button-large {
+  font-size: 1.0em;
+  padding: 1em 1.0em;
+}
+
+.plc4x-button.plc4x-button-primary:hover {
+  background: #ea2d80;
+  -webkit-transition: all 0.75s ease;
+  transition: all 0.75s ease;
+  text-decoration: none;
+}
+
+.plc4x-button.plc4x-button-primary {
+  background: #A42052;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.plc4x-headline {
+  color:#A42052;
+  font-weight:700;
+  display:inline-block;
+  padding:5px;
+  text-align:center;
+}
+
+.section-highlight {
+  padding-left:30px;
+  padding-right:30px;
+  padding-top:30px;
+}
+
+.section-highlight-primary {
+  background-color: #A42052;
+  color:white;
+}
+
+.section-highlight-secondary {
+  background-color: white;
+  color:#A42052;
+}
+
+.section-highlight-text-primary {
+  color:white;
+}
+
+.section-highlight-text-secondary {
+  color:#A42052;
+}
+
+.highlight-icon {
+  border-radius:50%/25%;
+  padding:30px;
+}
+
+.highlight-icon-primary {
+  background:white;
+  color: #A42052;
+}
+
+.highlight-icon-secondary {
+  background:#A42052;
+  color: white;
+}
+
+.center {
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.margin-rl-0 {
+  margin-left:0;
+  margin-right:0;
+}
+
+.margin-rl-auto {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.plc4x-logo {
+  margin-top:30px;
+  margin-bottom:30px;
+}
+
+.text-center {
+  text-align:center;
+}

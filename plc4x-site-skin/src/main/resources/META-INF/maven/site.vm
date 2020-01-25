@@ -39,67 +39,67 @@
     #end
     $headContent
     <!-- TODO: Remove this -->
-    <script type="application/javascript">
-        function swapStyleSheet(sheet) {
-            document.getElementById("pagestyle").setAttribute("href", sheet);
-        }
-    </script>
+##    <script type="application/javascript">
+##        function swapStyleSheet(sheet) {
+##            document.getElementById("pagestyle").setAttribute("href", sheet);
+##        }
+##    </script>
 </head>
 <body class="composite">
 <div class="fixed-top">
     <!-- TODO: Remove this -->
-    <select name="cars" onchange="swapStyleSheet('$relativePath/css/themes/' + this.value + '.css')">
-        <option value="adoc-colony">adoc-colony</option>
-        <option value="adoc-foundation">adoc-foundation</option>
-        <option value="adoc-foundation-lime">adoc-foundation-lime</option>
-        <option value="adoc-foundation-potion">adoc-foundation-potion</option>
-        <option value="adoc-github">adoc-github</option>
-        <option value="adoc-golo">adoc-golo</option>
-        <option value="adoc-iconic">adoc-iconic</option>
-        <option value="adoc-maker">adoc-maker</option>
-        <option value="adoc-readthedocs">adoc-readthedocs</option>
-        <option value="adoc-riak">adoc-riak</option>
-        <option value="adoc-rocket-pandav">adoc-rocket-pandav</option>
-        <option value="adoc-rubygems">adoc-rubygems</option>
-        <option value="asciidoctor">asciidoctor</option>
-        <option value="boot-cerulean">boot-cerulean</option>
-        <option value="boot-cosmo">boot-cosmo</option>
-        <option value="boot-cyborg">boot-cyborg</option>
-        <option value="boot-darkly">boot-darkly</option>
-        <option value="boot-flatly">boot-flatly</option>
-        <option value="boot-journal">boot-journal</option>
-        <option value="boot-lumen">boot-lumen</option>
-        <option value="boot-paper">boot-paper</option>
-        <option value="boot-readable">boot-readable</option>
-        <option value="boot-sandstone">boot-sandstone</option>
-        <option value="boot-slate">boot-slate</option>
-        <option value="boot-spacelab">boot-spacelab</option>
-        <option value="boot-superhero">boot-superhero</option>
-        <option value="boot-yeti">boot-yeti</option>
-        <option value="clean">clean</option>
-        <option value="dark">dark</option>
-        <option value="fedora">fedora</option>
-        <option value="gazette">gazette</option>
-        <option value="italian-pop">italian-pop</option>
-        <option value="material-amber">material-amber</option>
-        <option value="material-blue">material-blue</option>
-        <option value="material-brown">material-brown</option>
-        <option value="material-green">material-green</option>
-        <option value="material-grey">material-grey</option>
-        <option value="material-orange">material-orange</option>
-        <option value="material-pink">material-pink</option>
-        <option value="material-purple">material-purple</option>
-        <option value="material-red">material-red</option>
-        <option value="material-teal">material-teal</option>
-        <option value="medium">medium</option>
-        <option value="monospace">monospace</option>
-        <option value="notebook">notebook</option>
-        <option value="plain">plain</option>
-        <option value="template">template</option>
-        <option value="tufte">tufte</option>
-        <option value="ubuntu">ubuntu</option>
-        <option value="chris">chris</option>
-    </select>
+##    <select name="cars" onchange="swapStyleSheet('$relativePath/css/themes/' + this.value + '.css')">
+##        <option value="adoc-colony">adoc-colony</option>
+##        <option value="adoc-foundation">adoc-foundation</option>
+##        <option value="adoc-foundation-lime">adoc-foundation-lime</option>
+##        <option value="adoc-foundation-potion">adoc-foundation-potion</option>
+##        <option value="adoc-github">adoc-github</option>
+##        <option value="adoc-golo">adoc-golo</option>
+##        <option value="adoc-iconic">adoc-iconic</option>
+##        <option value="adoc-maker">adoc-maker</option>
+##        <option value="adoc-readthedocs">adoc-readthedocs</option>
+##        <option value="adoc-riak">adoc-riak</option>
+##        <option value="adoc-rocket-pandav">adoc-rocket-pandav</option>
+##        <option value="adoc-rubygems">adoc-rubygems</option>
+##        <option value="asciidoctor">asciidoctor</option>
+##        <option value="boot-cerulean">boot-cerulean</option>
+##        <option value="boot-cosmo">boot-cosmo</option>
+##        <option value="boot-cyborg">boot-cyborg</option>
+##        <option value="boot-darkly">boot-darkly</option>
+##        <option value="boot-flatly">boot-flatly</option>
+##        <option value="boot-journal">boot-journal</option>
+##        <option value="boot-lumen">boot-lumen</option>
+##        <option value="boot-paper">boot-paper</option>
+##        <option value="boot-readable">boot-readable</option>
+##        <option value="boot-sandstone">boot-sandstone</option>
+##        <option value="boot-slate">boot-slate</option>
+##        <option value="boot-spacelab">boot-spacelab</option>
+##        <option value="boot-superhero">boot-superhero</option>
+##        <option value="boot-yeti">boot-yeti</option>
+##        <option value="clean">clean</option>
+##        <option value="dark">dark</option>
+##        <option value="fedora">fedora</option>
+##        <option value="gazette">gazette</option>
+##        <option value="italian-pop">italian-pop</option>
+##        <option value="material-amber">material-amber</option>
+##        <option value="material-blue">material-blue</option>
+##        <option value="material-brown">material-brown</option>
+##        <option value="material-green">material-green</option>
+##        <option value="material-grey">material-grey</option>
+##        <option value="material-orange">material-orange</option>
+##        <option value="material-pink">material-pink</option>
+##        <option value="material-purple">material-purple</option>
+##        <option value="material-red">material-red</option>
+##        <option value="material-teal">material-teal</option>
+##        <option value="medium">medium</option>
+##        <option value="monospace">monospace</option>
+##        <option value="notebook">notebook</option>
+##        <option value="plain">plain</option>
+##        <option value="template">template</option>
+##        <option value="tufte">tufte</option>
+##        <option value="ubuntu">ubuntu</option>
+##        <option value="chris">chris</option>
+##    </select>
 </div>
 <nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center border-bottom">
     <!--a href="/" class="navbar-brand d-flex w-50 mr-auto">Navbar 3</a-->
@@ -130,7 +130,7 @@
             #end
         </ul>
         <ul class="nav navbar-nav ml-auto justify-content-end">
-            <li class="nav-item row valign-middle"">
+            <li class="nav-item row valign-middle">
                 <a href="http://www.apache.org/events/current-event.html" class="col"><img src="http://www.apache.org/events/current-event-234x60.png" alt="Apache Events"/></a>
                 <div class="col">
                     #banner( $decoration.bannerRight "bannerRight")
@@ -159,6 +159,10 @@
                 #else
                     Copyright &#169;#copyright()All rights reserved.#publishDate(
                     "bottom" $decoration.publishDate $decoration.version )
+                    <br/>Home screen image taken from <a
+                        href="https://flic.kr/p/chEftd">Flickr</a>, "Tesla Robot Dance" by Steve Jurvetson, licensed
+                    under <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 Generic</a>, image cropped
+                    and colors removed.
                 #end
             </div>
         </footer>
