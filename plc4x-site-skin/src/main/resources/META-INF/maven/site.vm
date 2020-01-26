@@ -153,16 +153,16 @@
             $bodyContent
         </main>
         <footer class="pt-4 my-md-5 pt-md-5 w-100 border-top">
-            <div class="xright">
+            <div style="text-align:center;">
                 #if( $decoration.body.footer )
                     $render.eval( $decoration.body.footer )
                 #else
                     Copyright &#169;#copyright()All rights reserved.#publishDate(
                     "bottom" $decoration.publishDate $decoration.version )
-                    <br/>Home screen image taken from <a
+                    <br/><div style="text-align:center;">Home screen image taken from <a
                         href="https://flic.kr/p/chEftd">Flickr</a>, "Tesla Robot Dance" by Steve Jurvetson, licensed
                     under <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 Generic</a>, image cropped
-                    and colors removed.
+                    and blur effect added.</div>
                 #end
             </div>
         </footer>
@@ -175,5 +175,22 @@
 <script src="$relativePath/js/jquery.slim.min.js"></script>
 <script src="$relativePath/js/popper.min.js"></script>
 <script src="$relativePath/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $('.carousel .carousel-item').each(function(){
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+
+        for (let i = 0; i < 3; i++) {
+            next=next.next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+        }
+    });
+</script>
 </body>
 </html>
