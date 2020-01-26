@@ -59,7 +59,7 @@
                    <div class="col-lg-12 mx-auto">
                        <i class="fas fa-plug fa-7x highlight-icon highlight-icon-primary"></i>
                        <h2 class="section-highlight-text-primary">Connect your shopfloor assets without retrofit.</h2>
-                       <p class="lead">In contrast to other approches, Apache PLC4X lets you connect your industrial assets without needing to modify them.</p>
+                       <p class="lead c-white">In contrast to other approches, Apache PLC4X lets you connect your industrial assets without needing to modify them.</p>
                    </div>
                </div>
            </div>
@@ -212,7 +212,7 @@
                    <div class="col-lg-12 mx-auto">
                        <i class="fas fa-lock fa-7x highlight-icon highlight-icon-primary"></i>
                        <h2 class="section-highlight-text-primary">Secure by design.</h2>
-                       <p class="lead">Not only are PLC4X drivers implemented with security in mind, also do our <b>passive-mode drivers</b> bring to you guaranteed side-effect-freeness without the need to pay for validated software.</p>
+                       <p class="lead c-white">Not only are PLC4X drivers implemented with security in mind, also do our <b>passive-mode drivers</b> bring to you guaranteed side-effect-freeness without the need to pay for validated software.</p>
                    </div>
                </div>
            </div>
@@ -234,7 +234,8 @@
                    <div class="col-lg-12 mx-auto">
                        <i class="fas fa-smile fa-7x highlight-icon highlight-icon-primary"></i>
                        <h2 class="section-highlight-text-primary">No license-costs, no restrictive licenses.</h2>
-                       <p class="lead">Being open-source, PLC4X is <b>free of charge</b>. Start experimenting without worrying about license costs or shady license agreements. The Apache 2.0 is one of the worlds <b>most trusted and adopted</b> open-source licenses out there.</p>
+                       <p class="lead c-white">Being open-source, PLC4X is <b>free of charge</b>. Start experimenting
+                       without worrying about license costs or shady license agreements. The Apache 2.0 is one of the worlds <b>most trusted and adopted</b> open-source licenses out there.</p>
                    </div>
                </div>
            </div>

@@ -99,8 +99,6 @@
                     Copyright &#169;#copyright()All rights reserved.<br/>
                     Apache PLC4X, PLC4X, Apache, the Apache feather logo, and the Apache PLC4X project logo are either registered trademarks or trademarks of The Apache Software Foundation in the United States and other countries. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
                     #publishDate("bottom" $decoration.publishDate $decoration.version )
-                    Copyright &#169;#copyright()All rights reserved.#publishDate(
-                    "bottom" $decoration.publishDate $decoration.version )
                     <br/><div style="text-align:center;">Home screen image taken from <a
                         href="https://flic.kr/p/chEftd">Flickr</a>, "Tesla Robot Dance" by Steve Jurvetson, licensed
                     under <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0 Generic</a>, image cropped
