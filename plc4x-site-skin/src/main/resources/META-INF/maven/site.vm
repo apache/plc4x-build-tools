@@ -69,7 +69,7 @@
         </ul>
         <ul class="nav navbar-nav ml-auto justify-content-end">
             <li class="nav-item row valign-middle">
-                <a href="http://www.apache.org/events/current-event.html" class="col"><img src="http://www.apache.org/events/current-event-234x60.png" alt="Apache Events"/></a>
+                <a href="https://www.apache.org/events/current-event.html" class="col"><img src="https://www.apache.org/events/current-event-234x60.png" alt="Apache Events"/></a>
                 <div class="col">
                     #banner( $decoration.bannerRight "bannerRight")
                 </div>
