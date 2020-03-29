@@ -1,0 +1,41 @@
+PLC4X Build Tools: PLC4X Site Skin
+========================
+
+PLC4X Build Tools: PLC4X Site Skin is a sub-project of the Apache PLC4X project
+and contains all the tools needed to generate the main projects website using
+the maven site plugin.
+
+Environment
+-----------
+
+Currently the project is configured to require the following software:
+
+1) Java 8 JDK: For running Maven in general as well as compiling the Java and Scala
+modules `JAVA_HOME` configured to point to that.
+
+
+Getting Started
+---------------
+
+Normally you wouldn't be required to build this module as the artifacts it produces
+will be made available via one of the maven repositories. However if you want to improve
+or fix the existing tools, you will have to build your version locally.
+
+You must have Java 8 installed on your system and connectivity to Maven Central
+(for downloading external third party dependencies). Maven will be automatically
+downloaded and installed by the maven wrapper `mvnw`.
+
+Build PLC4X Java jars and install them in your local maven repository
+
+$ ./mvnw install
+
+This should make the build-tools available to the main projects build.
+In order to use your locally built version of the build-tools you should
+update the property: `plc4x-code-generation.version` in the PLC4X main pom.xml.
+
+
+
+Licensing
+---------
+
+Apache PLC4X is released under the Apache License Version 2.0.

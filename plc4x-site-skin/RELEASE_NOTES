@@ -1,0 +1,21 @@
+==============================================================
+PLC4X Build Tools: PLC4X Site Skin 1.0.0
+==============================================================
+
+This is the first official release of
+PLC4X Build Tools: PLC4X Site Skin.
+
+New Features
+------------
+
+- New `maven-site-plugin` skin
+
+Incompatible changes
+--------------------
+
+- none
+
+Bug Fixes
+---------
+
+- none
