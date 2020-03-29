@@ -33,7 +33,7 @@
 
   <groupId>org.apache.plc4x.plugins</groupId>
   <artifactId>plc4x-site-skin</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
 
   <name>PLC4X Build Tools: PLC4X Site Skin</name>
 
