@@ -4,7 +4,8 @@ Apache PLC4X Build-Tools
 Apache PLC4X Build-Tools is a sub-project of the Apache PLC4X project and contains
 all the tools needed to build the main project.
 
-Currently the only tool it contains is a maven plugin used to generate drivers.
+Currently the only tools it contains is a maven plugin used to generate drivers and
+a new maven-site-plugin site theme.
 
 It currently doesn't contain any actual code-generation modules, but just the plugin
 and the API required to load and use code-generation modules.

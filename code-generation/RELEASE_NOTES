@@ -4,6 +4,7 @@ Apache PLC4X Build-Tools Code-Generation 1.2.0 (Unreleased)
 
 New Features
 ------------
+- Added a new AbstractField type
 
 Incompatible changes
 --------------------
