@@ -33,7 +33,7 @@ downloaded and installed by the maven wrapper `mvnw`.
 
 Build PLC4X Java jars and install them in your local maven repository
 
-$ ./mvnw install
+$ mvn install
 
 This should make the build-tools available to the main projects build.
 In order to use your locally built version of the build-tools you should
