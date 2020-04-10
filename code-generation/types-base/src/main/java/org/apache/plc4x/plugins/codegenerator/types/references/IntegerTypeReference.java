@@ -20,4 +20,8 @@ package org.apache.plc4x.plugins.codegenerator.types.references;
 
 public interface IntegerTypeReference extends SimpleTypeReference {
 
+    default boolean isLittleEndian() {
+        return false;
+    }
+
 }
