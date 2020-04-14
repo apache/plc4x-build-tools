@@ -39,6 +39,17 @@ pragmatic minds GmbH /
 pragmatic industries GmbH
 
 Nürtingen |Has studied mathematics in Stuttgart. Besides his interest in open source software and big data, he focuses on the analysis of time series and traces from testing or manufacturing. PLC4X was the first project where he was offered a position as (P)PMC but he is also engaged in other Apache projects like Edgent and IotDB. | a|image::team/jfeinauer.jpg[jfeinauer, 240, 320]
+
+| *Łukasz Dywicki*
+
+Founder / CEO / Coder
+
+ConnectorIO sp. z o.o.
+Code-House, Łukasz Dywicki
+
+Warsaw | He started working with Apache Software Foundation projects in 2007 - at the time when the first incubation version of Apache CXF was out. Since then he took active part and contributed to Apache projects related to software integration such as Apache Karaf, Apache ActiveMQ and Apache Camel. He is a Open Source enthusiast, passionate about connecting things and not only programs. | a|image::team/ldywicki.png[ldywicki, 240, 304]
+
+
 | *Sebastian Rühl*
 
 IoT Consultant
