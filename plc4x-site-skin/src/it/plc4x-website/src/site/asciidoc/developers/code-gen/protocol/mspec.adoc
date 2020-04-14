@@ -24,9 +24,14 @@ We simply sat down and started to write some imaginary format (`imaginary` was e
 
 It's a text-based format.
 
-At the root level of these specs are a set of `type` or `discriminatedType` blocks.
+=== Messages
 
-`type` elements are objects that are independent from the input.
+At the root level of these specs are a set of `type`, `discriminatedType` blocks.
+Additionally `enum` and `dataIo` elements can be specified.
+
+`type` elements are objects that are independent of the input.
+You can think of these as message structures which do not have variable parts.
+In case of protocols usually these are "envelopes" which allows to specify some sort of header and data.
 
 An example would be the `TPKTPacket` of the S7 format:
 
@@ -38,8 +43,18 @@ An example would be the `TPKTPacket` of the S7 format:
     [field    COTPPacket 'payload']
 ]
 ....
+In above example we have a `TPKT` packet which starts from fixed value, usually it is a magic byte meaning start of the frame or packet,
+followed by another marker byte with length field and payload.
 
-A `discriminatedType` type is in contrast an object who's content is dependent in the input.
+Most of the messages get encoded as a sequence of Type-Length-Value (so-called TLV), above is one example of it.
+The reason for constructing messages in such a way is historical as well as practical.
+The receiver of such a message can decide if a received message is interesting for him based on the type, and skip it if not.
+The author of code will also have a chance to allocate enough memory for data to come, as well as will know if a value matches a predefined contract.
+
+What happens when we have a variable kind of value or different fields depending on the type?
+That's where `discriminated type` comes in the play.
+
+A `discriminatedType` type is a message who's content is dependent in the input.
 
 Every discriminated type can contain at most one `discriminator` field and exactly one `typeSwitch` element.
 
@@ -67,64 +82,102 @@ For example part of the spec for the S7 format looks like this:
     [field S7Payload   'payload'   ['messageType', 'parameter']]
 ]
 ....
+Similarly, like with the above example of a `TPKT` packet, we have a bunch of fields plus a `type switch`.
+The `type switch` is located at the place where additional fields from other message variants might come.
 
-An types start is declared by an opening square bracket `[` and ended with a closing one `]`.
+Types start as declared by an opening square bracket `[` and ended with a closing one `]`.
 
-Also to both provide a name as first argument.
+Each variant of a message is constructed from two values - the value of discriminator and its name followed by 0 or more field declarations.
 
-Every type definition contains a list of fields that can have different types.
+=== Field types
 
-The list of available types are:
+`Type` and `discriminatedType` define kinds of messages given protocol ship.
+You probably noticed that these top-level elements contain children.
+These are the fields that declare parts of the message.
+Top elements and top-level packets of protocols form, as said above, an envelope.
+When we communicate we use it, but what matters for a receiver is a payload, a data which is passed.
 
-- const: expects a given value
-- reserved: expects a given value, but only warns if condition is not meet
-- field: simple or complex typed object
-- array: array of simple or complex typed objects
-- optional: simple or complex typed object, that is only present in some conditions
-- implicit: a field required for parsing, but is usually defined though other data
-- discriminator: special type of simple typed field which is used to determine the concrete type of an object (max one per type and always has to be accompanied with a `switch` field) (reserved for `discriminatedType`)
-- typeSwitch: not a real field, but indicates the existence of sub-types, which are declared inline (reserved for `discriminatedType`)
+Fields are sections of payload.
+Each field declaration consists of a field type, its data type, and a name.
 
-The full syntax and explanations of these type follow in the following chapters.
+There are a couple of types of fields which are defined by `MSpec` format which are used to describe data coming together with the message.
 
-Another thing we have to explain are how types are specified.
+- const: a fixed value which should be in place, this is a field that always expects a given value, breaking this contract will cause a message to be marked as invalid and dropped.
+- reserved: similarly, as above, that's the field which expects a given value, but only warns if payload does not match.
+- field: a value of given type which might be a simple or complex typed object, we'll explain types of fields below.
+- array: a sequence of elements of a given type.
+- optional: the field which is only present in some conditions.
+- implicit: a field which is required for parsing or writing, but is usually defined through other parts of a message, a common use is using a length of "data" section to be placed before actual data.
+- discriminator: a special kind of a field in which value is later used to determine a type of concrete message.
+When `discriminator` field is defined you will have to provide a `typeSwitch` field.
+`MSpec` permits max one discriminator per type and always.
+The `disciminator` field can only be declared in `discriminatedType`.
+- typeSwitch: a field that is a placeholder for sections of data dependant on sub-types, which are declared inline.
+Type switch may be defined only under `discriminatedType`.
 
-In general we distinguish between two types of types used in field definitions:
+The full syntax and explanations of these types follow in the below chapters.
 
-- simple types
-- complex types
+Another thing we have to explain is how types are specified.
+You probably noticed basic principle for definitions, which looks like this:
+```
+[<field-type> <data-type> <name>]
+```
 
-=== Simple Types
+In general, we distinguish between two kinds of data types used in field declarations:
 
-Simple types are usually raw data the format is:
+- simple types, refereed also as simple data types
+- complex types, named also complex data types
+
+
+==== Simple Types
+
+Simple data types are ones that can be read and interpreted directly using standard notations.
+Usually, raw data which comes in a message can be described using the format:
 
     {base-type} {size}
 
-The base types available are currently:
+The base types available in `MSpec` are currently:
 
-- *bit*: Simple boolean value
-- *uint*: The input is treated as unsigned integer value
-- *int*: The input is treated as signed integer value
-- *float*: The input is treated as floating point number
-- *string*: The input is treated as string
+- *bit*: Simple boolean value.
+- *uint*: The input is treated as unsigned integer value.
+- *int*: The input is treated as signed integer value.
+- *float*: The input is treated as signed floating point number.
+- *ufloat*: The input is treated as unsigned floating point number.
+- *string*: The input is treated as string.
+- *time*: The input is treated as time.
+- *date*: The input is treated as date.
+- *datetime*: The input is treated as date time.
 
 The size value then provides how many `bits` should be read.
 
 In case of `string` types, it refers to the number of characters.
 
-So reading an unsigned byte would be: `uint 8`.
+At the physical level, everything can be seen as a sequence of bits forming bytes.
+When we move to the message level we want to define payloads to start working with necessary logic.
+To let implement logic relatively straight forward, we turn communicated bytes underneaths into values that they represent.
+Thanks to that MSpec can provide to a programmer, who starts to implement a protocol, standard types representing numbers, strings, dates instead of byte and bit-level operations.
 
-=== Complex Types
+Still, if a programmer wants to implement his own logic necessary to work with a given part of a message he can, for example, read a signed byte by stating `int 8` in a data type definition.
+If protocol declares that given part of message is a positive (unsigned) number coded on two bytes then it can be declared as `uint 16`.
+Note that `MSpec` does not use notation of `short`, `long` and such. It is intentional. We want to avoid confusion caused by different handling of such types in the programming languages.
+Instead, all simple data types are defined using type name and its length.
 
-In contrast to simple types, complex type reference other complex types (Root elements of the spec document).
+==== Complex Types
 
-How the parser should interpret them is defined in the referenced types definition.
+Because simple data types are limited to a very narrow set, and messages can contain complex data, `MSpec` allows a programmer to define own types.
 
-In the example above, for example the `S7Parameter` is defined in another part of the spec.
+In contrast to simple data types, complex data types can be "constructed", meaning that they can join multiple fields of simple type, mix simple and complex data types or use just complex data types.
+These types can also accept additional parameters to group common parts of different messages used across the protocol.
+Complex data types are parsed and serialized using the same logic as other messages.
 
-=== Field Types and their Syntax
+Complex data types are `type` and `discriminatedType` defined at the root of `MSpec`.
+Be aware that the primary difference in the declaration of fields that refer to complex data types is lack of type length, as combined type might be flexible and maybe only determined only at the runtime when data arrives.
 
-==== array Field
+In the example above, for example, the `S7Parameter` is defined in another part of the spec.
+
+==== Field Types and their Syntax
+
+===== array Field
 
 An `array` field is exactly what you expect.
 It generates an field which is not a single-value element but an array or list of elements.
@@ -140,7 +193,7 @@ Possible values are:
 - `length`: In this case a given number of bytes are being read. So if an element has been parsed and there are still bytes left, another element is parsed.
 - `terminated`: In this case the parser will continue reading elements until it encounters a termination sequence.
 
-==== checksum Field
+===== checksum Field
 
 A checksum field can only operate on simple types.
 
@@ -156,7 +209,7 @@ This field doesn't keep any data in memory.
 See also:
 - implicit field: A checksum field is similar to an implicit field, however the `checksum-expression` is evaluated are parsing time and throws an exception if the values don't match.
 
-==== const Field
+===== const Field
 
 A const field simply reads a given simple type and compares to a given reference value.
 
@@ -171,7 +224,7 @@ This field doesn't keep any data in memory.
 See also:
 - implicit field: A const field is similar to an implicit field, however it compares the parsed input to the reference value and throws an exception if the values don't match.
 
-==== discriminator Field
+===== discriminator Field
 
 Discriminator fields are only used in `discriminatedType`s.
 
@@ -185,7 +238,7 @@ See also:
 - implicit field: A discriminator field is similar to an implicit field, however doesn't provide a serialization expression as it uses the discrimination constants of the type it is.
 - discriminated types
 
-==== implicit Field
+===== implicit Field
 
 Implicit types are fields that get their value implicitly from the data they contain.
 
@@ -199,19 +252,19 @@ This type of field is generally used for fields that handle numbers of elements 
 
 This field doesn't keep any data in memory.
 
-==== manualArray Field
+===== manualArray Field
 
     [manualArray {simple-type} {size} '{name}' {'count', 'length', 'terminated'} '{loop-expression}' '{serialization-expression}' '{deserialization-expression}' '{length-expression}']
 
     [manualArray {complex-type} '{name}' {'count', 'length', 'terminated'} '{loop-expression}' '{serialization-expression}' '{deserialization-expression}' '{length-expression}']
 
-==== manual Field
+===== manual Field
 
     [manual {simple-type} {size} '{name}' '{serialization-expression}' '{deserialization-expression}' '{length-expression}']
 
     [manual {complex-type} '{name}' '{serialization-expression}' '{deserialization-expression}' '{length-expression}']
 
-==== optional Field
+===== optional Field
 
 An optional field is a type of field that can also be `null`.
 
@@ -226,7 +279,7 @@ When serializing, if the field is `null` nothing is output, if it is not `null` 
 See also:
 - simple field: In general `optional` fields are identical to `simple` fields except the ability to be `null` or be skipped.
 
-==== padding Field
+===== padding Field
 
 A padding field outputs additional padding data, if an expression evaluates to `true`.
 
@@ -237,7 +290,7 @@ If it doesn't, it is just skipped.
 
 This field doesn't keep any data in memory.
 
-==== reserved Field
+===== reserved Field
 
 Reserved fields are very similar to `const` fields, however they don't throw exceptions, but instead log messages if the values don't match.
 
@@ -255,7 +308,7 @@ This field doesn't keep any data in memory.
 See also:
 - `const` field
 
-==== simple Field
+===== simple Field
 
 Simple fields are the most common types of fields.
 A `simple` field directly mapped to a normally typed field.
@@ -268,7 +321,7 @@ When parsing, the given type is parsed (can't be `null`) and saved in the corres
 
 When serializing it is serialized normally.
 
-==== virtual Field
+===== virtual Field
 
 Virtual fields have no impact on the input or output.
 They simply result in creating artificial get-methods in the generated model classes.
@@ -279,7 +332,7 @@ They simply result in creating artificial get-methods in the generated model cla
 
 Instead of being bound to a property, the return value of a `virtual` property is created by evaluating the `value-expression`.
 
-==== typeSwitch Field
+===== typeSwitch Field
 
 These types of fields can only occur in discriminated types.
 
@@ -318,7 +371,7 @@ These arguments are then available for expressions or passing on in the subtypes
 See also:
 - `discriminatedType`
 
-==== Parameters
+===== Parameters
 
 Some times it is necessary to pass along additional parameters.
 
