@@ -175,6 +175,17 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <configuration>
+            <!-- Tell the plugin to always release all modules using the same version -->
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <!-- Set the line separator to the unix style separator (Needed for reproducible builds -->
+            <arguments>-Papache-release -Dline.separator='\n' ${arguments}</arguments>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
