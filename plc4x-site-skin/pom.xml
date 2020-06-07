@@ -180,7 +180,7 @@
                 </resource>
                 <resource>
                   <directory>
-                    ${project.build.directory}/dependency/popper/popper.js-${proper.version}/dist/umd
+                    ${project.build.directory}/dependency/popper/popper-core-${proper.version}/dist/umd
                   </directory>
                   <targetPath>js</targetPath>
                 </resource>
