@@ -20,6 +20,7 @@
 package org.apache.plc4x.plugins.codegenerator.types.fields;
 
 import org.apache.plc4x.plugins.codegenerator.types.definitions.DiscriminatedComplexTypeDefinition;
+import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public interface SwitchField extends Field {
         return "switch";
     }
 
-    String[] getDiscriminatorNames();
+    Term[] getDiscriminatorExpressions();
 
     List<DiscriminatedComplexTypeDefinition> getCases();
 

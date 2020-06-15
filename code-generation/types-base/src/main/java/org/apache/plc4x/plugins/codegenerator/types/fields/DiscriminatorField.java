@@ -19,12 +19,10 @@
 
 package org.apache.plc4x.plugins.codegenerator.types.fields;
 
-public interface DiscriminatorField extends TypedField {
+public interface DiscriminatorField extends TypedField, NamedField{
 
     default String getTypeName() {
         return "discriminator";
     }
-
-    String getName();
 
 }

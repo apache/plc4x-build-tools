@@ -19,6 +19,8 @@
 
 package org.apache.plc4x.plugins.codegenerator.types.definitions;
 
+import org.apache.plc4x.plugins.codegenerator.types.references.TypeReference;
+
 public interface TypeDefinition {
 
     String getName();
@@ -28,5 +30,7 @@ public interface TypeDefinition {
     String[] getTags();
 
     TypeDefinition getParentType();
+
+    TypeReference getTypeReference();
 
 }

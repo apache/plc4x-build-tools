@@ -19,8 +19,6 @@
 
 package org.apache.plc4x.plugins.codegenerator.types.fields;
 
-public interface PropertyField extends TypedField {
-
-    String getName();
+public interface PropertyField extends TypedField, NamedField {
 
 }

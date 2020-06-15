@@ -21,13 +21,11 @@ package org.apache.plc4x.plugins.codegenerator.types.fields;
 
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
-public interface ImplicitField extends TypedField {
+public interface ImplicitField extends TypedField, NamedField {
 
     default String getTypeName() {
         return "implicit";
     }
-
-    String getName();
 
     Term getSerializeExpression();
 
