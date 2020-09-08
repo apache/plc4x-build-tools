@@ -185,7 +185,9 @@
             <!-- Tell the plugin to always release all modules using the same version -->
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <!-- Set the line separator to the unix style separator (Needed for reproducible builds -->
-            <arguments>-Papache-release -Dline.separator='\n' ${arguments}</arguments>
+            <!--arguments>-Papache-release -Dline.separator='\n' ${arguments}</arguments-->
+            <!-- line.separator commented out as it was causing trouble -->
+            <arguments>-Papache-release ${arguments}</arguments>
           </configuration>
         </plugin>
       </plugins>
