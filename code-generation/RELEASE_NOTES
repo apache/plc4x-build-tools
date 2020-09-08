@@ -1,5 +1,21 @@
 ==============================================================
-Apache PLC4X Build-Tools Code-Generation 1.2.0 (Unreleased)
+Apache PLC4X Build-Tools Code-Generation 1.3.0
+==============================================================
+
+Refactorings needed to make the expressions used in mspec
+strongly typed.
+
+New Features
+------------
+
+Incompatible changes
+--------------------
+
+Bug Fixes
+---------
+
+==============================================================
+Apache PLC4X Build-Tools Code-Generation 1.2.0
 ==============================================================
 
 New Features
