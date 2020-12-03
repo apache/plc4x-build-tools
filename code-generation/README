@@ -16,7 +16,7 @@ Environment
 
 Currently the project is configured to require the following software:
 
-1) Java 8 JDK: For running Maven in general as well as compiling the Java and Scala
+1) Java 8 JDK (Or newer): For running Maven in general as well as compiling the Java
 modules `JAVA_HOME` configured to point to that.
 
 
@@ -33,7 +33,9 @@ downloaded and installed by the maven wrapper `mvnw`.
 
 Build PLC4X Java jars and install them in your local maven repository
 
-$ mvn install
+$ ./mvnw install
+
+(Optionally you can use the normal Maven `mvn` command, if you have a reasonably fresh version of Maven installed)
 
 This should make the build-tools available to the main projects build.
 In order to use your locally built version of the build-tools you should

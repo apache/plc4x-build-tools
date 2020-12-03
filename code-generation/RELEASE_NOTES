@@ -16,7 +16,11 @@ Apache PLC4X Build-Tools Code-Generation 1.4.0
 ==============================================================
 
 New Features
--Added boolean-type
+
+- Added boolean-type
+- Moved the Default*TypeReference implementations from SPI in
+  the main repository to here
+
 ------------
 
 Incompatible changes
