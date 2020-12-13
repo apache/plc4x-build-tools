@@ -31,6 +31,11 @@ You must have Java 8 installed on your system and connectivity to Maven Central
 (for downloading external third party dependencies). Maven will be automatically
 downloaded and installed by the maven wrapper `mvnw`.
 
+NOTE: When running from sources-zip, the `mvnw` might not be executable, this can easily
+be fixed by running the following command in the directory.
+
+$ chmod +x mvnw
+
 Build PLC4X Java jars and install them in your local maven repository
 
 $ ./mvnw install
