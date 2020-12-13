@@ -33,7 +33,7 @@
 
   <groupId>org.apache.plc4x.plugins</groupId>
   <artifactId>plc4x-code-generaton</artifactId>
-  <version>1.5.0-SNAPSHOT</version>
+  <version>1.4.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>PLC4X Build Tools: Code Generation</name>
