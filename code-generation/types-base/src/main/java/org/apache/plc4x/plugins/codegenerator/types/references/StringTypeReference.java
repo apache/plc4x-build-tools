@@ -20,6 +20,8 @@ package org.apache.plc4x.plugins.codegenerator.types.references;
 
 public interface StringTypeReference extends SimpleTypeReference {
 
+    String getLength();
+
     String getEncoding();
 
 }

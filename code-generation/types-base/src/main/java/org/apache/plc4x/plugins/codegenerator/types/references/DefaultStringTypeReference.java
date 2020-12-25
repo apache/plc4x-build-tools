@@ -21,16 +21,26 @@ package org.apache.plc4x.plugins.codegenerator.types.references;
 
 public class DefaultStringTypeReference extends DefaultSimpleTypeReference implements StringTypeReference {
 
+    private final String length;
+
     private final String encoding;
 
-    public DefaultStringTypeReference(SimpleBaseType baseType, int sizeInBits, String encoding) {
-        super(baseType, sizeInBits);
+    public DefaultStringTypeReference(SimpleBaseType baseType, String length, String encoding) {
+        super(baseType, -1);
+        this.length = length;
         this.encoding = encoding;
+
+    }
+
+    public String getLength() {
+        return length;
     }
 
     @Override
     public String getEncoding() {
         return encoding;
     }
+
+
 
 }
