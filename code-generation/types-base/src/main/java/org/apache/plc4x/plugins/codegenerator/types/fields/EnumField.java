@@ -25,4 +25,7 @@ public interface EnumField extends PropertyField {
         return "enum";
     }
 
+    // Returns the name of the field used to serialize and parse the given enum value.
+    String getFieldName();
+
 }
