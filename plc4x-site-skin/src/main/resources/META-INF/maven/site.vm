@@ -36,6 +36,8 @@
     <script src="$relativePath/js/jquery.slim.min.js" type="javascript"></script>
     <!--script src="$relativePath/js/popper.min.js" type="javascript"></script-->
     <script src="$relativePath/js/bootstrap.bundle.min.js" type="javascript"></script>
+    <!-- The tooling for adding images and links to Apache events -->
+    <script src="https://www.apachecon.com/event-images/snippet.js" type="javascript" ></script>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="$relativePath/css/all.min.css" type="text/css"/>
     <!-- Bootstrap -->
@@ -87,10 +89,7 @@
         </ul>
         <ul class="nav navbar-nav ml-auto justify-content-end">
             <li class="nav-item row valign-middle">
-                <a href="https://www.apache.org/events/current-event.html" class="col"><img src="https://www.apache.org/events/current-event-234x60.png" alt="Apache Events"/></a>
-                <div class="col">
-                    #banner( $decoration.bannerRight "bannerRight")
-                </div>
+                <a class="acevent" data-format="wide"></a>
             </li>
         </ul>
     </div>
