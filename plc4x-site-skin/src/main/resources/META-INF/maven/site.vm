@@ -33,11 +33,11 @@
     #end
     <meta http-equiv="Content-Type" content="text/html; charset=${outputEncoding}"/>
     <title>$title</title>
-    <script src="$relativePath/js/jquery.slim.min.js" type="javascript"></script>
+    <script src="$relativePath/js/jquery.slim.min.js" type="text/javascript"></script>
     <!--script src="$relativePath/js/popper.min.js" type="javascript"></script-->
-    <script src="$relativePath/js/bootstrap.bundle.min.js" type="javascript"></script>
+    <script src="$relativePath/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <!-- The tooling for adding images and links to Apache events -->
-    <script src="https://www.apachecon.com/event-images/snippet.js" type="javascript" ></script>
+    <script src="https://www.apachecon.com/event-images/snippet.js" type="text/javascript" ></script>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="$relativePath/css/all.min.css" type="text/css"/>
     <!-- Bootstrap -->
