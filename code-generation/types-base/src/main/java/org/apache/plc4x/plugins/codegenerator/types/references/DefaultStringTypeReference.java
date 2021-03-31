@@ -19,18 +19,30 @@
 
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
+import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
+
 public class DefaultStringTypeReference extends DefaultSimpleTypeReference implements StringTypeReference {
+
+    private final Term lengthExpression;
 
     private final String encoding;
 
-    public DefaultStringTypeReference(SimpleBaseType baseType, int sizeInBits, String encoding) {
-        super(baseType, sizeInBits);
+    public DefaultStringTypeReference(SimpleBaseType baseType, Term lengthExpression, String encoding) {
+        super(baseType, -1);
+        this.lengthExpression = lengthExpression;
         this.encoding = encoding;
+
+    }
+
+    public Term getLengthExpression() {
+        return lengthExpression;
     }
 
     @Override
     public String getEncoding() {
         return encoding;
     }
+
+
 
 }
