@@ -22,7 +22,6 @@ package org.apache.plc4x.plugins.codegenerator.types.definitions;
 import org.apache.plc4x.plugins.codegenerator.types.fields.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public interface ComplexTypeDefinition extends TypeDefinition {
 
