@@ -22,6 +22,7 @@ package org.apache.plc4x.plugins.codegenerator.types.definitions;
 import org.apache.plc4x.plugins.codegenerator.types.fields.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public interface ComplexTypeDefinition extends TypeDefinition {
 
@@ -54,6 +55,13 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return all simple and optional fields ;-)
      */
     List<PropertyField> getPropertyFields();
+
+    /**
+     * Get only the fields which are of type AbstractField.
+     *
+     * @return all abstract fields ;-)
+     */
+    List<AbstractField> getAbstractFields();
 
     /**
      * Get any fields which are of type VirtualField.
