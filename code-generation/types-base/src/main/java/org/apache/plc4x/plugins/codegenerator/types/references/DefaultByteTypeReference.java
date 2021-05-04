@@ -18,7 +18,7 @@ under the License.
 */
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
-public class DefaultByteTypeReference extends DefaultSimpleTypeReference implements BooleanTypeReference {
+public class DefaultByteTypeReference extends DefaultSimpleTypeReference implements ByteTypeReference {
 
     public DefaultByteTypeReference() {
         super(SimpleBaseType.BYTE, 8);
