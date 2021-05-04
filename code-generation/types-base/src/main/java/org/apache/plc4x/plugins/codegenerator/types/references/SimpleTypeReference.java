@@ -28,6 +28,7 @@ public interface SimpleTypeReference extends TypeReference {
     enum SimpleBaseType {
 
         BIT,
+        BYTE,
         UINT,
         INT,
         FLOAT,
