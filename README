@@ -18,7 +18,7 @@ Environment
 Currently the project is configured to require the following software:
 
 1) Java 8 JDK: For running Maven in general as well as compiling the Java and Scala
-modules `JAVA_HOME configured to point to that.
+modules JAVA_HOME configured to point to that.
 
 
 Getting Started
