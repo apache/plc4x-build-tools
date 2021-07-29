@@ -39,8 +39,8 @@ public interface LanguageOutput {
     List<String> supportedOutputFlavors();
 
     /**
-     * An additional method which allows generator to hive a hing which options are supported by it.
-     * This method might be used to improve user experience and warn him if he sets options generator does not support.
+     * An additional method which allows generator to have a hint which options are supported by it.
+     * This method might be used to improve user experience and warn, if set options are ones generator does not support.
      *
      * @return Set containing names of options this language output can accept.
      */
