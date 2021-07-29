@@ -72,6 +72,12 @@ public class GenerateMojo extends AbstractMojo {
     @Parameter(required = true)
     private String outputFlavor;
 
+    /**
+     * Additional options which should be passed to code generator.
+     */
+    @Parameter(required = false)
+    private Map<String, String> options;
+
     public void execute()
         throws MojoExecutionException {
 
@@ -138,9 +144,17 @@ public class GenerateMojo extends AbstractMojo {
         try {
             // Parse the type definitions.
             Map<String, TypeDefinition> types = protocol.getTypeDefinitions();
+            Set<String> supportedOptions = language.supportedOptions();
+            if (options != null) {
+                for (String option : options.keySet()) {
+                    if (!supportedOptions.contains(option)) {
+                        throw new MojoExecutionException("Unsupported option '" + option + "' for language " + languageName);
+                    }
+                }
+            }
 
             // Generate output for the type definitions.
-            language.generate(outputDir, languageName, protocolName, outputFlavor, types);
+            language.generate(outputDir, languageName, protocolName, outputFlavor, types, options == null ? Collections.emptyMap() : options);
         } catch (GenerationException e) {
             throw new MojoExecutionException("Error generating sources", e);
         }
