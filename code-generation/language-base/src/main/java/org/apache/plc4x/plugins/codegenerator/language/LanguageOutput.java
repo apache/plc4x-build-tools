@@ -19,6 +19,7 @@
 
 package org.apache.plc4x.plugins.codegenerator.language;
 
+import java.util.Set;
 import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
 import org.apache.plc4x.plugins.codegenerator.types.exceptions.GenerationException;
 
@@ -37,7 +38,16 @@ public interface LanguageOutput {
 
     List<String> supportedOutputFlavors();
 
-    void generate(File outputDir, String languageName, String protocolName, String outputFlavor, Map<String, TypeDefinition> types)
+    /**
+     * An additional method which allows generator to have a hint which options are supported by it.
+     * This method might be used to improve user experience and warn, if set options are ones generator does not support.
+     *
+     * @return Set containing names of options this language output can accept.
+     */
+    Set<String> supportedOptions();
+
+    void generate(File outputDir, String languageName, String protocolName, String outputFlavor, Map<String, TypeDefinition> types,
+        Map<String, String> options)
         throws GenerationException;
 
 }
