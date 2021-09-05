@@ -1,4 +1,13 @@
 ==============================================================
+PLC4X Build Tools: PLC4X Site Skin 1.1.0 (unreleased)
+==============================================================
+
+Changes:
+
+- Updated the skin to use the updated tooling for handling
+  Apache Events
+
+==============================================================
 PLC4X Build Tools: PLC4X Site Skin 1.0.0
 ==============================================================
 

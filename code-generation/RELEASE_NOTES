@@ -1,4 +1,26 @@
-=============================================================
+==============================================================
+Apache PLC4X Build-Tools Code-Generation 1.5.0 (unreleased)
+==============================================================
+
+New Features
+
+- `string` fields allow variable length input
+- Added a new `byte` simple type for 8 bit values where the
+  language can decide on if it's signed or unsigned.
+- Added a new `unknown` field type that can be used in
+  early stages of a driver, it allows simply discarding data
+  when parsing, but throws an exception when used for
+  serialization
+- Added support to the maven plugin for custom generator
+  options (Such as a custom package name)
+
+Changes
+
+- `enum` fields should only be used if a field of the enum
+  is required for parsing and serializing. For all other
+  cases a `simple` field works just right.
+
+==============================================================
 Apache PLC4X Build-Tools Code-Generation 1.4.0
 ==============================================================
 
