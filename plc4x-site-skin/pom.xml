@@ -33,7 +33,7 @@
 
   <groupId>org.apache.plc4x.plugins</groupId>
   <artifactId>plc4x-site-skin</artifactId>
-  <version>1.1.0-SNAPSHOT</version>
+  <version>1.2.0-SNAPSHOT</version>
 
   <name>PLC4X Build Tools: PLC4X Site Skin</name>
 
@@ -54,7 +54,7 @@
     <connection>scm:git:https://gitbox.apache.org/repos/asf/plc4x-build-tools.git</connection>
     <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/plc4x-build-tools.git</developerConnection>
     <url>https://github.com/apache/plc4x-build-tools</url>
-    <tag>releases/site-skin/1.1</tag>
+    <tag>rel/plc4x-site-skin/1.0-2</tag>
   </scm>
 
   <build>
