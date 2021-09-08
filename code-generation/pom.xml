@@ -205,6 +205,8 @@
             <groupId>net.nicoulaj.maven.plugins</groupId>
             <artifactId>checksum-maven-plugin</artifactId>
             <version>1.11</version>
+            <!-- Only run this in the root module of the project -->
+            <inherited>false</inherited>
             <executions>
               <execution>
                 <goals>
