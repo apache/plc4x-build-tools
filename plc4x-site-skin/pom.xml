@@ -376,6 +376,9 @@
               <execution>
                 <id>default-minify</id>
                 <phase>generate-resources</phase>
+                <goals>
+                  <goal>minify</goal>
+                </goals>
                 <configuration>
                   <webappSourceDir>${basedir}/src/main/resources</webappSourceDir>
                   <cssSourceDir>css</cssSourceDir>
@@ -390,9 +393,6 @@
                   </jsSourceFiles>
                   <jsFinalFile>plc4x-site-skin-${project.version}.js</jsFinalFile-->
                 </configuration>
-                <goals>
-                  <goal>minify</goal>
-                </goals>
               </execution>
             </executions>
           </plugin>
