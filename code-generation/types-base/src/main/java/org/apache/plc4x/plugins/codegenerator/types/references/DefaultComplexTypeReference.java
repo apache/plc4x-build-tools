@@ -18,17 +18,27 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
+import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
+
 public class DefaultComplexTypeReference implements ComplexTypeReference {
 
     private final String name;
 
-    public DefaultComplexTypeReference(String name) {
+    private final Term[] params;
+
+    public DefaultComplexTypeReference(String name, Term[] params) {
         this.name = name;
+        this.params = params;
     }
 
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public Term[] getParams() {
+        return params;
     }
 
 }

@@ -25,7 +25,6 @@ public interface SimpleTypeReference extends TypeReference {
     int getSizeInBits();
 
     enum SimpleBaseType {
-
         BIT,
         BYTE,
         UINT,
@@ -35,7 +34,6 @@ public interface SimpleTypeReference extends TypeReference {
         STRING,
         TIME,
         DATE,
-        DATETIME
-
+        DATETIME,
     }
 }

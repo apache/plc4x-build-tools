@@ -16,14 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.plugins.codegenerator.types.references;
+package org.apache.plc4x.plugins.codegenerator.types.fields;
+
 
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
-public interface ComplexTypeReference extends TypeReference {
+public interface AssertField extends PropertyField {
 
-    String getName();
+    default String getTypeName() {
+        return "assert";
+    }
 
-    Term[] getParams();
+    Term getConditionExpression();
 
 }

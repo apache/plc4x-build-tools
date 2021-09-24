@@ -24,49 +24,12 @@ import java.util.List;
 
 public interface ComplexTypeDefinition extends TypeDefinition {
 
-    boolean isAbstract();
-
-    /**
-     * Get all fields no matter the type.
-     *
-     * @return all fields ;-)
-     */
-    List<Field> getFields();
-
-    /**
-     * Get only the fields which are of type SimpleField.
-     *
-     * @return all simple fields ;-)
-     */
-    List<SimpleField> getSimpleFields();
-
-    /**
-     * Get only the fields which are of type ConstField.
-     *
-     * @return all constant fields ;-)
-     */
-    List<ConstField> getConstFields();
-
-    /**
-     * Get only the fields which are of type SimpleField or OptionalField.
-     *
-     * @return all simple and optional fields ;-)
-     */
-    List<PropertyField> getPropertyFields();
-
     /**
      * Get only the fields which are of type AbstractField.
      *
-     * @return all abstract fields ;-)
+     * @return all abstract fields
      */
     List<AbstractField> getAbstractFields();
-
-    /**
-     * Get any fields which are of type VirtualField.
-     *
-     * @return all virtual fields ;-)
-     */
-    List<VirtualField> getVirtualFields();
 
     /**
      * In contrast to getFields, this also gets all property fields of any parent type.
@@ -76,10 +39,66 @@ public interface ComplexTypeDefinition extends TypeDefinition {
     List<PropertyField> getAllPropertyFields();
 
     /**
+     * Get only the fields which are of type ConstField.
+     *
+     * @return all constant fields
+     */
+    List<ConstField> getConstFields();
+
+    /**
+     * Get only the fields which are of type {@code AssertField}
+     *
+     * @return the assert fields
+     */
+    List<AssertField> getAssertFields();
+
+    /**
+     * Get all fields no matter the type.
+     *
+     * @return all fields
+     */
+    List<Field> getFields();
+
+    /**
+     * Get only the fields which are of type {@code ImplicitField}
+     *
+     * @return the implicit fields
+     */
+    List<ImplicitField> getImplicitFields();
+
+    /**
      * Returns all protery fields defined by any parent type.
      *
      * @return all parent types simple fields.
      */
     List<PropertyField> getParentPropertyFields();
+
+    /**
+     * Get only the fields which are of type SimpleField or OptionalField.
+     *
+     * @return all simple and optional fields
+     */
+    List<PropertyField> getPropertyFields();
+
+    /**
+     * Get only the fields which are of type SimpleField.
+     *
+     * @return all simple fields
+     */
+    List<SimpleField> getSimpleFields();
+
+    /**
+     * Get any fields which are of type VirtualField.
+     *
+     * @return all virtual fields
+     */
+    List<VirtualField> getVirtualFields();
+
+    /**
+     * indicates if this type is abstract
+     *
+     * @return true if abstract.
+     */
+    boolean isAbstract();
 
 }
