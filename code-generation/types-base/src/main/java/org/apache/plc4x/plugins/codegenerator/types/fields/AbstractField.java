@@ -18,7 +18,7 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.fields;
 
-public interface AbstractField extends TypedField {
+public interface AbstractField extends TypedField, NamedField {
 
     default String getTypeName() {
         return "abstract";

@@ -20,47 +20,45 @@ package org.apache.plc4x.plugins.codegenerator.types.references;
 
 import java.util.Objects;
 
-public class DefaultFloatTypeReference extends AbstractSimpleTypeReference implements FloatTypeReference {
+public abstract class AbstractSimpleTypeReference implements SimpleTypeReference {
 
-    private final int exponent;
-    private final int mantissa;
+    private final SimpleBaseType baseType;
+    private final int sizeInBits;
 
-    public DefaultFloatTypeReference(SimpleBaseType baseType, int exponent, int mantissa) {
-        super(baseType, (baseType == SimpleBaseType.FLOAT ? 1 : 0) + exponent + mantissa);
+    public AbstractSimpleTypeReference(SimpleBaseType baseType, int sizeInBits) {
         // TODO: add null checks
-        this.exponent = exponent;
-        this.mantissa = mantissa;
+        this.baseType = baseType;
+        this.sizeInBits = sizeInBits;
     }
 
     @Override
-    public int getExponent() {
-        return exponent;
+    public SimpleBaseType getBaseType() {
+        return baseType;
     }
 
     @Override
-    public int getMantissa() {
-        return mantissa;
+    public int getSizeInBits() {
+        return sizeInBits;
     }
 
     @Override
     public String toString() {
-        return "DefaultFloatTypeReference{" +
-                "exponent=" + exponent +
-                ", mantissa=" + mantissa +
-                "} " + super.toString();
+        return "AbstractSimpleTypeReference{" +
+                "baseType=" + baseType +
+                ", sizeInBits=" + sizeInBits +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        DefaultFloatTypeReference that = (DefaultFloatTypeReference) o;
-        return exponent == that.exponent && mantissa == that.mantissa;
+        if (!(o instanceof AbstractSimpleTypeReference)) return false;
+        AbstractSimpleTypeReference that = (AbstractSimpleTypeReference) o;
+        return getSizeInBits() == that.getSizeInBits() && getBaseType() == that.getBaseType();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), exponent, mantissa);
+        return Objects.hash(getBaseType(), getSizeInBits());
     }
 }

@@ -18,13 +18,42 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.terms;
 
-public interface BooleanLiteral extends Literal {
+import java.util.Objects;
 
-    boolean getValue();
+public class DefaultNumericLiteral implements NumericLiteral {
 
-    @Override
-    default boolean contains(String str) {
-        return false;
+    private final Number number;
+
+    public DefaultNumericLiteral(Number number) {
+        this.number = Objects.requireNonNull(number);
     }
 
+    public Number getNumber() {
+        return number;
+    }
+
+    @Override
+    public String stringRepresentation() {
+        return number.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "DefaultNumericLiteral{" +
+                "number=" + number +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DefaultNumericLiteral that = (DefaultNumericLiteral) o;
+        return number.equals(that.number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
+    }
 }

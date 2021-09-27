@@ -16,41 +16,54 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.plugins.codegenerator.types.references;
-
-import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
+package org.apache.plc4x.plugins.codegenerator.types.terms;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class DefaultComplexTypeReference implements ComplexTypeReference {
+public class DefaultVariableLiteral implements VariableLiteral {
 
     private final String name;
+    private final List<Term> args;
+    private final int index;
+    private final VariableLiteral child;
 
-    private final List<Term> params;
-
-    public DefaultComplexTypeReference(String name, List<Term> params) {
-        // TODO: add null checks
-        this.name = name;
-        this.params = params;
+    public DefaultVariableLiteral(String name, List<Term> args, int index, VariableLiteral child) {
+        this.name = Objects.requireNonNull(name);
+        this.args = args;
+        this.index = index;
+        this.child = child;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
+    public Optional<List<Term>> getArgs() {
+        return Optional.ofNullable(args);
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public Optional<VariableLiteral> getChild() {
+        return Optional.ofNullable(child);
+    }
+
     @Override
-    public Optional<List<Term>> getParams() {
-        return Optional.ofNullable(params);
+    public String stringRepresentation() {
+        return "";
     }
 
     @Override
     public String toString() {
-        return "DefaultComplexTypeReference{" +
+        return "DefaultVariableLiteral{" +
                 "name='" + name + '\'' +
-                ", params=" + params +
+                ", args=" + args +
+                ", index=" + index +
+                ", child=" + child +
                 '}';
     }
 
@@ -58,12 +71,12 @@ public class DefaultComplexTypeReference implements ComplexTypeReference {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DefaultComplexTypeReference that = (DefaultComplexTypeReference) o;
-        return Objects.equals(name, that.name) && Objects.equals(params, that.params);
+        DefaultVariableLiteral that = (DefaultVariableLiteral) o;
+        return index == that.index && name.equals(that.name) && Objects.equals(args, that.args) && Objects.equals(child, that.child);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, params);
+        return Objects.hash(name, args, index, child);
     }
 }

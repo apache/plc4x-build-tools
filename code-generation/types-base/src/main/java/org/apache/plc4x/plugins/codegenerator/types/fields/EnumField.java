@@ -18,13 +18,19 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.fields;
 
+import java.util.Optional;
+
 public interface EnumField extends PropertyField {
 
     default String getTypeName() {
         return "enum";
     }
 
-    // Returns the name of the field used to serialize and parse the given enum value.
-    String getFieldName();
+    /**
+     * Returns the name of the field used to serialize and parse the given enum value.
+     *
+     * @return the field name.
+     */
+    Optional<String> getFieldName();
 
 }

@@ -29,7 +29,7 @@ public interface SwitchField extends Field {
         return "switch";
     }
 
-    Term[] getDiscriminatorExpressions();
+    List<Term> getDiscriminatorExpressions();
 
     List<DiscriminatedComplexTypeDefinition> getCases();
 

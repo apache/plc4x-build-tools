@@ -18,13 +18,42 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.terms;
 
-public interface BooleanLiteral extends Literal {
+import java.util.Objects;
 
-    boolean getValue();
+public class DefaultStringLiteral implements StringLiteral {
 
-    @Override
-    default boolean contains(String str) {
-        return false;
+    private final String value;
+
+    public DefaultStringLiteral(String value) {
+        this.value = Objects.requireNonNull(value);
     }
 
+    public String getValue() {
+        return value;
+    }
+
+    @Override
+    public String stringRepresentation() {
+        return "\"" + value + "\"";
+    }
+
+    @Override
+    public String toString() {
+        return "DefaultStringLiteral{" +
+                "value='" + value + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DefaultStringLiteral that = (DefaultStringLiteral) o;
+        return value.equals(that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
 }

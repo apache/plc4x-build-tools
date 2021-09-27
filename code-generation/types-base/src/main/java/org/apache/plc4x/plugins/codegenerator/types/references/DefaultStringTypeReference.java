@@ -20,7 +20,9 @@ package org.apache.plc4x.plugins.codegenerator.types.references;
 
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
-public class DefaultStringTypeReference extends DefaultSimpleTypeReference implements StringTypeReference {
+import java.util.Objects;
+
+public class DefaultStringTypeReference extends AbstractSimpleTypeReference implements StringTypeReference {
 
     private final Term lengthExpression;
 
@@ -28,6 +30,7 @@ public class DefaultStringTypeReference extends DefaultSimpleTypeReference imple
 
     public DefaultStringTypeReference(SimpleBaseType baseType, Term lengthExpression, String encoding) {
         super(baseType, -1);
+        // TODO: add null checks
         this.lengthExpression = lengthExpression;
         this.encoding = encoding;
 
@@ -42,6 +45,25 @@ public class DefaultStringTypeReference extends DefaultSimpleTypeReference imple
         return encoding;
     }
 
+    @Override
+    public String toString() {
+        return "DefaultStringTypeReference{" +
+                "lengthExpression=" + lengthExpression +
+                ", encoding='" + encoding + '\'' +
+                "} " + super.toString();
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        DefaultStringTypeReference that = (DefaultStringTypeReference) o;
+        return Objects.equals(lengthExpression, that.lengthExpression) && Objects.equals(encoding, that.encoding);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), lengthExpression, encoding);
+    }
 }

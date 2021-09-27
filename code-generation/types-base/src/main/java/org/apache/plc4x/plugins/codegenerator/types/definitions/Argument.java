@@ -20,22 +20,10 @@ package org.apache.plc4x.plugins.codegenerator.types.definitions;
 
 import org.apache.plc4x.plugins.codegenerator.types.references.TypeReference;
 
-public class Argument {
+public interface Argument {
 
-    private final TypeReference type;
-    private final String name;
+    TypeReference getType();
 
-    public Argument(TypeReference type, String name) {
-        this.type = type;
-        this.name = name;
-    }
-
-    public TypeReference getType() {
-        return type;
-    }
-
-    public String getName() {
-        return name;
-    }
+    String getName();
 
 }

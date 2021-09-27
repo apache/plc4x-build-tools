@@ -21,13 +21,15 @@ package org.apache.plc4x.plugins.codegenerator.types.definitions;
 import org.apache.plc4x.plugins.codegenerator.types.enums.EnumValue;
 import org.apache.plc4x.plugins.codegenerator.types.references.TypeReference;
 
+import java.util.List;
+
 public interface EnumTypeDefinition extends TypeDefinition {
 
     TypeReference getType();
 
-    EnumValue[] getEnumValues();
+    List<EnumValue> getEnumValues();
 
-    String[] getConstantNames();
+    List<String> getConstantNames();
 
     TypeReference getConstantType(String constantName);
 

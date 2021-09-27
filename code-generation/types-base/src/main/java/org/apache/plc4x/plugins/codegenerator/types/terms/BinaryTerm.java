@@ -18,33 +18,16 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.terms;
 
-public class BinaryTerm implements Term {
+public interface BinaryTerm extends Term {
 
-    private final Term a;
-    private final Term b;
-    private final String operation;
+    Term getA();
 
-    public BinaryTerm(Term a, Term b, String operation) {
-        this.a = a;
-        this.b = b;
-        this.operation = operation;
-    }
+    Term getB();
 
-    public Term getA() {
-        return a;
-    }
+    String getOperation();
 
-    public Term getB() {
-        return b;
-    }
-
-    public String getOperation() {
-        return operation;
-    }
-
-    @Override
-    public boolean contains(String str) {
-        return ((a != null) && a.contains(str)) || ((b != null) && b.contains(str));
+    default boolean contains(String str) {
+        return getA().contains(str) || getB().contains(str);
     }
 
 }

@@ -18,7 +18,7 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
-public class DefaultIntegerTypeReference extends DefaultSimpleTypeReference implements IntegerTypeReference {
+public class DefaultIntegerTypeReference extends AbstractSimpleTypeReference implements IntegerTypeReference {
 
     public DefaultIntegerTypeReference(SimpleBaseType baseType, int sizeInBits) {
         super(baseType, sizeInBits);

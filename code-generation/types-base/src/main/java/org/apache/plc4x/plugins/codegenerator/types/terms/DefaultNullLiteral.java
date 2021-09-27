@@ -18,13 +18,14 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.terms;
 
-public interface BooleanLiteral extends Literal {
-
-    boolean getValue();
+public class DefaultNullLiteral implements NullLiteral {
+    public String stringRepresentation() {
+        return "null";
+    }
 
     @Override
-    default boolean contains(String str) {
-        return false;
+    public String toString() {
+        return "DefaultNullLiteral{}";
     }
 
 }

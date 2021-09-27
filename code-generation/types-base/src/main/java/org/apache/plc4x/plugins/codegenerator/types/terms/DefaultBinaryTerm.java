@@ -16,51 +16,58 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.plugins.codegenerator.types.references;
+package org.apache.plc4x.plugins.codegenerator.types.terms;
 
 import java.util.Objects;
 
-public class DefaultFloatTypeReference extends AbstractSimpleTypeReference implements FloatTypeReference {
+public class DefaultBinaryTerm implements BinaryTerm {
 
-    private final int exponent;
-    private final int mantissa;
+    private final Term a;
+    private final Term b;
+    private final String operation;
 
-    public DefaultFloatTypeReference(SimpleBaseType baseType, int exponent, int mantissa) {
-        super(baseType, (baseType == SimpleBaseType.FLOAT ? 1 : 0) + exponent + mantissa);
-        // TODO: add null checks
-        this.exponent = exponent;
-        this.mantissa = mantissa;
+    public DefaultBinaryTerm(Term a, Term b, String operation) {
+        this.a = Objects.requireNonNull(a);
+        this.b = Objects.requireNonNull(b);
+        this.operation = Objects.requireNonNull(operation);
+    }
+
+    public Term getA() {
+        return a;
+    }
+
+    public Term getB() {
+        return b;
+    }
+
+    public String getOperation() {
+        return operation;
     }
 
     @Override
-    public int getExponent() {
-        return exponent;
-    }
-
-    @Override
-    public int getMantissa() {
-        return mantissa;
+    public String stringRepresentation() {
+        return a + operation + b;
     }
 
     @Override
     public String toString() {
-        return "DefaultFloatTypeReference{" +
-                "exponent=" + exponent +
-                ", mantissa=" + mantissa +
-                "} " + super.toString();
+        return "DefaultBinaryTerm{" +
+                "a=" + a +
+                ", b=" + b +
+                ", operation='" + operation + '\'' +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        DefaultFloatTypeReference that = (DefaultFloatTypeReference) o;
-        return exponent == that.exponent && mantissa == that.mantissa;
+        DefaultBinaryTerm that = (DefaultBinaryTerm) o;
+        return a.equals(that.a) && b.equals(that.b) && operation.equals(that.operation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), exponent, mantissa);
+        return Objects.hash(a, b, operation);
     }
 }

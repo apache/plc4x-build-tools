@@ -16,51 +16,51 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.plugins.codegenerator.types.references;
+package org.apache.plc4x.plugins.codegenerator.types.terms;
 
 import java.util.Objects;
 
-public class DefaultFloatTypeReference extends AbstractSimpleTypeReference implements FloatTypeReference {
+public class DefaultUnaryTerm implements UnaryTerm {
 
-    private final int exponent;
-    private final int mantissa;
+    private final Term a;
+    private final String operation;
 
-    public DefaultFloatTypeReference(SimpleBaseType baseType, int exponent, int mantissa) {
-        super(baseType, (baseType == SimpleBaseType.FLOAT ? 1 : 0) + exponent + mantissa);
-        // TODO: add null checks
-        this.exponent = exponent;
-        this.mantissa = mantissa;
+    public DefaultUnaryTerm(Term a, String operation) {
+        this.a = Objects.requireNonNull(a);
+        this.operation = Objects.requireNonNull(operation);
+    }
+
+    public Term getA() {
+        return a;
+    }
+
+    public String getOperation() {
+        return operation;
     }
 
     @Override
-    public int getExponent() {
-        return exponent;
-    }
-
-    @Override
-    public int getMantissa() {
-        return mantissa;
+    public String stringRepresentation() {
+        return operation + getA().stringRepresentation();
     }
 
     @Override
     public String toString() {
-        return "DefaultFloatTypeReference{" +
-                "exponent=" + exponent +
-                ", mantissa=" + mantissa +
-                "} " + super.toString();
+        return "DefaultUnaryTerm{" +
+                "a=" + a +
+                ", operation='" + operation + '\'' +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        DefaultFloatTypeReference that = (DefaultFloatTypeReference) o;
-        return exponent == that.exponent && mantissa == that.mantissa;
+        DefaultUnaryTerm that = (DefaultUnaryTerm) o;
+        return a.equals(that.a) && operation.equals(that.operation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), exponent, mantissa);
+        return Objects.hash(a, operation);
     }
 }

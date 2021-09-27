@@ -16,26 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.plugins.codegenerator.types.references;
+package org.apache.plc4x.plugins.codegenerator.types.fields;
 
-public abstract class DefaultSimpleTypeReference implements SimpleTypeReference {
-
-    private final SimpleBaseType baseType;
-    private final int sizeInBits;
-
-    public DefaultSimpleTypeReference(SimpleBaseType baseType, int sizeInBits) {
-        this.baseType = baseType;
-        this.sizeInBits = sizeInBits;
-    }
-
-    @Override
-    public SimpleBaseType getBaseType() {
-        return baseType;
-    }
-
-    @Override
-    public int getSizeInBits() {
-        return sizeInBits;
-    }
-
+public interface TryField {
+    /**
+     * Returns true if this field should be tryed to be parsed
+     *
+     * @return true if failure is an option
+     */
+    boolean isTry();
 }

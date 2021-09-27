@@ -18,8 +18,30 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.definitions;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 public interface DiscriminatedComplexTypeDefinition extends ComplexTypeDefinition {
 
-    String[] getDiscriminatorValues();
+    List<String> getDiscriminatorValues();
 
+    /**
+     * @return a {@link Map} mapping discriminator names to discriminator values.
+     */
+    default Map<String, String> getDiscriminatorMap() {
+        // TODO: check why the names method is above and why the names method looks at the parent.
+        final List<String> discriminatorNames = getDiscriminatorNames();
+        final Map<String, String> discriminatorValues = new LinkedHashMap<>();
+        for (int i = 0; i < discriminatorNames.size(); i++) {
+            String discriminatorValue;
+            if (i < getDiscriminatorValues().size()) {
+                discriminatorValue = getDiscriminatorValues().get(i);
+            } else {
+                discriminatorValue = null;
+            }
+            discriminatorValues.put(discriminatorNames.get(i), discriminatorValue);
+        }
+        return discriminatorValues;
+    }
 }

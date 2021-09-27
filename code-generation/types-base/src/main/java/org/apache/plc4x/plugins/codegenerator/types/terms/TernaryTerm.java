@@ -18,39 +18,19 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.terms;
 
-public class TernaryTerm implements Term {
+public interface TernaryTerm extends Term {
 
-    private final Term a;
-    private final Term b;
-    private final Term c;
-    private final String operation;
+    Term getA();
 
-    public TernaryTerm(Term a, Term b, Term c, String operation) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.operation = operation;
-    }
+    Term getB();
 
-    public Term getA() {
-        return a;
-    }
+    Term getC();
 
-    public Term getB() {
-        return b;
-    }
-
-    public Term getC() {
-        return c;
-    }
-
-    public String getOperation() {
-        return operation;
-    }
+    String getOperation();
 
     @Override
-    public boolean contains(String str) {
-        return ((a != null) && a.contains(str)) || ((b != null) && b.contains(str))  ||((c != null) && c.contains(str));
+    default boolean contains(String str) {
+        return (getA().contains(str)) || (getB().contains(str)) || (getC().contains(str));
     }
 
 }

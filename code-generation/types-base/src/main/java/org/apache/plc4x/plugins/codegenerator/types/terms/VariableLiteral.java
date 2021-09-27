@@ -18,57 +18,43 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.terms;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
-public class VariableLiteral implements Literal {
+public interface VariableLiteral extends Literal {
 
-    public static final int NO_INDEX = -1;
+    int NO_INDEX = -1;
 
-    private final String name;
-    private final List<Term> args;
-    private final int index;
-    private final VariableLiteral child;
+    String getName();
 
-    public VariableLiteral(String name, List<Term> args, int index, VariableLiteral child) {
-        this.name = name;
-        this.args = args;
-        this.index = index;
-        this.child = child;
-    }
+    Optional<List<Term>> getArgs();
 
-    public String getName() {
-        return name;
-    }
+    int getIndex();
 
-    public List<Term> getArgs() {
-        return args;
-    }
+    Optional<VariableLiteral> getChild();
 
-    public int getIndex() {
-        return index;
-    }
-
-    public VariableLiteral getChild() {
-        return child;
-    }
-
-    public boolean isIndexed() {
-        return index != NO_INDEX;
+    default boolean isIndexed() {
+        return getIndex() != NO_INDEX;
     }
 
     @Override
-    public boolean contains(String str) {
-        if(((name != null) && name.contains(str)) || ((child != null) && child.contains(str))) {
+    default boolean contains(String str) {
+        if (getName().contains(str) || getChild().map(child -> child.contains(str)).orElse(false)) {
             return true;
         }
-        if(args != null) {
-            for(Term arg : args) {
-                if(arg.contains(str)) {
-                    return true;
-                }
+        for (Term arg : getArgs().orElse(Collections.emptyList())) {
+            if (arg.contains(str)) {
+                return true;
             }
         }
         return false;
     }
 
+    default String getVariableLiteralName() {
+        return getName() + getChild()
+                .map(VariableLiteral::getVariableLiteralName)
+                .map(rest -> rest.substring(0, 1).toUpperCase() + rest.substring(1))
+                .orElse("");
+    }
 }

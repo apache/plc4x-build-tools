@@ -18,8 +18,11 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.fields;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface TaggedField {
 
-    String[] getTags();
+    Optional<List<String>> getTags();
 
 }

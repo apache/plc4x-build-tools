@@ -18,21 +18,13 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.terms;
 
-public class StringLiteral implements Literal {
+public interface StringLiteral extends Literal {
 
-    private final String value;
-
-    public StringLiteral(String value) {
-        this.value = value;
-    }
-
-    public String getValue() {
-        return value;
-    }
+    String getValue();
 
     @Override
-    public boolean contains(String str) {
-        return (value != null) && value.contains(str);
+    default boolean contains(String str) {
+        return (getValue() != null) && getValue().contains(str);
     }
 
 }

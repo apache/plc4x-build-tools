@@ -16,51 +16,49 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.plugins.codegenerator.types.references;
+package org.apache.plc4x.plugins.codegenerator.types.definitions;
+
+import org.apache.plc4x.plugins.codegenerator.types.references.TypeReference;
 
 import java.util.Objects;
 
-public class DefaultFloatTypeReference extends AbstractSimpleTypeReference implements FloatTypeReference {
+public class DefaultArgument implements Argument {
 
-    private final int exponent;
-    private final int mantissa;
+    private final TypeReference type;
+    private final String name;
 
-    public DefaultFloatTypeReference(SimpleBaseType baseType, int exponent, int mantissa) {
-        super(baseType, (baseType == SimpleBaseType.FLOAT ? 1 : 0) + exponent + mantissa);
+    public DefaultArgument(TypeReference type, String name) {
         // TODO: add null checks
-        this.exponent = exponent;
-        this.mantissa = mantissa;
+        this.type = type;
+        this.name = name;
     }
 
-    @Override
-    public int getExponent() {
-        return exponent;
+    public TypeReference getType() {
+        return type;
     }
 
-    @Override
-    public int getMantissa() {
-        return mantissa;
+    public String getName() {
+        return name;
     }
 
     @Override
     public String toString() {
-        return "DefaultFloatTypeReference{" +
-                "exponent=" + exponent +
-                ", mantissa=" + mantissa +
-                "} " + super.toString();
+        return "DefaultArgument{" +
+                "type=" + type +
+                ", name='" + name + '\'' +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        DefaultFloatTypeReference that = (DefaultFloatTypeReference) o;
-        return exponent == that.exponent && mantissa == that.mantissa;
+        DefaultArgument that = (DefaultArgument) o;
+        return Objects.equals(type, that.type) && Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), exponent, mantissa);
+        return Objects.hash(type, name);
     }
 }

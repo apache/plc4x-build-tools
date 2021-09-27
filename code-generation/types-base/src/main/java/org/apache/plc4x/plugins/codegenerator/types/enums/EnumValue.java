@@ -18,6 +18,8 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.enums;
 
+import java.util.Optional;
+
 public interface EnumValue {
 
     /**
@@ -30,6 +32,10 @@ public interface EnumValue {
      */
     String getValue();
 
-    String getConstant(String name);
+    /**
+     * @param name name of the constant
+     * @return constant if present
+     */
+    Optional<String> getConstant(String name);
 
 }

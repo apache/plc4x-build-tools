@@ -20,9 +20,13 @@ package org.apache.plc4x.plugins.codegenerator.types.fields;
 
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
-public interface Field {
+import java.util.List;
+import java.util.Optional;
+
+public interface Field extends FieldConversions {
 
     String getTypeName();
-    Term[] getParams();
+
+    Optional<List<Term>> getParams();
 
 }

@@ -18,27 +18,15 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.terms;
 
-public class UnaryTerm implements Term {
+public interface UnaryTerm extends Term {
 
-    private final Term a;
-    private final String operation;
+    Term getA();
 
-    public UnaryTerm(Term a, String operation) {
-        this.a = a;
-        this.operation = operation;
-    }
-
-    public Term getA() {
-        return a;
-    }
-
-    public String getOperation() {
-        return operation;
-    }
+    String getOperation();
 
     @Override
-    public boolean contains(String str) {
-        return (a != null) && a.contains(str);
+    default boolean contains(String str) {
+        return getA().contains(str);
     }
 
 }

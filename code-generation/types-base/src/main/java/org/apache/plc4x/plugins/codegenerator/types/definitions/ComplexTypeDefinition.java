@@ -20,7 +20,11 @@ package org.apache.plc4x.plugins.codegenerator.types.definitions;
 
 import org.apache.plc4x.plugins.codegenerator.types.fields.*;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public interface ComplexTypeDefinition extends TypeDefinition {
 
@@ -100,5 +104,74 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return true if abstract.
      */
     boolean isAbstract();
+
+    /**
+     * Returns a {@link PropertyField} defined by {@code fieldName}.
+     *
+     * @param fieldName the fieldName to search for
+     * @return {@link PropertyField} if found.
+     */
+    default Optional<PropertyField> getPropertyFieldByName(String fieldName) {
+        return this.getPropertyFields().stream()
+                .filter(propertyField -> propertyField.getName().equals(fieldName))
+                .findFirst();
+    }
+
+    /**
+     * Returns a {@link PropertyField} defined by {@code fieldName}.
+     *
+     * @param fieldName the fieldName to search for
+     * @return {@link PropertyField} if found.
+     */
+    default Optional<PropertyField> getPropertyFieldFromThisOrParentByName(String fieldName) {
+        return this.getAllPropertyFields().stream()
+                .filter(propertyField -> propertyField.getName().equals(fieldName))
+                .findFirst();
+    }
+
+    /**
+     * Returns a {@link SwitchField} if found.
+     *
+     * @return the {@link SwitchField} if found.
+     */
+    default Optional<SwitchField> getSwitchField() {
+        return this.getFields().stream()
+                .filter(SwitchField.class::isInstance)
+                .map(SwitchField.class::cast)
+                .findFirst();
+    }
+
+    /**
+     * Returns Fields of type {@link PropertyField} and {@link SwitchField}
+     *
+     * @return a list of {@link PropertyField}s and {@link SwitchField}s.
+     */
+    default Collection<Field> getPropertyAndSwitchFields() {
+        return this.getFields().stream()
+                .filter(field -> (field instanceof PropertyField) || (field instanceof SwitchField))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @return list of sub-types or an empty collection, if there are none
+     */
+    default List<DiscriminatedComplexTypeDefinition> getSubTypeDefinitions() {
+        return this.getSwitchField()
+                .map(SwitchField::getCases)
+                .orElse(Collections.emptyList());
+    }
+
+    /**
+     * Check if there's any field with the given name.
+     * This is required to suppress the generation of a discriminator field
+     * in case a named field is providing the information.
+     *
+     * @param discriminatorName name of the discriminator name
+     * @return true if a field with the given name already exists in the same type.
+     */
+    default boolean isNonDiscriminatorField(String discriminatorName) {
+        return getAllPropertyFields().stream()
+                .anyMatch(field -> !(field instanceof DiscriminatorField) && field.getName().equals(discriminatorName));
+    }
 
 }

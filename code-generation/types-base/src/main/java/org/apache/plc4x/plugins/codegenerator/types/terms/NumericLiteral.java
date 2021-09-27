@@ -18,20 +18,12 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.terms;
 
-public class NumericLiteral implements Literal {
+public interface NumericLiteral extends Literal {
 
-    private Number number;
-
-    public NumericLiteral(Number number) {
-        this.number = number;
-    }
-
-    public Number getNumber() {
-        return number;
-    }
+    Number getNumber();
 
     @Override
-    public boolean contains(String str) {
+    default boolean contains(String str) {
         return false;
     }
 

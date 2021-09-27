@@ -18,7 +18,7 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
-public class DefaultTemporalTypeReference extends DefaultSimpleTypeReference implements TemporalTypeReference {
+public class DefaultTemporalTypeReference extends AbstractSimpleTypeReference implements TemporalTypeReference {
 
     public DefaultTemporalTypeReference(SimpleBaseType baseType) {
         super(baseType, -1);

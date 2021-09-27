@@ -18,5 +18,7 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.terms;
 
-public interface Literal extends Term {
+
+public interface Literal extends Term, LiteralConversions {
+
 }

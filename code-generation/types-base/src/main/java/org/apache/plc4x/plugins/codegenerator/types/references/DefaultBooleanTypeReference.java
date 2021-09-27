@@ -18,7 +18,7 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
-public class DefaultBooleanTypeReference extends DefaultSimpleTypeReference implements BooleanTypeReference {
+public class DefaultBooleanTypeReference extends AbstractSimpleTypeReference implements BooleanTypeReference {
 
     public DefaultBooleanTypeReference() {
         super(SimpleBaseType.BIT, 1);
