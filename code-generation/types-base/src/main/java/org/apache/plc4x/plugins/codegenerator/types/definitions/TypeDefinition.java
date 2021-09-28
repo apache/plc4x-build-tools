@@ -22,10 +22,7 @@ import org.apache.plc4x.plugins.codegenerator.types.fields.SwitchField;
 import org.apache.plc4x.plugins.codegenerator.types.references.TypeReference;
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public interface TypeDefinition extends TypeDefinitionConversions {
@@ -106,7 +103,7 @@ public interface TypeDefinition extends TypeDefinitionConversions {
      * @return Map mapping discriminator names to discriminator values for every discriminated type.
      */
     // TODO: check if this can be moved down.
-    default Map<String, Map<String, String>> getDiscriminatorCaseToKeyValueMap() {
+    default LinkedHashMap<String, Map<String, String>> getDiscriminatorCaseToKeyValueMap() {
         // Get the parent type (Which contains the typeSwitch field)
         ComplexTypeDefinition parentType;
         if (isDiscriminatedComplexTypeDefinition()) {
@@ -119,9 +116,16 @@ public interface TypeDefinition extends TypeDefinitionConversions {
                 .map(SwitchField::getCases)
                 .map(cases -> cases.stream()
                         // Build a map containing the named discriminator values for every case of the typeSwitch.
-                        .collect(Collectors.toMap(DiscriminatedComplexTypeDefinition::getName, DiscriminatedComplexTypeDefinition::getDiscriminatorMap))
+                        .collect(
+                                Collectors.toMap(
+                                        DiscriminatedComplexTypeDefinition::getName,
+                                        DiscriminatedComplexTypeDefinition::getDiscriminatorMap,
+                                        (oldValue, newValue) -> oldValue,
+                                        LinkedHashMap::new
+                                )
+                        )
                 )
-                .orElse(Collections.emptyMap());
+                .orElse(new LinkedHashMap<>());
     }
 
 }
