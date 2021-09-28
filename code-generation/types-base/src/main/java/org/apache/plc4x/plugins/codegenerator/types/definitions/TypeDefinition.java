@@ -103,7 +103,7 @@ public interface TypeDefinition extends TypeDefinitionConversions {
      * @return Map mapping discriminator names to discriminator values for every discriminated type.
      */
     // TODO: check if this can be moved down.
-    default LinkedHashMap<String, Map<String, String>> getDiscriminatorCaseToKeyValueMap() {
+    default Map<String, Map<String, String>> getDiscriminatorCaseToKeyValueMap() {
         // Get the parent type (Which contains the typeSwitch field)
         ComplexTypeDefinition parentType;
         if (isDiscriminatedComplexTypeDefinition()) {
