@@ -263,20 +263,6 @@ public interface FieldConversions {
     }
 
     /**
-     * @return true if {@code this} is instance of {@link TryField}
-     */
-    default boolean isTryField() {
-        return this instanceof TryField;
-    }
-
-    /**
-     * @return a {@link TryField} if castable.
-     */
-    default Optional<TryField> asTryField() {
-        return Optional.of(this).filter(TryField.class::isInstance).map(TryField.class::cast);
-    }
-
-    /**
      * @return true if {@code this} is instance of {@link TypedField}
      */
     default boolean isTypedField() {

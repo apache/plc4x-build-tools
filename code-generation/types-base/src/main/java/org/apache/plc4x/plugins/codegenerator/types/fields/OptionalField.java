@@ -21,12 +21,14 @@ package org.apache.plc4x.plugins.codegenerator.types.fields;
 
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
+import java.util.Optional;
+
 public interface OptionalField extends PropertyField {
 
     default String getTypeName() {
         return "optional";
     }
 
-    Term getConditionExpression();
+    Optional<Term> getConditionExpression();
 
 }
