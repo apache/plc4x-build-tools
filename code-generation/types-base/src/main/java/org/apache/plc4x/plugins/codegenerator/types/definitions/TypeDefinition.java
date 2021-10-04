@@ -38,7 +38,10 @@ public interface TypeDefinition extends TypeDefinitionConversions {
     // TODO: check if this can be moved down.
     TypeDefinition getParentType();
 
-    // TODO: shoudln't a TypeDefinition have a list of n type references?
+    /**
+     * Get a TypeReference used for identifying the current type.
+     * @return
+     */
     TypeReference getTypeReference();
 
 
