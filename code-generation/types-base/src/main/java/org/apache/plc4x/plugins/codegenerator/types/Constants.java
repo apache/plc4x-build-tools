@@ -16,28 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.plugins.codegenerator.types.fields;
+package org.apache.plc4x.plugins.codegenerator.types;
 
-import org.apache.plc4x.plugins.codegenerator.types.Constants;
-import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
+public interface Constants {
 
-import java.util.List;
-import java.util.Optional;
-
-public interface Field extends FieldConversions {
-
-    String getTypeName();
-
-    Optional<Term> getAttribute(String attributeName);
-
-    default Optional<Term> getEncoding() {
-        return getAttribute(Constants.ATTRIBUTE_ENCODING);
-    }
-
-    default Optional<Term> getByteOrder() {
-        return getAttribute(Constants.ATTRIBUTE_BYTE_ORDER);
-    }
-
-    Optional<List<Term>> getParams();
+    String ATTRIBUTE_ENCODING = "encoding";
+    String ATTRIBUTE_BYTE_ORDER = "byteOrder";
 
 }

@@ -18,6 +18,7 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.definitions;
 
+import org.apache.plc4x.plugins.codegenerator.types.Constants;
 import org.apache.plc4x.plugins.codegenerator.types.fields.SwitchField;
 import org.apache.plc4x.plugins.codegenerator.types.references.TypeReference;
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
@@ -29,9 +30,17 @@ public interface TypeDefinition extends TypeDefinitionConversions {
 
     String getName();
 
-    Optional<List<Argument>> getParserArguments();
+    Optional<Term> getAttribute(String attributeName);
 
-    Optional<List<String>> getTags();
+    default Optional<Term> getEncoding() {
+        return getAttribute(Constants.ATTRIBUTE_ENCODING);
+    }
+
+    default Optional<Term> getByteOrder() {
+        return getAttribute(Constants.ATTRIBUTE_BYTE_ORDER);
+    }
+
+    Optional<List<Argument>> getParserArguments();
 
     // TODO: replace with Optional
     // TODO: should this be move to ComplexTypeDefinition? Can a normal type definition have a parent type
