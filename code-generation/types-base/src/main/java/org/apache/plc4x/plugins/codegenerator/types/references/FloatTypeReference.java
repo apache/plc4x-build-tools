@@ -20,7 +20,4 @@ package org.apache.plc4x.plugins.codegenerator.types.references;
 
 public interface FloatTypeReference  extends SimpleTypeReference {
 
-    int getExponent();
-    int getMantissa();
-
 }

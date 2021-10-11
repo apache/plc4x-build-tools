@@ -18,49 +18,15 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
-import java.util.Objects;
-
 public class DefaultFloatTypeReference extends AbstractSimpleTypeReference implements FloatTypeReference {
 
-    private final int exponent;
-    private final int mantissa;
-
-    public DefaultFloatTypeReference(SimpleBaseType baseType, int exponent, int mantissa) {
-        super(baseType, (baseType == SimpleBaseType.FLOAT ? 1 : 0) + exponent + mantissa);
-        // TODO: add null checks
-        this.exponent = exponent;
-        this.mantissa = mantissa;
-    }
-
-    @Override
-    public int getExponent() {
-        return exponent;
-    }
-
-    @Override
-    public int getMantissa() {
-        return mantissa;
+    public DefaultFloatTypeReference(SimpleBaseType baseType, int size) {
+        super(baseType, size);
     }
 
     @Override
     public String toString() {
-        return "DefaultFloatTypeReference{" +
-                "exponent=" + exponent +
-                ", mantissa=" + mantissa +
-                "} " + super.toString();
+        return "DefaultFloatTypeReference{} " + super.toString();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        DefaultFloatTypeReference that = (DefaultFloatTypeReference) o;
-        return exponent == that.exponent && mantissa == that.mantissa;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), exponent, mantissa);
-    }
 }

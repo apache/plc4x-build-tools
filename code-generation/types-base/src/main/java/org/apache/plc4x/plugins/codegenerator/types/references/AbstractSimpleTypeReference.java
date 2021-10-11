@@ -22,12 +22,11 @@ import java.util.Objects;
 
 public abstract class AbstractSimpleTypeReference implements SimpleTypeReference {
 
-    private final SimpleBaseType baseType;
-    private final int sizeInBits;
+    protected final SimpleBaseType baseType;
+    protected final int sizeInBits;
 
     public AbstractSimpleTypeReference(SimpleBaseType baseType, int sizeInBits) {
-        // TODO: add null checks
-        this.baseType = baseType;
+        this.baseType = Objects.requireNonNull(baseType);
         this.sizeInBits = sizeInBits;
     }
 
