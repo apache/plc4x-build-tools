@@ -38,6 +38,4 @@ public interface Field extends FieldConversions {
         return getAttribute(Constants.ATTRIBUTE_BYTE_ORDER);
     }
 
-    Optional<List<Term>> getParams();
-
 }
