@@ -18,8 +18,6 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.fields;
 
-import java.util.Optional;
-
 public interface EnumField extends PropertyField {
 
     default String getTypeName() {
@@ -31,6 +29,6 @@ public interface EnumField extends PropertyField {
      *
      * @return the field name.
      */
-    Optional<String> getFieldName();
+    String getFieldName();
 
 }
