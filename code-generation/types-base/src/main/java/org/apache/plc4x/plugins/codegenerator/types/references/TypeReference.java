@@ -21,13 +21,6 @@ package org.apache.plc4x.plugins.codegenerator.types.references;
 public interface TypeReference extends TypeReferenceConversions {
 
     /**
-     * @return true if this is a {@link SimpleTypeReference}
-     */
-    default boolean isSimpleTypeReference() {
-        return this instanceof SimpleTypeReference;
-    }
-
-    /**
      * @return true if this is a {@link SimpleTypeReference.SimpleBaseType} == {@code BYTE}
      */
     default boolean isByteBased() {
