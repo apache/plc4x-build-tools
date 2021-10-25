@@ -49,7 +49,7 @@ public interface TypeDefinition extends TypeDefinitionConversions {
 
     /**
      * Get a TypeReference used for identifying the current type.
-     * @return
+     * @return the type reference
      */
     TypeReference getTypeReference();
 
