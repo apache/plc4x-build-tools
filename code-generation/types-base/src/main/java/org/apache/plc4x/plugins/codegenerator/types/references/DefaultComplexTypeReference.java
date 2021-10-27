@@ -31,8 +31,7 @@ public class DefaultComplexTypeReference implements ComplexTypeReference {
     private final List<Term> params;
 
     public DefaultComplexTypeReference(String name, List<Term> params) {
-        // TODO: add null checks
-        this.name = name;
+        this.name = Objects.requireNonNull(name);
         this.params = params;
     }
 
