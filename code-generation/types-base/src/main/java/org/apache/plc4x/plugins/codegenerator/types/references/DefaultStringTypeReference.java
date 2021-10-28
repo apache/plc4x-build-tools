@@ -26,14 +26,10 @@ public class DefaultStringTypeReference extends AbstractSimpleTypeReference impl
 
     private final Term lengthExpression;
 
-    private final String encoding;
-
-    public DefaultStringTypeReference(SimpleBaseType baseType, Term lengthExpression, String encoding) {
+    public DefaultStringTypeReference(SimpleBaseType baseType, Term lengthExpression) {
         super(baseType, -1);
         // TODO: add null checks
         this.lengthExpression = lengthExpression;
-        this.encoding = encoding;
-
     }
 
     public Term getLengthExpression() {
@@ -41,15 +37,9 @@ public class DefaultStringTypeReference extends AbstractSimpleTypeReference impl
     }
 
     @Override
-    public String getEncoding() {
-        return encoding;
-    }
-
-    @Override
     public String toString() {
         return "DefaultStringTypeReference{" +
                 "lengthExpression=" + lengthExpression +
-                ", encoding='" + encoding + '\'' +
                 "} " + super.toString();
     }
 
@@ -59,11 +49,11 @@ public class DefaultStringTypeReference extends AbstractSimpleTypeReference impl
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         DefaultStringTypeReference that = (DefaultStringTypeReference) o;
-        return Objects.equals(lengthExpression, that.lengthExpression) && Objects.equals(encoding, that.encoding);
+        return Objects.equals(lengthExpression, that.lengthExpression);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), lengthExpression, encoding);
+        return Objects.hash(super.hashCode(), lengthExpression);
     }
 }

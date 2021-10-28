@@ -24,6 +24,4 @@ public interface StringTypeReference extends SimpleTypeReference {
 
     Term getLengthExpression();
 
-    String getEncoding();
-
 }
