@@ -137,6 +137,20 @@ public interface TypeReferenceConversions {
     }
 
     /**
+     * @return true if {@code this} is instance of {@link VstringTypeReference}
+     */
+    default boolean isVstringTypeReference() {
+        return this instanceof VstringTypeReference;
+    }
+
+    /**
+     * @return a {@link StringTypeReference} if castable.
+     */
+    default Optional<VstringTypeReference> asVstringTypeReference() {
+        return Optional.of(this).filter(VstringTypeReference.class::isInstance).map(VstringTypeReference.class::cast);
+    }
+
+    /**
      * @return true if {@code this} is instance of {@link TemporalTypeReference}
      */
     default boolean isTemporalTypeReference() {

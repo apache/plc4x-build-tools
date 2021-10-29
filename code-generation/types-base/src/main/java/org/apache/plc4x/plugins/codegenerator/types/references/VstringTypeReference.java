@@ -18,10 +18,10 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
-public class DefaultStringTypeReference extends AbstractSimpleTypeReference implements StringTypeReference {
+import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
-    public DefaultStringTypeReference(SimpleBaseType baseType, int sizeInBits) {
-        super(baseType, sizeInBits);
-    }
+public interface VstringTypeReference extends SimpleTypeReference {
+
+    Term getLengthExpression();
 
 }

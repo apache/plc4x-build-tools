@@ -22,6 +22,4 @@ import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
 public interface StringTypeReference extends SimpleTypeReference {
 
-    Term getLengthExpression();
-
 }
