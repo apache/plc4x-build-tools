@@ -48,13 +48,6 @@ public interface TypeDefinition extends TypeDefinitionConversions {
     TypeDefinition getParentType();
 
     /**
-     * Get a TypeReference used for identifying the current type.
-     * @return the type reference
-     */
-    TypeReference getTypeReference();
-
-
-    /**
      * @return true if {@code this} is a discriminated parent.
      */
     default boolean isDiscriminatedParentTypeDefinition() {
