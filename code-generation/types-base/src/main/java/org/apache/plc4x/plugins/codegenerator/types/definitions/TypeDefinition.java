@@ -42,6 +42,12 @@ public interface TypeDefinition extends TypeDefinitionConversions {
 
     Optional<List<Argument>> getParserArguments();
 
+    /**
+     * @return Concatenation of this type's parser arguments, prefixed by the parent types
+     *         parser arguments.
+     */
+    Optional<List<Argument>> getAllParserArguments();
+
     // TODO: replace with Optional
     // TODO: should this be move to ComplexTypeDefinition? Can a normal type definition have a parent type
     // TODO: check if this can be moved down.
