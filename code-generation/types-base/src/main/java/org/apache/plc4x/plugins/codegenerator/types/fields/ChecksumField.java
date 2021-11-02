@@ -20,7 +20,7 @@ package org.apache.plc4x.plugins.codegenerator.types.fields;
 
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
-public interface ChecksumField extends TypedField {
+public interface ChecksumField extends TypedField, NamedField {
 
     default String getTypeName() {
         return "checksum";
