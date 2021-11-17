@@ -1,5 +1,4 @@
 #!groovy
-
 /*
  *
  *  Licensed to the Apache Software Foundation (ASF) under one or more
@@ -42,7 +41,7 @@ pipeline {
 
     tools {
         maven 'maven_3_latest'
-        jdk 'jdk_1.8_latest'
+        jdk 'jdk_11_latest'
     }
 
     options {
