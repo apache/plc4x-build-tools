@@ -19,7 +19,7 @@
 [![Maven central](https://img.shields.io/maven-central/v/org.apache.plc4x.plugins/plc4x-maven-plugin.svg)](https://img.shields.io/maven-central/v/org.apache.plc4x.plugins/plc4x-maven-plugin.svg)
 [![License](https://img.shields.io/github/license/apache/plc4x.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Last commit](https://img.shields.io/github/last-commit/apache/plc4x-build-tools.svg)]()
-[![Platform compatibility](https://github.com/apache/plc4x-build-tools/actions/workflows/ensure-platforms.yml/badge.svg)](https://github.com/apache/plc4x-build-tools/actions/workflows/ensure-platforms.yml)
+[![Platform compatibility](https://img.shields.io/github/workflow/status/apache/plc4x-build-tools/Platform%20compatibility?label=Platform%20compatibility)](https://github.com/apache/plc4x-build-tools/actions/workflows/ensure-platforms.yml)
 [![Twitter](https://img.shields.io/twitter/follow/ApachePLC4X.svg?label=Follow&style=social)](https://twitter.com/ApachePLC4X)
 
 Apache PLC4X Build-Tools
