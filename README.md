@@ -1,3 +1,27 @@
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+  -->
+[![Maven central](https://img.shields.io/maven-central/v/org.apache.plc4x.plugins/plc4x-maven-plugin.svg)](https://img.shields.io/maven-central/v/org.apache.plc4x.plugins/plc4x-maven-plugin.svg)
+[![License](https://img.shields.io/github/license/apache/plc4x.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Last commit](https://img.shields.io/github/last-commit/apache/plc4x-build-tools.svg)]()
+[![Platform compatibility](https://github.com/apache/plc4x-build-tools/actions/workflows/ensure-platforms.yml/badge.svg)](https://github.com/apache/plc4x-build-tools/actions/workflows/ensure-platforms.yml)
+[![Twitter](https://img.shields.io/twitter/follow/ApachePLC4X.svg?label=Follow&style=social)](https://twitter.com/ApachePLC4X)
+
 Apache PLC4X Build-Tools
 ========================
 
@@ -34,7 +58,7 @@ downloaded and installed by the maven wrapper `mvnw`.
 
 Build PLC4X Java jars and install them in your local maven repository
 
-$ ./mvnw install
+`$ ./mvnw install`
 
 This should make the build-tools available to the main projects build.
 In order to use your locally built version of the build-tools you should
