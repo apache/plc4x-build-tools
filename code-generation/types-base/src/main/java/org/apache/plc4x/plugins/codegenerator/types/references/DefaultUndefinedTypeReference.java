@@ -18,24 +18,10 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
-public interface SimpleTypeReference extends TypeReference {
+public class DefaultUndefinedTypeReference extends AbstractSimpleTypeReference {
 
-    SimpleBaseType getBaseType();
-
-    int getSizeInBits();
-
-    enum SimpleBaseType {
-        BIT,
-        BYTE,
-        UINT,
-        INT,
-        FLOAT,
-        UFLOAT,
-        STRING,
-        VSTRING,
-        TIME,
-        DATE,
-        DATETIME,
-        UNDEFINED
+    public DefaultUndefinedTypeReference() {
+        super(SimpleBaseType.UNDEFINED, -1);
     }
+
 }
