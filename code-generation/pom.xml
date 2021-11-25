@@ -40,15 +40,12 @@
   <description>This module groups all the modules that will be moved outside the core repository.</description>
 
   <properties>
-    <project.build.outputTimestamp>1</project.build.outputTimestamp>
-
     <maven.version>3.8.4</maven.version>
-    <java.version>1.8</java.version>
-  </properties>
 
-  <prerequisites>
-    <maven>${maven.version}</maven>
-  </prerequisites>
+    <java.version>1.8</java.version>
+    <!-- Timestamp for the reproducible builds -->
+    <project.build.outputTimestamp>1</project.build.outputTimestamp>
+  </properties>
 
   <scm>
     <connection>scm:git:https://gitbox.apache.org/repos/asf/plc4x-build-tools.git</connection>
