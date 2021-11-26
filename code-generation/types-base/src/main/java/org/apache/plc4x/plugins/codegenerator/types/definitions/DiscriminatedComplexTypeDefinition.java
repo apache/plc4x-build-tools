@@ -18,29 +18,31 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.definitions;
 
+import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public interface DiscriminatedComplexTypeDefinition extends ComplexTypeDefinition {
 
-    List<String> getDiscriminatorValues();
+    List<Term> getDiscriminatorValueTerms();
 
     /**
      * @return a {@link Map} mapping discriminator names to discriminator values.
      */
-    default Map<String, String> getDiscriminatorMap() {
+    default Map<String, Term> getDiscriminatorMap() {
         // TODO: check why the names method is above and why the names method looks at the parent.
         final List<String> discriminatorNames = getDiscriminatorNames();
-        final Map<String, String> discriminatorValues = new LinkedHashMap<>();
+        final Map<String, Term> discriminatorValues = new LinkedHashMap<>();
         for (int i = 0; i < discriminatorNames.size(); i++) {
-            String discriminatorValue;
-            if (i < getDiscriminatorValues().size()) {
-                discriminatorValue = getDiscriminatorValues().get(i);
+            Term discriminatorValueTerm;
+            if (i < getDiscriminatorValueTerms().size()) {
+                discriminatorValueTerm = getDiscriminatorValueTerms().get(i);
             } else {
-                discriminatorValue = null;
+                discriminatorValueTerm = null;
             }
-            discriminatorValues.put(discriminatorNames.get(i), discriminatorValue);
+            discriminatorValues.put(discriminatorNames.get(i), discriminatorValueTerm);
         }
         return discriminatorValues;
     }
