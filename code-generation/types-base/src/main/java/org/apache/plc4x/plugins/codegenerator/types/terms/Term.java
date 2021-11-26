@@ -71,6 +71,8 @@ public interface Term extends TermConversions {
                 return Boolean.toString(((BooleanLiteral) literal).getValue());
             } else if (literal instanceof NumericLiteral) {
                 return ((NumericLiteral) literal).getNumber().toString();
+            } else if (literal instanceof HexadecimalLiteral) {
+                return ((HexadecimalLiteral) literal).getHexString();
             } else if (literal instanceof StringLiteral) {
                 return ((StringLiteral) literal).getValue();
             } else if (literal instanceof VariableLiteral) {

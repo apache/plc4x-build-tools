@@ -16,16 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.plugins.codegenerator.types.fields;
+package org.apache.plc4x.plugins.codegenerator.types.terms;
 
-import org.apache.plc4x.plugins.codegenerator.types.terms.Literal;
+public interface HexadecimalLiteral extends Literal {
 
-public interface ConstField extends PropertyField {
+    String getHexString();
 
-    default String getTypeName() {
-        return "const";
+    @Override
+    default boolean contains(String str) {
+        return false;
     }
-
-    Literal getReferenceValue();
 
 }

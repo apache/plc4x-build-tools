@@ -68,6 +68,20 @@ public interface LiteralConversions {
     }
 
     /**
+     * @return true if {@code this} is instance of {@link NumericLiteral}
+     */
+    default boolean isHexadecimalLiteral() {
+        return this instanceof HexadecimalLiteral;
+    }
+
+    /**
+     * @return a {@link HexadecimalLiteral} if castable.
+     */
+    default Optional<HexadecimalLiteral> asHexadecimalLiteral() {
+        return Optional.of(this).filter(HexadecimalLiteral.class::isInstance).map(HexadecimalLiteral.class::cast);
+    }
+
+    /**
      * @return true if {@code this} is instance of {@link StringLiteral}
      */
     default boolean isStringLiteral() {
