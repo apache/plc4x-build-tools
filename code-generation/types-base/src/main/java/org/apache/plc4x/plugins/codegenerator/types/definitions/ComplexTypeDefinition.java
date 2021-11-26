@@ -175,4 +175,8 @@ public interface ComplexTypeDefinition extends TypeDefinition {
                 .anyMatch(field -> !(field instanceof DiscriminatorField) && field.getName().equals(discriminatorName));
     }
 
+    default boolean isParserArgument(String discriminatorName) {
+        return getAllParserArguments().orElse(Collections.emptyList()).stream().anyMatch(argument -> argument.getName().equals(discriminatorName));
+    }
+
 }
