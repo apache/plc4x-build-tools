@@ -20,7 +20,6 @@ package org.apache.plc4x.plugins.codegenerator.types.definitions;
 
 import org.apache.plc4x.plugins.codegenerator.types.Constants;
 import org.apache.plc4x.plugins.codegenerator.types.fields.SwitchField;
-import org.apache.plc4x.plugins.codegenerator.types.references.TypeReference;
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
 import java.util.*;

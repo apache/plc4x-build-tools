@@ -19,7 +19,6 @@
 package org.apache.plc4x.plugins.codegenerator.types.definitions;
 
 import org.apache.plc4x.plugins.codegenerator.types.fields.*;
-import org.apache.plc4x.plugins.codegenerator.types.references.TypeReference;
 
 import java.util.Collection;
 import java.util.Collections;

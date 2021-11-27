@@ -19,7 +19,6 @@
 package org.apache.plc4x.plugins.codegenerator.types.fields;
 
 import org.apache.plc4x.plugins.codegenerator.types.definitions.DiscriminatedComplexTypeDefinition;
-import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 import org.apache.plc4x.plugins.codegenerator.types.terms.VariableLiteral;
 
 import java.util.List;

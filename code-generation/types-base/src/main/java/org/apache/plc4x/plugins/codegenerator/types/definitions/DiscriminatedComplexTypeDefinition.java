@@ -18,9 +18,6 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.definitions;
 
-import org.apache.plc4x.plugins.codegenerator.types.fields.DiscriminatorField;
-import org.apache.plc4x.plugins.codegenerator.types.fields.Field;
-import org.apache.plc4x.plugins.codegenerator.types.fields.FieldConversions;
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
 import java.util.LinkedHashMap;
