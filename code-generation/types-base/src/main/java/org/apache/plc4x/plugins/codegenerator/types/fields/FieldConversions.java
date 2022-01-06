@@ -290,7 +290,6 @@ public interface FieldConversions {
         return Optional.of(this).filter(UnknownField.class::isInstance).map(UnknownField.class::cast);
     }
 
-
     /**
      * @return true if {@code this} is instance of {@link VirtualField}
      */
@@ -303,6 +302,20 @@ public interface FieldConversions {
      */
     default Optional<VirtualField> asVirtualField() {
         return Optional.of(this).filter(VirtualField.class::isInstance).map(VirtualField.class::cast);
+    }
+    
+    /**
+     * @return true if {@code this} is instance of {@link ValidationField}
+     */
+    default boolean isValidationField() {
+        return this instanceof ValidationField;
+    }
+
+    /**
+     * @return a {@link ValidationField} if castable.
+     */
+    default Optional<ValidationField> asValidationField() {
+        return Optional.of(this).filter(ValidationField.class::isInstance).map(ValidationField.class::cast);
     }
 
     /**
