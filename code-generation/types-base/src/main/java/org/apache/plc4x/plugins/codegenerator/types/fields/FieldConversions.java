@@ -207,6 +207,20 @@ public interface FieldConversions {
     }
 
     /**
+     * @return true if {@code this} is instance of {@link PeekField}
+     */
+    default boolean isPeekField() {
+        return this instanceof PeekField;
+    }
+
+    /**
+     * @return a {@link PeekField} if castable.
+     */
+    default Optional<PeekField> asPeekField() {
+        return Optional.of(this).filter(PeekField.class::isInstance).map(PeekField.class::cast);
+    }
+
+    /**
      * @return true if {@code this} is instance of {@link PropertyField}
      */
     default boolean isPropertyField() {
