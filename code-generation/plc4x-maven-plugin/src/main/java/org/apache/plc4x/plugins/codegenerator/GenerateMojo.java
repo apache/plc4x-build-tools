@@ -61,6 +61,13 @@ public class GenerateMojo extends AbstractMojo {
     private String protocolName;
 
     /**
+     * The version of the protocol module that will be used to generate the driver.
+     * If omitted, the default will be used.
+     */
+    @Parameter(required = false)
+    private String protocolVersion;
+
+    /**
      * The name of the language name that will be used to generate the driver.
      */
     @Parameter(required = true)
@@ -111,13 +118,19 @@ public class GenerateMojo extends AbstractMojo {
         ServiceLoader<Protocol> protocols = ServiceLoader.load(Protocol.class, moduleClassloader);
         for (Protocol curProtocol : protocols) {
             if(curProtocol.getName().equalsIgnoreCase(protocolName)) {
-                protocol = curProtocol;
-                break;
+                final boolean pluginExecutionWithoutVersion = protocolVersion == null;
+                final boolean noVersionAtAll = pluginExecutionWithoutVersion && !curProtocol.getVersion().isPresent();
+                final boolean versionMatches = !pluginExecutionWithoutVersion && curProtocol.getVersion().map(s -> s.equals(protocolVersion)).orElse(false);
+                if (noVersionAtAll || versionMatches) {
+                    protocol = curProtocol;
+                    break;
+                }
             }
         }
         if(protocol == null) {
+            String version = (protocolVersion == null) ? "undefined" : protocolVersion;
             throw new MojoExecutionException(
-                "Unable to find protocol specification module '" + protocolName + "' on modules classpath");
+                    "Unable to find protocol specification module '" + protocolName + "' with version '" + version + "' on modules classpath");
         }
 
         // Load the language module.

@@ -22,6 +22,7 @@ import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
 import org.apache.plc4x.plugins.codegenerator.types.exceptions.GenerationException;
 
 import java.util.Map;
+import java.util.Optional;
 
 public interface Protocol {
 
@@ -39,5 +40,9 @@ public interface Protocol {
      * @throws GenerationException if anything goes wrong parsing.
      */
     Map<String, TypeDefinition> getTypeDefinitions() throws GenerationException;
+
+    default Optional<String> getVersion() {
+        return Optional.empty();
+    }
 
 }

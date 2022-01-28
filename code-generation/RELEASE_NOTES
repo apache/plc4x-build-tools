@@ -5,6 +5,9 @@
 New Features
 ------------
 
+- Added the ability to provide protocol versions in the code
+  generation.
+
 Incompatible changes
 --------------------
 
