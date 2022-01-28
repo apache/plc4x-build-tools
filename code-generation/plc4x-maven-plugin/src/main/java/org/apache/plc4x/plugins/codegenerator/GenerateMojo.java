@@ -41,6 +41,7 @@ import java.util.*;
  * Generate the types, serializer and parser classes based on a DFDL shema.
  */
 @Mojo(name = "generate-driver",
+    threadSafe = true,
     defaultPhase = LifecyclePhase.GENERATE_SOURCES,
     requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)
 public class GenerateMojo extends AbstractMojo {
