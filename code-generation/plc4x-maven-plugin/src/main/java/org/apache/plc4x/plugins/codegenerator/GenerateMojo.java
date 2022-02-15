@@ -27,6 +27,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
 import org.apache.plc4x.plugins.codegenerator.language.LanguageOutput;
+import org.apache.plc4x.plugins.codegenerator.protocol.TypeContext;
 import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
 import org.apache.plc4x.plugins.codegenerator.types.exceptions.GenerationException;
 import org.apache.plc4x.plugins.codegenerator.protocol.Protocol;
@@ -41,9 +42,9 @@ import java.util.*;
  * Generate the types, serializer and parser classes based on a DFDL shema.
  */
 @Mojo(name = "generate-driver",
-    threadSafe = true,
-    defaultPhase = LifecyclePhase.GENERATE_SOURCES,
-    requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)
+        threadSafe = true,
+        defaultPhase = LifecyclePhase.GENERATE_SOURCES,
+        requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)
 public class GenerateMojo extends AbstractMojo {
 
     @Parameter(defaultValue = "${project}", readonly = true, required = true)
@@ -87,7 +88,7 @@ public class GenerateMojo extends AbstractMojo {
     private Map<String, String> options;
 
     public void execute()
-        throws MojoExecutionException {
+            throws MojoExecutionException {
 
         // Make sure the output directory exists.
         if (!outputDir.exists()) {
@@ -108,19 +109,19 @@ public class GenerateMojo extends AbstractMojo {
                 classpathElements.add(artifact.getFile().toURI().toURL());
             }
             moduleClassloader = new URLClassLoader(
-                classpathElements.toArray(new URL[0]), GenerateMojo.class.getClassLoader());
+                    classpathElements.toArray(new URL[0]), GenerateMojo.class.getClassLoader());
         } catch (MalformedURLException e) {
             throw new MojoExecutionException(
-                "Error creating classloader for loading message format schema from module dependencies", e);
+                    "Error creating classloader for loading message format schema from module dependencies", e);
         }
 
         // Load the protocol module.
         Protocol protocol = null;
         ServiceLoader<Protocol> protocols = ServiceLoader.load(Protocol.class, moduleClassloader);
         for (Protocol curProtocol : protocols) {
-            if(curProtocol.getName().equalsIgnoreCase(protocolName)) {
+            if (curProtocol.getName().equalsIgnoreCase(protocolName)) {
                 final boolean pluginExecutionWithoutVersion = protocolVersion == null;
-                final boolean noVersionAtAll = pluginExecutionWithoutVersion && !curProtocol.getVersion().isPresent();
+                final boolean noVersionAtAll = pluginExecutionWithoutVersion && curProtocol.getVersion().isEmpty();
                 final boolean versionMatches = !pluginExecutionWithoutVersion && curProtocol.getVersion().map(s -> s.equals(protocolVersion)).orElse(false);
                 if (noVersionAtAll || versionMatches) {
                     protocol = curProtocol;
@@ -128,7 +129,7 @@ public class GenerateMojo extends AbstractMojo {
                 }
             }
         }
-        if(protocol == null) {
+        if (protocol == null) {
             String version = (protocolVersion == null) ? "undefined" : protocolVersion;
             throw new MojoExecutionException(
                     "Unable to find protocol specification module '" + protocolName + "' with version '" + version + "' on modules classpath");
@@ -138,17 +139,17 @@ public class GenerateMojo extends AbstractMojo {
         LanguageOutput language = null;
         ServiceLoader<LanguageOutput> languages = ServiceLoader.load(LanguageOutput.class, moduleClassloader);
         for (LanguageOutput curLanguage : languages) {
-            if(curLanguage.getName().equalsIgnoreCase(languageName)) {
+            if (curLanguage.getName().equalsIgnoreCase(languageName)) {
                 language = curLanguage;
                 break;
             }
         }
-        if(language == null) {
+        if (language == null) {
             throw new MojoExecutionException(
-                "Unable to find language output module '" + languageName + "' on modules classpath");
+                    "Unable to find language output module '" + languageName + "' on modules classpath");
         }
         // Check if the selected language flavor is supported by the selected language module.
-        if(!language.supportedOutputFlavors().contains(outputFlavor)) {
+        if (!language.supportedOutputFlavors().contains(outputFlavor)) {
             throw new MojoExecutionException(
                     "The selected language output module: " + languageName +
                             " doesn't support the output flavor: " + outputFlavor + "." +
@@ -157,7 +158,8 @@ public class GenerateMojo extends AbstractMojo {
 
         try {
             // Parse the type definitions.
-            Map<String, TypeDefinition> types = protocol.getTypeDefinitions();
+            TypeContext typeContext = protocol.getTypeContext();
+            Map<String, TypeDefinition> types = typeContext.getTypeDefinitions();
             Set<String> supportedOptions = language.supportedOptions();
             if (options != null) {
                 for (String option : options.keySet()) {

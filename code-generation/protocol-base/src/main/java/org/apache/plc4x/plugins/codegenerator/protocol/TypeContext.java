@@ -18,33 +18,27 @@
  */
 package org.apache.plc4x.plugins.codegenerator.protocol;
 
-import org.apache.plc4x.plugins.codegenerator.types.exceptions.GenerationException;
+import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
 
-public interface Protocol {
-
-    /**
-     * The name of the protocol what the plugin will use to select the correct protocol module.
-     *
-     * @return the name of the protocol.
-     */
-    String getName();
-
+/**
+ * The type context of a protocol
+ */
+public interface TypeContext {
     /**
      * Returns a map of type definitions for which code has to be generated.
      *
      * @return the Map of types that need to be generated.
-     * @throws GenerationException if anything goes wrong parsing.
      */
-    TypeContext getTypeContext() throws GenerationException;
-
+    Map<String, TypeDefinition> getTypeDefinitions();
 
     /**
-     * @return the protocolVersion is applicable
+     * Returns a map of consumers which still require a {@link TypeDefinition}
+     *
+     * @return the map of consumers which require a type
      */
-    default Optional<String> getVersion() {
-        return Optional.empty();
-    }
-
+    Map<String, List<Consumer<TypeDefinition>>> getUnresolvedTypeReferences();
 }
