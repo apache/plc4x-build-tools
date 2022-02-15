@@ -18,10 +18,11 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
+import org.apache.plc4x.plugins.codegenerator.types.definitions.Argument;
+import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public interface ComplexTypeReference extends TypeReference {
 
@@ -29,4 +30,19 @@ public interface ComplexTypeReference extends TypeReference {
 
     Optional<List<Term>> getParams();
 
+    // TODO: this should be ComplexTypeDefinition but somehow this get's missused for enums too
+    TypeDefinition getTypeDefinition();
+
+    default TypeReference getArgumentType(int index) {
+        TypeDefinition complexTypeDefinition = getTypeDefinition();
+        List<Argument> parserArguments = new LinkedList<>();
+        if (complexTypeDefinition.getParentType() != null) {
+            parserArguments.addAll(complexTypeDefinition.getParentType().getParserArguments().orElse(Collections.emptyList()));
+        }
+        parserArguments.addAll(complexTypeDefinition.getParserArguments().orElse(Collections.emptyList()));
+        if (parserArguments.size() <= index) {
+            throw new IllegalArgumentException("Type " + getName() + " specifies too few parser arguments. Available:" + parserArguments.size() + " index:" + index);
+        }
+        return parserArguments.get(index).getType();
+    }
 }

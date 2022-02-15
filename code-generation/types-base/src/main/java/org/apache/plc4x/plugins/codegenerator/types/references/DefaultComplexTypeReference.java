@@ -18,6 +18,7 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
+import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
 import java.util.List;
@@ -26,9 +27,12 @@ import java.util.Optional;
 
 public class DefaultComplexTypeReference implements ComplexTypeReference {
 
-    private final String name;
+    protected final String name;
 
-    private final List<Term> params;
+    protected final List<Term> params;
+
+    // TODO: this should be ComplexTypeDefinition
+    protected transient TypeDefinition typeDefinition;
 
     public DefaultComplexTypeReference(String name, List<Term> params) {
         this.name = Objects.requireNonNull(name);
@@ -43,6 +47,21 @@ public class DefaultComplexTypeReference implements ComplexTypeReference {
     @Override
     public Optional<List<Term>> getParams() {
         return Optional.ofNullable(params);
+    }
+
+    // TODO: this should be ComplexTypeDefinition
+    @Override
+    public TypeDefinition getTypeDefinition() {
+        if (typeDefinition == null) {
+            throw new IllegalStateException("Should not happen as this should be initialized. No type for " + name + " set!!!");
+        }
+        return typeDefinition;
+    }
+
+    // TODO: this should be ComplexTypeDefinition
+    public void setTypeDefinition(TypeDefinition typeDefinition) {
+        Objects.requireNonNull(typeDefinition);
+        this.typeDefinition = typeDefinition;
     }
 
     @Override

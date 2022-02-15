@@ -19,11 +19,10 @@
 package org.apache.plc4x.plugins.codegenerator.types.definitions;
 
 import org.apache.plc4x.plugins.codegenerator.types.fields.*;
+import org.apache.plc4x.plugins.codegenerator.types.references.TypeReference;
+import org.apache.plc4x.plugins.codegenerator.types.terms.VariableLiteral;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public interface ComplexTypeDefinition extends TypeDefinition {
@@ -176,6 +175,137 @@ public interface ComplexTypeDefinition extends TypeDefinition {
 
     default boolean isParserArgument(String discriminatorName) {
         return getAllParserArguments().orElse(Collections.emptyList()).stream().anyMatch(argument -> argument.getName().equals(discriminatorName));
+    }
+
+    /**
+     * Returns the implicit field that has the same name as the variable. These need to be handled differently when serializing and parsing.
+     *
+     * @param variableLiteral The variable to search for.
+     * @return ImplicitField returns the implicit field that corresponds to the variable's name.
+     */
+    default ImplicitField getReferencedImplicitField(VariableLiteral variableLiteral) {
+        for (Field field : getFields()) {
+            if (field.isImplicitField()) {
+                ImplicitField implicitField = (ImplicitField) field;
+                if (variableLiteral.getName().equals(implicitField.getName())) {
+                    return implicitField;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Confirms if a variable is a discriminator variable. These need to be handled differently when serializing and parsing.
+     *
+     * @param variableLiteral The variable to search for.
+     * @return boolean returns true if the variable's name is an discriminator field
+     */
+    default boolean isVariableLiteralDiscriminatorField(VariableLiteral variableLiteral) {
+        for (Field field : getFields()) {
+            if (field.isDiscriminatorField()) {
+                DiscriminatorField discriminatorField = (DiscriminatorField) field;
+                if (variableLiteral.getName().equals(discriminatorField.getName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Confirms if a variable is an virtual variable. These need to be handled differently when serializing and parsing.
+     *
+     * @param variableLiteral The variable to search for.
+     * @return boolean returns true if the variable's name is an virtual field
+     */
+    default boolean isVariableLiteralVirtualField(VariableLiteral variableLiteral) {
+        for (Field field : getAllPropertyFields()) {
+            if (field.isVirtualField()) {
+                VirtualField virtualField = (VirtualField) field;
+                if (variableLiteral.getName().equals(virtualField.getName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Confirms if a variable is an implicit variable. These need to be handled differently when serializing and parsing.
+     *
+     * @param variableLiteral The variable to search for.
+     * @return boolean returns true if the variable's name is an implicit field
+     */
+    default boolean isVariableLiteralImplicitField(VariableLiteral variableLiteral) {
+        for (Field field : getFields()) {
+            if (field.isImplicitField()) {
+                ImplicitField implicitField = (ImplicitField) field;
+                if (variableLiteral.getName().equals(implicitField.getName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Return the {@link TypeReference} of a given property.
+     *
+     * @param propertyName name of the property
+     * @return the type reference of the given property
+     */
+    default Optional<TypeReference> getTypeReferenceForProperty(String propertyName) {
+        Objects.requireNonNull(propertyName);
+        // If this is a built-in type, use that.
+        if (BuiltIns.builtInFields.containsKey(propertyName)) {
+            return Optional.of(BuiltIns.builtInFields.get(propertyName));
+        }
+        // Check if the expression root is referencing a field
+        final Optional<PropertyField> propertyFieldOptional = getPropertyFields().stream()
+                .filter(propertyField -> propertyField.getName().equals(propertyName))
+                .findFirst();
+        if (propertyFieldOptional.isPresent()) {
+            return propertyFieldOptional.map(PropertyField::getType);
+        }
+        // Check if the expression is a ImplicitField
+        final Optional<ImplicitField> implicitFieldOptional = getFields().stream()
+                .filter(ImplicitField.class::isInstance)
+                .map(ImplicitField.class::cast)
+                .filter(implicitField -> implicitField.getName().equals(propertyName))
+                .findFirst();
+        if (implicitFieldOptional.isPresent()) {
+            return implicitFieldOptional.map(ImplicitField::getType);
+        }
+        // Check if the expression is a VirtualField
+        final Optional<VirtualField> virtualFieldOptional = getFields().stream()
+                .filter(VirtualField.class::isInstance)
+                .map(VirtualField.class::cast)
+                .filter(virtualField -> virtualField.getName().equals(propertyName))
+                .findFirst();
+        if (virtualFieldOptional.isPresent()) {
+            return virtualFieldOptional.map(VirtualField::getType);
+        }
+        // Check if the expression root is referencing an argument
+        final Optional<Argument> argumentOptional = getParserArguments()
+                .orElse(Collections.emptyList())
+                .stream()
+                .filter(argument -> argument.getName().equals(propertyName))
+                .findFirst();
+        if (argumentOptional.isPresent()) {
+            return argumentOptional.map(Argument::getType);
+        }
+        // Check if the expression is a DiscriminatorField
+        // This is a more theoretical case where the expression is referencing a discriminator value of the current type
+        final Optional<DiscriminatorField> discriminatorFieldOptional = getFields().stream()
+                .filter(DiscriminatorField.class::isInstance)
+                .map(DiscriminatorField.class::cast)
+                .filter(discriminatorField -> discriminatorField.getName().equals(propertyName))
+                .findFirst();
+        if (discriminatorFieldOptional.isPresent()) {
+            return discriminatorFieldOptional.map(DiscriminatorField::getType);
+        }
+        return Optional.empty();
     }
 
 }
