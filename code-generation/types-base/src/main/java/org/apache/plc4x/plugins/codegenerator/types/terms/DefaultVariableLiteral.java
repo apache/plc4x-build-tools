@@ -18,6 +18,9 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.terms;
 
+import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
+import org.apache.plc4x.plugins.codegenerator.types.references.TypeReference;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,6 +28,7 @@ import java.util.Optional;
 public class DefaultVariableLiteral implements VariableLiteral {
 
     private final String name;
+    private TypeDefinition typeDefinition;
     private final List<Term> args;
     private final int index;
     private final VariableLiteral child;
@@ -36,18 +40,33 @@ public class DefaultVariableLiteral implements VariableLiteral {
         this.child = child;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
+    public TypeReference getTypeReference() {
+        // TODO: get type reference
+        //return typeDefinition.getTypeReference();
+        return null;
+    }
+
+    public void setTypeDefinition(TypeDefinition typeDefinition) {
+        this.typeDefinition = typeDefinition;
+    }
+
+    @Override
     public Optional<List<Term>> getArgs() {
         return Optional.ofNullable(args);
     }
 
+    @Override
     public int getIndex() {
         return index;
     }
 
+    @Override
     public Optional<VariableLiteral> getChild() {
         return Optional.ofNullable(child);
     }

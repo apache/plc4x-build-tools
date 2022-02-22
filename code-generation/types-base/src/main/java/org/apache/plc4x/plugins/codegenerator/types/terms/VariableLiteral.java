@@ -18,6 +18,8 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.terms;
 
+import org.apache.plc4x.plugins.codegenerator.types.references.TypeReference;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +29,8 @@ public interface VariableLiteral extends Literal {
     int NO_INDEX = -1;
 
     String getName();
+
+    TypeReference getTypeReference();
 
     Optional<List<Term>> getArgs();
 
