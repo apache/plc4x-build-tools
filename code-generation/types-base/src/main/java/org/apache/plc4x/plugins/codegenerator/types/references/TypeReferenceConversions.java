@@ -66,6 +66,21 @@ public interface TypeReferenceConversions {
         return Optional.of(this).filter(ComplexTypeReference.class::isInstance).map(ComplexTypeReference.class::cast);
     }
 
+
+    /**
+     * @return true if {@code this} is instance of {@link NonSimpleTypeReference}
+     */
+    default boolean isNonSimpleTypeReference() {
+        return this instanceof NonSimpleTypeReference;
+    }
+
+    /**
+     * @return a {@link NonSimpleTypeReference} if castable.
+     */
+    default Optional<NonSimpleTypeReference> asNonSimpleTypeReference() {
+        return Optional.of(this).filter(NonSimpleTypeReference.class::isInstance).map(NonSimpleTypeReference.class::cast);
+    }
+
     /**
      * @return true if {@code this} is instance of {@link EnumTypeReference}
      */
