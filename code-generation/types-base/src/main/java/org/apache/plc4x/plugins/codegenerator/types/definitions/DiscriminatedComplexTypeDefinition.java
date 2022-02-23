@@ -32,7 +32,7 @@ public interface DiscriminatedComplexTypeDefinition extends ComplexTypeDefinitio
      * @return a {@link Map} mapping discriminator names to discriminator values.
      */
     default Map<String, Term> getDiscriminatorMap() {
-        // TODO: check why the names method is above and why the names method looks at the parent.
+        // TODO: check why the names method is above and why the names (getDiscriminatorNames) method looks at the parent.
         final List<String> discriminatorNames = getDiscriminatorNames();
         final Map<String, Term> discriminatorValues = new LinkedHashMap<>();
         for (int i = 0; i < discriminatorNames.size(); i++) {

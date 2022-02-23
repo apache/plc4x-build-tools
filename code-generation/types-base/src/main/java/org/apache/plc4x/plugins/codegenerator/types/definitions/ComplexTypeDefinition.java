@@ -20,12 +20,20 @@ package org.apache.plc4x.plugins.codegenerator.types.definitions;
 
 import org.apache.plc4x.plugins.codegenerator.types.fields.*;
 import org.apache.plc4x.plugins.codegenerator.types.references.TypeReference;
+import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 import org.apache.plc4x.plugins.codegenerator.types.terms.VariableLiteral;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public interface ComplexTypeDefinition extends TypeDefinition {
+
+    /**
+     * Return the parent if one is present
+     *
+     * @return the parent
+     */
+    Optional<ComplexTypeDefinition> getParentType();
 
     /**
      * Get only the fields which are of type AbstractField.
@@ -103,6 +111,87 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return true if abstract.
      */
     boolean isAbstract();
+
+    /**
+     * @return true if {@code this} is a discriminated parent.
+     */
+    default boolean isDiscriminatedParentTypeDefinition() {
+        return asComplexTypeDefinition()
+                .map(ComplexTypeDefinition::isAbstract)
+                .orElse(false);
+    }
+
+    /**
+     * @return true if {@code this} is a discriminated child.
+     */
+    default boolean isDiscriminatedChildTypeDefinition() {
+        return asDiscriminatedComplexTypeDefinition()
+                .map(ComplexTypeDefinition::isAbstract)
+                .map(isAbstract -> !isAbstract)
+                .orElse(false);
+    }
+
+    /**
+     * Check if there's any field with the given name.
+     * This is required to suppress the generation of a virtual field
+     * in case a discriminated field is providing the information.
+     *
+     * @param discriminatorName name of the virtual name
+     * @return true if a field with the given name already exists in the same type.
+     */
+    default boolean isDiscriminatorField(String discriminatorName) {
+        return getDiscriminatorNames().stream()
+                .anyMatch(field -> field.equals(discriminatorName));
+    }
+
+    /**
+     * Get an ordered list of generated names for the discriminators.
+     * These names can be used to access the type definitions as well as well as the values.
+     *
+     * @return list of symbolic names for the discriminators.
+     */
+    // TODO: check if this can be moved down.
+    default List<String> getDiscriminatorNames() {
+        TypeDefinition baseType = getParentType().orElse(this);
+        ComplexTypeDefinition complexTypeDefinition = (ComplexTypeDefinition) baseType;
+        return complexTypeDefinition.getSwitchField()
+                .map(SwitchField::getDiscriminatorExpressions)
+                .map(terms -> terms.stream()
+                        .map(Term::getDiscriminatorName).collect(Collectors.toList())
+                )
+                .orElse(Collections.emptyList());
+    }
+
+    /**
+     * Get a list of the values for every discriminator name for every discriminated type.
+     *
+     * @return Map mapping discriminator names to discriminator values for every discriminated type.
+     */
+    // TODO: check if this can be moved down.
+    default Map<String, Map<String, Term>> getDiscriminatorCaseToKeyValueMap() {
+        // Get the parent type (Which contains the typeSwitch field)
+        ComplexTypeDefinition parentType;
+        if (isDiscriminatedComplexTypeDefinition()) {
+            parentType = getParentType().orElseThrow(IllegalStateException::new);
+        } else {
+            parentType = this;
+        }
+        // Get the typeSwitch field from that.
+        return parentType.getSwitchField()
+                .map(SwitchField::getCases)
+                .map(cases -> cases.stream()
+                        // Build a map containing the named discriminator values for every case of the typeSwitch.
+                        .collect(
+                                Collectors.toMap(
+                                        DiscriminatedComplexTypeDefinition::getName,
+                                        DiscriminatedComplexTypeDefinition::getDiscriminatorMap,
+                                        (oldValue, newValue) -> oldValue,
+                                        LinkedHashMap::new
+                                )
+                        )
+                )
+                .orElse(new LinkedHashMap<>());
+    }
 
     /**
      * Returns a {@link PropertyField} defined by {@code fieldName}.

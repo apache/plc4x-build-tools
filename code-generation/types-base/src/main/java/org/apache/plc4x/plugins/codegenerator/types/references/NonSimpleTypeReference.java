@@ -40,9 +40,12 @@ public interface NonSimpleTypeReference extends TypeReference {
     default TypeReference getArgumentType(int index) {
         TypeDefinition typeDefinition = getTypeDefinition();
         List<Argument> parserArguments = new LinkedList<>();
-        if (typeDefinition.getParentType() != null) {
-            parserArguments.addAll(typeDefinition.getParentType().getParserArguments().orElse(Collections.emptyList()));
-        }
+        typeDefinition.asComplexTypeDefinition()
+                .map(complexTypeDefinition ->
+                        complexTypeDefinition.getParentType().map(parentType ->
+                                parserArguments.addAll(parentType.getParserArguments().orElse(Collections.emptyList()))
+                        )
+                );
         parserArguments.addAll(typeDefinition.getParserArguments().orElse(Collections.emptyList()));
         if (parserArguments.size() <= index) {
             throw new IllegalArgumentException("Type " + getName() + " specifies too few parser arguments. Available:" + parserArguments.size() + " index:" + index);
