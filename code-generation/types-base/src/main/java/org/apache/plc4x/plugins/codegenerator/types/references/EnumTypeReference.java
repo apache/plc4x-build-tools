@@ -20,9 +20,11 @@ package org.apache.plc4x.plugins.codegenerator.types.references;
 
 import org.apache.plc4x.plugins.codegenerator.types.definitions.EnumTypeDefinition;
 
+import java.util.Optional;
+
 public interface EnumTypeReference extends NonSimpleTypeReference {
 
-    SimpleTypeReference getBaseTypeReference();
+    Optional<SimpleTypeReference> getBaseTypeReference();
 
     EnumTypeDefinition getEnumTypeDefinition();
 
