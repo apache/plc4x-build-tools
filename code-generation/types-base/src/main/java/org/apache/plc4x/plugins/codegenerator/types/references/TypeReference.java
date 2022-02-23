@@ -19,8 +19,6 @@
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
 import org.apache.plc4x.plugins.codegenerator.types.definitions.ComplexTypeDefinition;
-import org.apache.plc4x.plugins.codegenerator.types.definitions.DataIoTypeDefinition;
-import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
 import org.apache.plc4x.plugins.codegenerator.types.terms.VariableLiteral;
 
 import java.util.Optional;
@@ -37,18 +35,6 @@ public interface TypeReference extends TypeReferenceConversions {
         return ((SimpleTypeReference) this).getBaseType() == SimpleTypeReference.SimpleBaseType.BYTE;
     }
 
-    /**
-     * @return true if the given type reference is a dataIo type reference.
-     */
-    default boolean isDataIoTypeReference() {
-        if (isSimpleTypeReference()) {
-            return false;
-        }
-        final ComplexTypeReference complexTypeReference = this.asComplexTypeReference().orElseThrow(IllegalStateException::new);
-        final TypeDefinition typeDefinition = complexTypeReference.getTypeDefinition();
-        return typeDefinition instanceof DataIoTypeDefinition;
-    }
-
     default Optional<TypeReference> getDiscriminatorType(VariableLiteral variableLiteral) {
         // If we found something but there's a "rest" left, we got to use the type we
         // found in this level, get that type's definition and continue from there.
@@ -60,13 +46,10 @@ public interface TypeReference extends TypeReferenceConversions {
             return Optional.empty();
         }
         ComplexTypeReference complexTypeReference = (ComplexTypeReference) this;
-        final TypeDefinition typeDefinition = complexTypeReference.getTypeDefinition();
-        if (!(typeDefinition instanceof ComplexTypeDefinition)) {
-            return Optional.empty();
-        }
-        ComplexTypeDefinition complexTypeDefinition = (ComplexTypeDefinition) typeDefinition;
+        final ComplexTypeDefinition complexTypeDefinition = complexTypeReference.getComplexTypeDefinition();
         VariableLiteral childVariableLiteral = variableLiteral.getChild().get();
         return complexTypeDefinition.getTypeReferenceForProperty(childVariableLiteral.getName())
                 .flatMap(innerTypeReference -> innerTypeReference.getDiscriminatorType(childVariableLiteral));
     }
+
 }

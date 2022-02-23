@@ -18,15 +18,10 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
-import org.apache.plc4x.plugins.codegenerator.types.definitions.Argument;
-import org.apache.plc4x.plugins.codegenerator.types.definitions.ComplexTypeDefinition;
-import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
-import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
+import org.apache.plc4x.plugins.codegenerator.types.definitions.DataIoTypeDefinition;
 
-import java.util.*;
+public interface DataIoTypeReference extends NonSimpleTypeReference {
 
-public interface ComplexTypeReference extends NonSimpleTypeReference {
-
-    ComplexTypeDefinition getComplexTypeDefinition();
+    DataIoTypeDefinition getDataIoTypeDefinition();
 
 }

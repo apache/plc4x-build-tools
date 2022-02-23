@@ -67,6 +67,34 @@ public interface TypeReferenceConversions {
     }
 
     /**
+     * @return true if {@code this} is instance of {@link EnumTypeReference}
+     */
+    default boolean isEnumTypeReference() {
+        return this instanceof EnumTypeReference;
+    }
+
+    /**
+     * @return a {@link EnumTypeReference} if castable.
+     */
+    default Optional<EnumTypeReference> asEnumTypeReference() {
+        return Optional.of(this).filter(EnumTypeReference.class::isInstance).map(EnumTypeReference.class::cast);
+    }
+
+    /**
+     * @return true if {@code this} is instance of {@link DataIoTypeReference}
+     */
+    default boolean isDataIoTypeReference() {
+        return this instanceof DataIoTypeReference;
+    }
+
+    /**
+     * @return a {@link DataIoTypeReference} if castable.
+     */
+    default Optional<DataIoTypeReference> asDataIoTypeReference() {
+        return Optional.of(this).filter(DataIoTypeReference.class::isInstance).map(DataIoTypeReference.class::cast);
+    }
+
+    /**
      * @return true if {@code this} is instance of {@link FloatTypeReference}
      */
     default boolean isFloatTypeReference() {

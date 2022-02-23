@@ -19,14 +19,35 @@
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
 import org.apache.plc4x.plugins.codegenerator.types.definitions.Argument;
-import org.apache.plc4x.plugins.codegenerator.types.definitions.ComplexTypeDefinition;
 import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 
-public interface ComplexTypeReference extends NonSimpleTypeReference {
+public interface NonSimpleTypeReference extends TypeReference {
 
-    ComplexTypeDefinition getComplexTypeDefinition();
+    String getName();
+
+    Optional<List<Term>> getParams();
+
+    TypeDefinition getTypeDefinition();
+
+    void setTypeDefinition(TypeDefinition typeDefinition);
+
+    default TypeReference getArgumentType(int index) {
+        TypeDefinition typeDefinition = getTypeDefinition();
+        List<Argument> parserArguments = new LinkedList<>();
+        if (typeDefinition.getParentType() != null) {
+            parserArguments.addAll(typeDefinition.getParentType().getParserArguments().orElse(Collections.emptyList()));
+        }
+        parserArguments.addAll(typeDefinition.getParserArguments().orElse(Collections.emptyList()));
+        if (parserArguments.size() <= index) {
+            throw new IllegalArgumentException("Type " + getName() + " specifies too few parser arguments. Available:" + parserArguments.size() + " index:" + index);
+        }
+        return parserArguments.get(index).getType();
+    }
 
 }

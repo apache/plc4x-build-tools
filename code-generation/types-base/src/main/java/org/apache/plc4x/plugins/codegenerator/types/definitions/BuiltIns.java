@@ -79,6 +79,17 @@ public class BuiltIns {
             public TypeDefinition getTypeDefinition() {
                 return null;
             }
+
+            @Override
+            public ComplexTypeDefinition getComplexTypeDefinition() {
+                return null;
+            }
+
+            @Override
+            public void setTypeDefinition(TypeDefinition typeDefinition) {
+                throw new IllegalArgumentException("Built-In fields can't have the type definition set.");
+            }
+
         });
         builtInFields.put(WRITE_BUFFER, new ComplexTypeReference() {
             @Override
@@ -95,6 +106,17 @@ public class BuiltIns {
             public TypeDefinition getTypeDefinition() {
                 return null;
             }
+
+            @Override
+            public ComplexTypeDefinition getComplexTypeDefinition() {
+                return null;
+            }
+
+            @Override
+            public void setTypeDefinition(TypeDefinition typeDefinition) {
+                throw new IllegalArgumentException("Built-In fields can't have the type definition set.");
+            }
+
         });
     }
 }

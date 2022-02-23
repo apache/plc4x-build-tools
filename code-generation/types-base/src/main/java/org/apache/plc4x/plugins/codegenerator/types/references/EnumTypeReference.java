@@ -18,15 +18,12 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
-import org.apache.plc4x.plugins.codegenerator.types.definitions.Argument;
-import org.apache.plc4x.plugins.codegenerator.types.definitions.ComplexTypeDefinition;
-import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
-import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
+import org.apache.plc4x.plugins.codegenerator.types.definitions.EnumTypeDefinition;
 
-import java.util.*;
+public interface EnumTypeReference extends NonSimpleTypeReference {
 
-public interface ComplexTypeReference extends NonSimpleTypeReference {
+    SimpleTypeReference getBaseTypeReference();
 
-    ComplexTypeDefinition getComplexTypeDefinition();
+    EnumTypeDefinition getEnumTypeDefinition();
 
 }
