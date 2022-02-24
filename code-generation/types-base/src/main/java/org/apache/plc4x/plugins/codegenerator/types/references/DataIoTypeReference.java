@@ -20,7 +20,7 @@ package org.apache.plc4x.plugins.codegenerator.types.references;
 
 import org.apache.plc4x.plugins.codegenerator.types.definitions.DataIoTypeDefinition;
 
-public interface DataIoTypeReference extends NonSimpleTypeReference {
+public interface DataIoTypeReference extends ComplexTypeReference {
 
     DataIoTypeDefinition getDataIoTypeDefinition();
 

@@ -18,10 +18,6 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.definitions;
 
-import org.apache.plc4x.plugins.codegenerator.types.fields.SwitchField;
-
-public interface DataIoTypeDefinition extends TypeDefinition {
-
-    SwitchField getSwitchField();
+public interface DataIoTypeDefinition extends ComplexTypeDefinition {
 
 }
