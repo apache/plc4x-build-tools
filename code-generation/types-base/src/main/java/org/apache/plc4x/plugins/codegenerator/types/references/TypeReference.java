@@ -46,7 +46,7 @@ public interface TypeReference extends TypeReferenceConversions {
             return Optional.empty();
         }
         ComplexTypeReference complexTypeReference = (ComplexTypeReference) this;
-        final ComplexTypeDefinition complexTypeDefinition = complexTypeReference.getComplexTypeDefinition();
+        final ComplexTypeDefinition complexTypeDefinition = complexTypeReference.getTypeDefinition();
         VariableLiteral childVariableLiteral = variableLiteral.getChild().get();
         return complexTypeDefinition.getTypeReferenceForProperty(childVariableLiteral.getName())
                 .flatMap(innerTypeReference -> innerTypeReference.getDiscriminatorType(childVariableLiteral));

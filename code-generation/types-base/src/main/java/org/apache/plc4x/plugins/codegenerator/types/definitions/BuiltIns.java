@@ -76,12 +76,7 @@ public class BuiltIns {
             }
 
             @Override
-            public TypeDefinition getTypeDefinition() {
-                return null;
-            }
-
-            @Override
-            public ComplexTypeDefinition getComplexTypeDefinition() {
+            public ComplexTypeDefinition getTypeDefinition() {
                 return null;
             }
 
@@ -103,12 +98,7 @@ public class BuiltIns {
             }
 
             @Override
-            public TypeDefinition getTypeDefinition() {
-                return null;
-            }
-
-            @Override
-            public ComplexTypeDefinition getComplexTypeDefinition() {
+            public ComplexTypeDefinition getTypeDefinition() {
                 return null;
             }
 

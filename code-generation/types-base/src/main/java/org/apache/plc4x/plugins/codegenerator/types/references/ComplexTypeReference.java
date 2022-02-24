@@ -22,6 +22,6 @@ import org.apache.plc4x.plugins.codegenerator.types.definitions.ComplexTypeDefin
 
 public interface ComplexTypeReference extends NonSimpleTypeReference {
 
-    ComplexTypeDefinition getComplexTypeDefinition();
+    ComplexTypeDefinition getTypeDefinition();
 
 }
