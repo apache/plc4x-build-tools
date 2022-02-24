@@ -19,6 +19,7 @@
 package org.apache.plc4x.plugins.codegenerator.types.fields;
 
 
+import org.apache.plc4x.plugins.codegenerator.types.references.ArrayTypeReference;
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
 public interface ManualArrayField extends PropertyField {
@@ -36,6 +37,8 @@ public interface ManualArrayField extends PropertyField {
     Term getSerializeExpression();
 
     Term getLengthExpression();
+
+    ArrayTypeReference getType();
 
     enum LoopType {
         COUNT,

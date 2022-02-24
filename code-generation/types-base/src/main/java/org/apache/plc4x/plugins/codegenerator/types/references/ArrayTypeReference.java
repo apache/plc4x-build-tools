@@ -16,28 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.plugins.codegenerator.types.fields;
+package org.apache.plc4x.plugins.codegenerator.types.references;
 
+public interface ArrayTypeReference extends TypeReference {
 
-import org.apache.plc4x.plugins.codegenerator.types.references.ArrayTypeReference;
-import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
-
-public interface ArrayField extends PropertyField {
-
-    default String getTypeName() {
-        return "array";
-    }
-
-    LoopType getLoopType();
-
-    Term getLoopExpression();
-
-    ArrayTypeReference getType();
-
-    enum LoopType {
-        COUNT,
-        LENGTH,
-        TERMINATED
-    }
+    TypeReference getElementTypeReference();
 
 }
