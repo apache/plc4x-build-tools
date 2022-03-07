@@ -269,7 +269,7 @@ public interface ComplexTypeDefinition extends TypeDefinition {
                 .anyMatch(field -> !(field instanceof DiscriminatorField) && field.getName().equals(discriminatorName));
         boolean hasMatchingVirtualField = getAllVirtualFields().stream()
                 .anyMatch(field -> field.getName().equals(discriminatorName));
-        return hasMatchingPropertyField && hasMatchingVirtualField;
+        return hasMatchingPropertyField || hasMatchingVirtualField;
     }
 
     default boolean isParserArgument(String discriminatorName) {
