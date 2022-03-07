@@ -50,6 +50,13 @@ public interface ComplexTypeDefinition extends TypeDefinition {
     List<PropertyField> getAllPropertyFields();
 
     /**
+     * In contrast to getVirtualFields, this also gets all virtual fields of any parent type.
+     *
+     * @return all virtual fields including any parents simple fields
+     */
+    List<PropertyField> getAllVirtualFields();
+
+    /**
      * Get only the fields which are of type ConstField.
      *
      * @return all constant fields
@@ -258,8 +265,11 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return true if a field with the given name already exists in the same type.
      */
     default boolean isNonDiscriminatorField(String discriminatorName) {
-        return getAllPropertyFields().stream()
+        boolean hasMatchingPropertyField = getAllPropertyFields().stream()
                 .anyMatch(field -> !(field instanceof DiscriminatorField) && field.getName().equals(discriminatorName));
+        boolean hasMatchingVirtualField = getAllVirtualFields().stream()
+                .anyMatch(field -> field.getName().equals(discriminatorName));
+        return hasMatchingPropertyField && hasMatchingVirtualField;
     }
 
     default boolean isParserArgument(String discriminatorName) {
