@@ -54,7 +54,7 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      *
      * @return all virtual fields including any parents simple fields
      */
-    List<PropertyField> getAllVirtualFields();
+    List<VirtualField> getAllVirtualFields();
 
     /**
      * Get only the fields which are of type ConstField.
