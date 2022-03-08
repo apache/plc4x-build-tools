@@ -201,6 +201,20 @@ public interface ComplexTypeDefinition extends TypeDefinition {
     }
 
     /**
+     * Returns a {@link NamedField} defined by {@code fieldName}.
+     *
+     * @param fieldName the fieldName to search for
+     * @return {@link NamedField} if found.
+     */
+    default Optional<NamedField> getNamedFieldByName(String fieldName) {
+        return this.getFields().stream()
+                .filter(FieldConversions::isNamedField)
+                .map(field -> (NamedField) field)
+                .filter(namedField -> namedField.getName().equals(fieldName))
+                .findFirst();
+    }
+
+    /**
      * Returns a {@link PropertyField} defined by {@code fieldName}.
      *
      * @param fieldName the fieldName to search for
