@@ -166,9 +166,8 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      */
     // TODO: check if this can be moved down.
     default List<String> getDiscriminatorNames() {
-        TypeDefinition baseType = getParentType().orElse(this);
-        ComplexTypeDefinition complexTypeDefinition = (ComplexTypeDefinition) baseType;
-        return complexTypeDefinition.getSwitchField()
+        ComplexTypeDefinition baseType = getParentType().orElse(this);
+        return baseType.getSwitchField()
                 .map(SwitchField::getDiscriminatorExpressions)
                 .map(terms -> terms.stream()
                         .map(Term::getDiscriminatorName).collect(Collectors.toList())
@@ -214,7 +213,7 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return {@link NamedField} if found.
      */
     default Optional<NamedField> getNamedFieldByName(String fieldName) {
-        return this.getFields().stream()
+        return getFields().stream()
                 .filter(FieldConversions::isNamedField)
                 .map(field -> (NamedField) field)
                 .filter(namedField -> namedField.getName().equals(fieldName))
@@ -228,7 +227,7 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return {@link PropertyField} if found.
      */
     default Optional<PropertyField> getPropertyFieldByName(String fieldName) {
-        return this.getPropertyFields().stream()
+        return getPropertyFields().stream()
                 .filter(propertyField -> propertyField.getName().equals(fieldName))
                 .findFirst();
     }
@@ -240,7 +239,7 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return {@link PropertyField} if found.
      */
     default Optional<PropertyField> getPropertyFieldFromThisOrParentByName(String fieldName) {
-        return this.getAllPropertyFields().stream()
+        return getAllPropertyFields().stream()
                 .filter(propertyField -> propertyField.getName().equals(fieldName))
                 .findFirst();
     }
@@ -251,7 +250,7 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return the {@link SwitchField} if found.
      */
     default Optional<SwitchField> getSwitchField() {
-        return this.getFields().stream()
+        return getFields().stream()
                 .filter(SwitchField.class::isInstance)
                 .map(SwitchField.class::cast)
                 .findFirst();
@@ -263,7 +262,7 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return a list of {@link PropertyField}s and {@link SwitchField}s.
      */
     default Collection<Field> getPropertyAndSwitchFields() {
-        return this.getFields().stream()
+        return getFields().stream()
                 .filter(field -> (field instanceof PropertyField) || (field instanceof SwitchField))
                 .collect(Collectors.toList());
     }
@@ -272,7 +271,7 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return list of sub-types or an empty collection, if there are none
      */
     default List<DiscriminatedComplexTypeDefinition> getSubTypeDefinitions() {
-        return this.getSwitchField()
+        return getSwitchField()
                 .map(SwitchField::getCases)
                 .orElse(Collections.emptyList());
     }
@@ -304,15 +303,12 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return ImplicitField returns the implicit field that corresponds to the variable's name.
      */
     default ImplicitField getReferencedImplicitField(VariableLiteral variableLiteral) {
-        for (Field field : getFields()) {
-            if (field.isImplicitField()) {
-                ImplicitField implicitField = (ImplicitField) field;
-                if (variableLiteral.getName().equals(implicitField.getName())) {
-                    return implicitField;
-                }
-            }
-        }
-        return null;
+        return getFields().stream()
+                .filter(FieldConversions::isImplicitField)
+                .map(ImplicitField.class::cast)
+                .filter(implicitField -> variableLiteral.getName().equals(implicitField.getName()))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -322,15 +318,10 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return boolean returns true if the variable's name is an discriminator field
      */
     default boolean isVariableLiteralDiscriminatorField(VariableLiteral variableLiteral) {
-        for (Field field : getFields()) {
-            if (field.isDiscriminatorField()) {
-                DiscriminatorField discriminatorField = (DiscriminatorField) field;
-                if (variableLiteral.getName().equals(discriminatorField.getName())) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return getFields().stream()
+                .filter(FieldConversions::isDiscriminatorField)
+                .map(DiscriminatorField.class::cast)
+                .anyMatch(discriminatorField -> variableLiteral.getName().equals(discriminatorField.getName()));
     }
 
     /**
@@ -340,15 +331,10 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return boolean returns true if the variable's name is an virtual field
      */
     default boolean isVariableLiteralVirtualField(VariableLiteral variableLiteral) {
-        for (Field field : getAllPropertyFields()) {
-            if (field.isVirtualField()) {
-                VirtualField virtualField = (VirtualField) field;
-                if (variableLiteral.getName().equals(virtualField.getName())) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return getAllPropertyFields().stream()
+                .filter(FieldConversions::isVirtualField)
+                .map(VirtualField.class::cast)
+                .anyMatch(virtualField -> variableLiteral.getName().equals(virtualField.getName()));
     }
 
     /**
@@ -358,15 +344,10 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return boolean returns true if the variable's name is an implicit field
      */
     default boolean isVariableLiteralImplicitField(VariableLiteral variableLiteral) {
-        for (Field field : getFields()) {
-            if (field.isImplicitField()) {
-                ImplicitField implicitField = (ImplicitField) field;
-                if (variableLiteral.getName().equals(implicitField.getName())) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return getFields().stream()
+                .filter(FieldConversions::isImplicitField)
+                .map(ImplicitField.class::cast)
+                .anyMatch(implicitField -> variableLiteral.getName().equals(implicitField.getName()));
     }
 
     /**
