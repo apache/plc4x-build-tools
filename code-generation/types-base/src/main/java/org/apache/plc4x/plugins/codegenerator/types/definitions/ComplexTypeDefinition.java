@@ -45,6 +45,13 @@ public interface ComplexTypeDefinition extends TypeDefinition {
     /**
      * In contrast to getFields, this also gets all property fields of any parent type.
      *
+     * @return all fields
+     */
+    List<Field> getAllFields();
+
+    /**
+     * In contrast to getPropertyFieldsFields, this also gets all property fields of any parent type.
+     *
      * @return all simple fields including any parents simple fields
      */
     List<PropertyField> getAllPropertyFields();
