@@ -22,9 +22,23 @@ import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
 import java.util.Optional;
 
+/**
+ * Can be used to validate/assert state during parsing/serializing
+ */
 public interface ValidationField extends FieldConversions {
 
+    /**
+     * @return the expression that should evaluate to true to let the validation pass
+     */
     Term getValidationExpression();
 
+    /**
+     * @return the human-readable description of this validation
+     */
     Optional<String> getDescription();
+
+    /**
+     * @return true if this is an unrecoverable error (e.g non-assert)
+     */
+    boolean shouldFail();
 }
