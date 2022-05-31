@@ -26,21 +26,15 @@ import java.util.Optional;
 
 public interface VariableLiteral extends Literal {
 
-    int NO_INDEX = -1;
-
     String getName();
 
     TypeReference getTypeReference();
 
     Optional<List<Term>> getArgs();
 
-    int getIndex();
+    Optional<Integer> getIndex();
 
     Optional<VariableLiteral> getChild();
-
-    default boolean isIndexed() {
-        return getIndex() != NO_INDEX;
-    }
 
     @Override
     default boolean contains(String str) {
