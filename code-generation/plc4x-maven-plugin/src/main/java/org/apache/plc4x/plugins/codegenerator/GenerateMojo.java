@@ -168,9 +168,8 @@ public class GenerateMojo extends AbstractMojo {
                     }
                 }
             }
-
             // Generate output for the type definitions.
-            language.generate(outputDir, languageName, protocolName, outputFlavor, types, options == null ? Collections.emptyMap() : options);
+            language.generate(outputDir, project.getVersion(), languageName, protocolName, outputFlavor, types, options == null ? Collections.emptyMap() : options);
         } catch (GenerationException e) {
             throw new MojoExecutionException("Error generating sources", e);
         }
