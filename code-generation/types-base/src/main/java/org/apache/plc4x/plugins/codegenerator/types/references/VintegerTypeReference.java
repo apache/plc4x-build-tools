@@ -18,26 +18,13 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.references;
 
-public interface SimpleTypeReference extends TypeReference {
+public interface VintegerTypeReference extends SimpleTypeReference {
 
-    SimpleBaseType getBaseType();
+    /**
+     * Even if a Vinteger type has no fixed size, we still need to define a property with a fixed size.
+     * The default will be the 32 bit version of a signed or unsigned integer, however we will be able
+     * to override this.
+     */
+    SimpleTypeReference getPropertyTypeReference();
 
-    int getSizeInBits();
-
-    enum SimpleBaseType {
-        BIT,
-        BYTE,
-        UINT,
-        VUINT,
-        INT,
-        VINT,
-        FLOAT,
-        UFLOAT,
-        STRING,
-        VSTRING,
-        TIME,
-        DATE,
-        DATETIME,
-        UNDEFINED
-    }
 }
