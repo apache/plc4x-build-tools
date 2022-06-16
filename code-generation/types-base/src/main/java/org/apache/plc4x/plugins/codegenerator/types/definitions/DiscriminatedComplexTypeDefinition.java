@@ -46,4 +46,5 @@ public interface DiscriminatedComplexTypeDefinition extends ComplexTypeDefinitio
         }
         return discriminatorValues;
     }
+
 }

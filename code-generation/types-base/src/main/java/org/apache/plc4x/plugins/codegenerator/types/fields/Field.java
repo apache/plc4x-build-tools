@@ -19,11 +19,14 @@
 package org.apache.plc4x.plugins.codegenerator.types.fields;
 
 import org.apache.plc4x.plugins.codegenerator.types.Constants;
+import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
 import java.util.Optional;
 
 public interface Field extends FieldConversions {
+
+    TypeDefinition getParentTypeDefinition();
 
     String getTypeName();
 
