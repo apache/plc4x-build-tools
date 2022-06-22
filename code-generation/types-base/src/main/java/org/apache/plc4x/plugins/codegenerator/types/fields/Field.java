@@ -26,7 +26,7 @@ import java.util.Optional;
 
 public interface Field extends FieldConversions {
 
-    TypeDefinition getParentTypeDefinition();
+    TypeDefinition getOwner();
 
     String getTypeName();
 
