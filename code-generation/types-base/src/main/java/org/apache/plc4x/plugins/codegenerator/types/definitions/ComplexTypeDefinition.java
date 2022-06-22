@@ -292,8 +292,8 @@ public interface ComplexTypeDefinition extends TypeDefinition {
         return hasMatchingPropertyField || hasMatchingVirtualField;
     }
 
-    default boolean isParserArgument(String discriminatorName) {
-        return getAllParserArguments().orElse(Collections.emptyList()).stream().anyMatch(argument -> argument.getName().equals(discriminatorName));
+    default boolean isParserArgument(String argumentName) {
+        return getAllParserArguments().orElse(Collections.emptyList()).stream().anyMatch(argument -> argument.getName().equals(argumentName));
     }
 
     /**
