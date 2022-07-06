@@ -81,4 +81,10 @@ public interface TermConversions {
         return Optional.of(this).filter(UnaryTerm.class::isInstance).map(UnaryTerm.class::cast);
     }
 
+    /**
+     * @return true if this is a {@link WildcardTerm}
+     */
+    default boolean isWildcard() {
+        return this instanceof WildcardTerm;
+    }
 }
