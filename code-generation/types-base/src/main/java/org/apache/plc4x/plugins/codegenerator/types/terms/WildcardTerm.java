@@ -21,7 +21,7 @@ package org.apache.plc4x.plugins.codegenerator.types.terms;
 /**
  * WildcardTerm is a marker interface for wildcards
  */
-public interface WildcardTerm {
+public interface WildcardTerm extends Term {
     WildcardTerm INSTANCE = new WildcardTerm() {
         public String toString() {
             return "WildcardTerm{}";
