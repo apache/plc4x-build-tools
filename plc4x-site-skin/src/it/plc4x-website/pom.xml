@@ -66,21 +66,21 @@
       <subscribe>mailto:dev-subscribe@plc4x.apache.org</subscribe>
       <unsubscribe>mailto:dev-unsubscribe@plc4x.apache.org</unsubscribe>
       <post>mailto:dev@plc4x.apache.org</post>
-      <archive>http://mail-archives.apache.org/mod_mbox/plc4x-dev/</archive>
+      <archive>https://mail-archives.apache.org/mod_mbox/plc4x-dev/</archive>
     </mailingList>
     <mailingList>
       <name>PLC4X Commits List</name>
       <subscribe>mailto:commit-subscribe@plc4x.apache.org</subscribe>
       <unsubscribe>mailto:commits-unsubscribe@plc4x.apache.org</unsubscribe>
       <post>mailto:commits@plc4x.apache.org</post>
-      <archive>http://mail-archives.apache.org/mod_mbox/plc4x-commits/</archive>
+      <archive>https://mail-archives.apache.org/mod_mbox/plc4x-commits/</archive>
     </mailingList>
     <mailingList>
       <name>PLC4X Jira Notifications List</name>
       <subscribe>mailto:issues-subscribe@plc4x.apache.org</subscribe>
       <unsubscribe>mailto:issues-unsubscribe@plc4x.apache.org</unsubscribe>
       <post>mailto:issues@plc4x.apache.org</post>
-      <archive>http://mail-archives.apache.org/mod_mbox/plc4x-issues/</archive>
+      <archive>https://mail-archives.apache.org/mod_mbox/plc4x-issues/</archive>
     </mailingList>
   </mailingLists>
 
@@ -103,8 +103,8 @@
     <asciidoctor-theme>asciidoctor</asciidoctor-theme>
     <!--asciidoctor-theme>boot-cyborg</asciidoctor-theme-->
     <asciidoctor.maven.plugin.version>2.0.0-RC.1</asciidoctor.maven.plugin.version>
-    <asciidoctorj.version>2.0.0</asciidoctorj.version>
-    <asciidoctorj.diagram.version>1.5.16</asciidoctorj.diagram.version>
+    <asciidoctorj.version>2.5.5</asciidoctorj.version>
+    <asciidoctorj.diagram.version>2.2.3</asciidoctorj.diagram.version>
     <reflow.skin.version>1.5.0</reflow.skin.version>
     <bootstrap.version>3.3.7</bootstrap.version>
     <jquery.version>3.3.1</jquery.version>
@@ -265,7 +265,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.8.2</version>
+          <version>4.0.0-M3</version>
           <configuration>
             <!--templateFile>${session.executionRootDirectory}/src/site/template/site.vm</templateFile-->
             <generateReports>true</generateReports>
