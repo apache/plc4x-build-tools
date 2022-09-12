@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
-    <version>25</version>
+    <version>27</version>
   </parent>
 
   <groupId>org.apache.maven.skins.its</groupId>
@@ -85,15 +85,12 @@
   </mailingLists>
 
   <properties>
+    <java.version>11</java.version>
+
     <skinName>@project.name@</skinName>
     <skinGroupId>@project.groupId@</skinGroupId>
     <skinArtifactId>@project.artifactId@</skinArtifactId>
     <skinVersion>@project.version@</skinVersion>
-    <!--
-      At least 3.3.3 required for camel-package-maven-plugin
-    -->
-    <maven.version>3.3.3</maven.version>
-    <java.version>1.8</java.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
@@ -240,7 +237,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>properties-maven-plugin</artifactId>
-          <version>1.0.0</version>
+          <version>1.1.0</version>
         </plugin>
 
         <plugin>
