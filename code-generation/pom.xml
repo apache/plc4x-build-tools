@@ -44,14 +44,14 @@
     <java.version>11</java.version>
 
     <!-- Timestamp for the reproducible builds -->
-    <project.build.outputTimestamp>1</project.build.outputTimestamp>
+    <project.build.outputTimestamp>1663846492</project.build.outputTimestamp>
   </properties>
 
   <scm>
     <connection>scm:git:https://gitbox.apache.org/repos/asf/plc4x-build-tools.git</connection>
     <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/plc4x-build-tools.git</developerConnection>
     <url>https://github.com/apache/plc4x-build-tools</url>
-    <tag>releases/code-generation/1.4</tag>
+    <tag>releases/code-generation/1.6</tag>
   </scm>
 
   <modules>
