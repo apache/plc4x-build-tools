@@ -7,6 +7,15 @@ New Features
 
 - Added the ability to provide protocol versions in the code
   generation.
+- Fields now know the concept of attributes
+- New field types:
+  - Assert Field: Like Reserved or Const, but fires a special
+    type of exception which can be used by optional fields.
+  - Validation Field: Executes a validation and fires
+    special types of exceptions.
+  - Peek Field: Filed that doesn't consume bytes from the
+    read buffer.
+- Code generation now knows the concept of protocol versions.
 
 Incompatible changes
 --------------------
