@@ -39,7 +39,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.build.outputTimestamp>1</project.build.outputTimestamp>
+    <project.build.outputTimestamp>1663847802</project.build.outputTimestamp>
 
     <sitePluginVersion>3.7.1</sitePluginVersion>
     <mpirVersion>3.0.0</mpirVersion>
