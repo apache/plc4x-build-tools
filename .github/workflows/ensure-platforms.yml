@@ -81,4 +81,4 @@ jobs:
             }
 
       - name: Run mvnw
-        run: ./mvnw${{ steps.platform_suffix.outputs.platform_suffix }} -B -P'run-its' ${{ steps.platform_opts.outputs.platform_opts }} install
+        run: ./mvnw${{ steps.platform_suffix.outputs.platform_suffix }} -B ${{ steps.platform_opts.outputs.platform_opts }} install
