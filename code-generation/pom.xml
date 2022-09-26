@@ -94,6 +94,9 @@
 
             <!-- Output of the profiler maven extension -->
             <exclude>**/.profiler/**</exclude>
+
+            <!-- Exclude .mvn wrapper-->
+            <exclude>.mvn/**</exclude>
           </excludes>
         </configuration>
       </plugin>
