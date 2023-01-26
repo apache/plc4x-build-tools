@@ -136,13 +136,12 @@ public interface ComplexTypeDefinition extends TypeDefinition {
     }
 
     /**
+     * If the type has a parent type, it's a child aka discriminated child type definition.
      * @return true if {@code this} is a discriminated child.
      */
     default boolean isDiscriminatedChildTypeDefinition() {
         return asDiscriminatedComplexTypeDefinition()
-                .map(ComplexTypeDefinition::isAbstract)
-                .map(isAbstract -> !isAbstract)
-                .orElse(false);
+                .map(ComplexTypeDefinition::getParentType).isPresent();
     }
 
     /**

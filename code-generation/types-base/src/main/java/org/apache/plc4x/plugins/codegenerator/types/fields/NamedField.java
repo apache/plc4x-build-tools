@@ -18,7 +18,7 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.fields;
 
-public interface NamedField {
+public interface NamedField extends FieldConversions {
 
     String getName();
 
