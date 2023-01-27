@@ -157,6 +157,39 @@ public interface ComplexTypeDefinition extends TypeDefinition {
                 .anyMatch(field -> field.equals(discriminatorName));
     }
 
+    default boolean isDiscriminatorOnAnyLevel(String discriminatorName) {
+        if (getParentType().isPresent()) {
+            return getParentType().get().isDiscriminatorOnAnyLevel(discriminatorName);
+        } else {
+            return isDiscriminatorFieldInThisTypeOrAnyChild(discriminatorName);
+        }
+    }
+
+    default boolean isDiscriminatorFieldInThisTypeOrAnyChild(String discriminatorName) {
+        // Check if there's any expression in this type's typeSwitch, that uses
+        // the given property name as variable (aka being a discriminator)
+        boolean isDiscriminatorName = getSwitchField()
+                .map(SwitchField::getDiscriminatorExpressions)
+                .map(terms -> terms.stream().map(Term::getDiscriminatorName)
+                        .anyMatch(curDiscriminatorName -> curDiscriminatorName.equals(discriminatorName)))
+                .isPresent();
+        if (isDiscriminatorName) {
+            return true;
+        }
+
+        // If we've checked this level, check any children.
+        Optional<SwitchField> switchField = getSwitchField();
+        if (switchField.isPresent()) {
+            for (DiscriminatedComplexTypeDefinition subType : switchField.get().getCases()) {
+                if (subType.isDiscriminatorFieldInThisTypeOrAnyChild(discriminatorName)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Get an ordered list of generated names for the discriminators.
      * These names can be used to access the type definitions as well as well as the values.
@@ -387,7 +420,7 @@ public interface ComplexTypeDefinition extends TypeDefinition {
             return virtualFieldOptional.map(VirtualField::getType);
         }
         // Check if the expression root is referencing an argument
-        final Optional<Argument> argumentOptional = getParserArguments()
+        final Optional<Argument> argumentOptional = getAllParserArguments()
                 .orElse(Collections.emptyList())
                 .stream()
                 .filter(argument -> argument.getName().equals(propertyName))
