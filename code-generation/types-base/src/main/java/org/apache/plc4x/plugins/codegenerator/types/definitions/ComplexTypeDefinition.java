@@ -137,6 +137,7 @@ public interface ComplexTypeDefinition extends TypeDefinition {
 
     /**
      * If the type has a parent type, it's a child aka discriminated child type definition.
+     *
      * @return true if {@code this} is a discriminated child.
      */
     default boolean isDiscriminatedChildTypeDefinition() {
@@ -157,37 +158,43 @@ public interface ComplexTypeDefinition extends TypeDefinition {
                 .anyMatch(field -> field.equals(discriminatorName));
     }
 
+    /**
+     * TODO: add javadoc
+     *
+     * @param discriminatorName
+     * @return
+     */
     default boolean isDiscriminatorOnAnyLevel(String discriminatorName) {
-        if (getParentType().isPresent()) {
-            return getParentType().get().isDiscriminatorOnAnyLevel(discriminatorName);
-        } else {
-            return isDiscriminatorFieldInThisTypeOrAnyChild(discriminatorName);
-        }
+        return getParentType()
+                .map(complexTypeDefinition -> complexTypeDefinition.isDiscriminatorOnAnyLevel(discriminatorName))
+                .orElse(isDiscriminatorFieldInThisTypeOrAnyChild(discriminatorName));
     }
 
+    /**
+     * TODO: add javadoc
+     *
+     * @param discriminatorName
+     * @return
+     */
     default boolean isDiscriminatorFieldInThisTypeOrAnyChild(String discriminatorName) {
         // Check if there's any expression in this type's typeSwitch, that uses
         // the given property name as variable (aka being a discriminator)
         boolean isDiscriminatorName = getSwitchField()
                 .map(SwitchField::getDiscriminatorExpressions)
-                .map(terms -> terms.stream().map(Term::getDiscriminatorName)
-                        .anyMatch(curDiscriminatorName -> curDiscriminatorName.equals(discriminatorName)))
-                .isPresent();
+                .stream()
+                .flatMap(List::stream)
+                .map(Term::getDiscriminatorName)
+                .anyMatch(curDiscriminatorName -> curDiscriminatorName.equals(discriminatorName));
         if (isDiscriminatorName) {
             return true;
         }
 
         // If we've checked this level, check any children.
-        Optional<SwitchField> switchField = getSwitchField();
-        if (switchField.isPresent()) {
-            for (DiscriminatedComplexTypeDefinition subType : switchField.get().getCases()) {
-                if (subType.isDiscriminatorFieldInThisTypeOrAnyChild(discriminatorName)) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
+        return getSwitchField()
+                .map(SwitchField::getCases)
+                .stream()
+                .flatMap(List::stream)
+                .anyMatch(subType -> subType.isDiscriminatorFieldInThisTypeOrAnyChild(discriminatorName));
     }
 
     /**
