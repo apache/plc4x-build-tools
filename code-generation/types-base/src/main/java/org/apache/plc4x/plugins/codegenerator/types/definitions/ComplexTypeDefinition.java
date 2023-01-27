@@ -159,10 +159,11 @@ public interface ComplexTypeDefinition extends TypeDefinition {
     }
 
     /**
-     * TODO: add javadoc
+     * Checks if the <code>discriminatorName</code> can be found on any level. This is done by going recursively to the
+     * top level and start checking from there using {@link #isDiscriminatorFieldInThisTypeOrAnyChild(String)}
      *
-     * @param discriminatorName
-     * @return
+     * @param discriminatorName the discriminator name to be found
+     * @return true if the <code>discriminatorName</code> can be found
      */
     default boolean isDiscriminatorOnAnyLevel(String discriminatorName) {
         return getParentType()
@@ -171,10 +172,11 @@ public interface ComplexTypeDefinition extends TypeDefinition {
     }
 
     /**
-     * TODO: add javadoc
+     * Checks if the <code>discriminatorName</code> can be found in the {@link SwitchField#getDiscriminatorExpressions()}
+     * or in the {@link SwitchField#getCases()} types.
      *
-     * @param discriminatorName
-     * @return
+     * @param discriminatorName the discriminator name to be found
+     * @return true if the <code>discriminatorName</code> can be found
      */
     default boolean isDiscriminatorFieldInThisTypeOrAnyChild(String discriminatorName) {
         // Check if there's any expression in this type's typeSwitch, that uses
