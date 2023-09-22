@@ -1,9 +1,12 @@
 ==============================================================
-(Unreleased) Apache PLC4X Build-Tools Code-Generation 1.7.0-SNAPSHOT
+Apache PLC4X Build-Tools Code-Generation 1.7.0
 ==============================================================
 
 New Features
 ------------
+
+- TypeSwitches in TypeSwitches are now allowed
+- Added a ByteOrderTypeReference
 
 Incompatible changes
 --------------------
