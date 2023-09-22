@@ -28,13 +28,13 @@
   <parent>
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
-    <version>29</version>
+    <version>30</version>
     <relativePath />
   </parent>
 
   <groupId>org.apache.plc4x.plugins</groupId>
   <artifactId>plc4x-code-generation</artifactId>
-  <version>1.7.0-SNAPSHOT</version>
+  <version>1.8.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>PLC4X Build Tools: Code Generation</name>
@@ -44,7 +44,7 @@
     <java.version>11</java.version>
 
     <!-- Timestamp for the reproducible builds -->
-    <project.build.outputTimestamp>1663846514</project.build.outputTimestamp>
+    <project.build.outputTimestamp>1695380900</project.build.outputTimestamp>
   </properties>
 
   <scm>
