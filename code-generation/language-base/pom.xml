@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.apache.plc4x.plugins</groupId>
     <artifactId>plc4x-code-generation</artifactId>
-    <version>1.7.0-SNAPSHOT</version>
+    <version>1.8.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>plc4x-code-generation-language-base</artifactId>
@@ -36,7 +36,7 @@
     <dependency>
       <groupId>org.apache.plc4x.plugins</groupId>
       <artifactId>plc4x-code-generation-types-base</artifactId>
-      <version>1.7.0-SNAPSHOT</version>
+      <version>1.8.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>
