@@ -152,7 +152,6 @@
   - added a get getAllFields method ([24f61be](https://github.com/apache/plc4x-build-tools/commit/24f61be6fd9517ce5c739eb5720f720cad01c361))
   - Tried getting stuff working in C ;-) ([6ef2695](https://github.com/apache/plc4x-build-tools/commit/6ef269525859e0f566a9cd422b958b9239a09825))
   - Fixed array type handling and data-io code generation ([26e0a2f](https://github.com/apache/plc4x-build-tools/commit/26e0a2f180778e69c10dfc5e2030618e2fc3c102))
-  - added new type conversion ([ba2d024](https://github.com/apache/plc4x-build-tools/commit/ba2d02447302676d6d00278f1f0db3a9a3f43f79))
   - Started clening up the type references ([3ff59b8](https://github.com/apache/plc4x-build-tools/commit/3ff59b8390af00e1379a95fbd65f4745c8539042))
   - Ensured the VariableLiterals are able to provide their type. ([39be9f6](https://github.com/apache/plc4x-build-tools/commit/39be9f6a25157e6e11e7ecf9b9aab386ae4ad818))
   - moved functions from helper into types ([1755a7c](https://github.com/apache/plc4x-build-tools/commit/1755a7c509d35683e9e87c528c6ab515dfa57f44))
