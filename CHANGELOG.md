@@ -7,37 +7,6 @@
 ## [rel/1.7](https://github.com/apache/plc4x-build-tools/releases/tag/rel/1.7) - 2023-09-22 11:07:57
 
 ## What's Changed
-* Remove headline border and background by @NiklasMerz in https://github.com/apache/plc4x-build-tools/pull/1
-* PLC4X landing page by @dominikriemer in https://github.com/apache/plc4x-build-tools/pull/2
-* More content about MSpec, its use and overall structure. by @splatch in https://github.com/apache/plc4x-build-tools/pull/4
-* Feature/string enum mspec by @hutcheb in https://github.com/apache/plc4x-build-tools/pull/5
-* PLC4X-307 Support for custom packages. by @splatch in https://github.com/apache/plc4x-build-tools/pull/6
-* fix typo by @hboutemy in https://github.com/apache/plc4x-build-tools/pull/7
-* Bump junit from 4.12 to 4.13.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/9
-* Bump maven.version from 3.3.9 to 3.8.4 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/10
-* Bump commons-lang3 from 3.9 to 3.12.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/11
-* build(deps): bump commons-beanutils from 1.9.3 to 1.9.4 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/15
-* Bump maven.version from 3.6.3 to 3.8.4 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/12
-* chore(deps): bump maven-plugin-plugin from 3.6.1 to 3.6.4 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/18
-* chore(deps): bump maven-plugin-annotations from 3.6.0 to 3.6.4 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/17
-* build(deps): bump commons-io from 2.6 to 2.11.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/16
-* chore(deps): bump maven-javadoc-plugin from 3.3.1 to 3.3.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/22
-* chore(deps): bump maven-project-info-reports-plugin from 3.1.2 to 3.2.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/19
-* chore(deps): bump maven-jar-plugin from 3.2.0 to 3.2.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/20
-* chore(deps): bump maven-release-plugin from 3.0.0-M4 to 3.0.0-M5 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/21
-* chore(deps): bump download-maven-plugin from 1.6.7 to 1.6.8 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/26
-* chore(deps): bump maven-compiler-plugin from 3.8.1 to 3.10.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/27
-* chore(deps): bump maven-invoker-plugin from 3.2.2 to 3.3.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/31
-* chore(deps): bump maven-dependency-plugin from 3.2.0 to 3.3.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/29
-* chore(deps): bump maven.version from 3.6.3 to 3.8.5 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/28
-* chore(deps): bump maven-javadoc-plugin from 3.3.2 to 3.4.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/32
-* chore(deps): bump maven-install-plugin from 2.5.2 to 3.0.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/34
-* chore(deps): bump maven-project-info-reports-plugin from 3.2.2 to 3.4.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/36
-* chore(deps): bump maven-deploy-plugin from 2.8.2 to 3.0.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/35
-* chore(deps): bump maven-assembly-plugin from 3.3.0 to 3.4.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/38
-* chore(deps): bump maven-release-plugin from 3.0.0-M5 to 3.0.0-M6 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/37
-* chore(deps): bump maven-jar-plugin from 3.2.2 to 3.3.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/39
-* chore(deps): bump apache-rat-plugin from 0.14 to 0.15 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/40
 * chore(deps): bump maven-release-plugin from 3.0.0-M6 to 3.0.0-M7 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/41
 * chore(deps): bump maven-plugin-plugin from 3.6.4 to 3.7.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/42
 * chore(deps): bump maven-plugin-annotations from 3.6.4 to 3.7.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/43
@@ -74,14 +43,8 @@
 * chore(deps): bump maven-plugin-plugin from 3.8.1 to 3.8.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/73
 * chore(deps): bump maven-plugin-annotations from 3.8.1 to 3.8.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/72
 
-## New Contributors
-* @NiklasMerz made their first contribution in https://github.com/apache/plc4x-build-tools/pull/1
-* @dominikriemer made their first contribution in https://github.com/apache/plc4x-build-tools/pull/2
-* @splatch made their first contribution in https://github.com/apache/plc4x-build-tools/pull/4
-* @hutcheb made their first contribution in https://github.com/apache/plc4x-build-tools/pull/5
-* @hboutemy made their first contribution in https://github.com/apache/plc4x-build-tools/pull/7
 
-**Full Changelog**: https://github.com/apache/plc4x-build-tools/compare/rel/1.0...rel/1.7
+**Full Changelog**: https://github.com/apache/plc4x-build-tools/compare/rel/1.6...rel/1.7
 
 ### Feature
 
@@ -152,6 +115,7 @@
   - added a get getAllFields method ([24f61be](https://github.com/apache/plc4x-build-tools/commit/24f61be6fd9517ce5c739eb5720f720cad01c361))
   - Tried getting stuff working in C ;-) ([6ef2695](https://github.com/apache/plc4x-build-tools/commit/6ef269525859e0f566a9cd422b958b9239a09825))
   - Fixed array type handling and data-io code generation ([26e0a2f](https://github.com/apache/plc4x-build-tools/commit/26e0a2f180778e69c10dfc5e2030618e2fc3c102))
+  - added new type conversion ([ba2d024](https://github.com/apache/plc4x-build-tools/commit/ba2d02447302676d6d00278f1f0db3a9a3f43f79))
   - Started clening up the type references ([3ff59b8](https://github.com/apache/plc4x-build-tools/commit/3ff59b8390af00e1379a95fbd65f4745c8539042))
   - Ensured the VariableLiterals are able to provide their type. ([39be9f6](https://github.com/apache/plc4x-build-tools/commit/39be9f6a25157e6e11e7ecf9b9aab386ae4ad818))
   - moved functions from helper into types ([1755a7c](https://github.com/apache/plc4x-build-tools/commit/1755a7c509d35683e9e87c528c6ab515dfa57f44))
