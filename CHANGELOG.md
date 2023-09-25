@@ -1,5 +1,110 @@
 # CHANGELOG
 
+## [releases/code-generation/1.7.0](https://github.com/apache/plc4x-build-tools/releases/tag/releases/code-generation/1.7.0) - 2023-09-22 11:15:12
+
+**Full Changelog**: https://github.com/apache/plc4x-build-tools/compare/rel/1.7...releases/code-generation/1.7.0
+
+## [rel/1.7](https://github.com/apache/plc4x-build-tools/releases/tag/rel/1.7) - 2023-09-22 11:07:57
+
+## What's Changed
+* Remove headline border and background by @NiklasMerz in https://github.com/apache/plc4x-build-tools/pull/1
+* PLC4X landing page by @dominikriemer in https://github.com/apache/plc4x-build-tools/pull/2
+* More content about MSpec, its use and overall structure. by @splatch in https://github.com/apache/plc4x-build-tools/pull/4
+* Feature/string enum mspec by @hutcheb in https://github.com/apache/plc4x-build-tools/pull/5
+* PLC4X-307 Support for custom packages. by @splatch in https://github.com/apache/plc4x-build-tools/pull/6
+* fix typo by @hboutemy in https://github.com/apache/plc4x-build-tools/pull/7
+* Bump junit from 4.12 to 4.13.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/9
+* Bump maven.version from 3.3.9 to 3.8.4 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/10
+* Bump commons-lang3 from 3.9 to 3.12.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/11
+* build(deps): bump commons-beanutils from 1.9.3 to 1.9.4 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/15
+* Bump maven.version from 3.6.3 to 3.8.4 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/12
+* chore(deps): bump maven-plugin-plugin from 3.6.1 to 3.6.4 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/18
+* chore(deps): bump maven-plugin-annotations from 3.6.0 to 3.6.4 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/17
+* build(deps): bump commons-io from 2.6 to 2.11.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/16
+* chore(deps): bump maven-javadoc-plugin from 3.3.1 to 3.3.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/22
+* chore(deps): bump maven-project-info-reports-plugin from 3.1.2 to 3.2.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/19
+* chore(deps): bump maven-jar-plugin from 3.2.0 to 3.2.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/20
+* chore(deps): bump maven-release-plugin from 3.0.0-M4 to 3.0.0-M5 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/21
+* chore(deps): bump download-maven-plugin from 1.6.7 to 1.6.8 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/26
+* chore(deps): bump maven-compiler-plugin from 3.8.1 to 3.10.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/27
+* chore(deps): bump maven-invoker-plugin from 3.2.2 to 3.3.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/31
+* chore(deps): bump maven-dependency-plugin from 3.2.0 to 3.3.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/29
+* chore(deps): bump maven.version from 3.6.3 to 3.8.5 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/28
+* chore(deps): bump maven-javadoc-plugin from 3.3.2 to 3.4.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/32
+* chore(deps): bump maven-install-plugin from 2.5.2 to 3.0.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/34
+* chore(deps): bump maven-project-info-reports-plugin from 3.2.2 to 3.4.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/36
+* chore(deps): bump maven-deploy-plugin from 2.8.2 to 3.0.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/35
+* chore(deps): bump maven-assembly-plugin from 3.3.0 to 3.4.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/38
+* chore(deps): bump maven-release-plugin from 3.0.0-M5 to 3.0.0-M6 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/37
+* chore(deps): bump maven-jar-plugin from 3.2.2 to 3.3.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/39
+* chore(deps): bump apache-rat-plugin from 0.14 to 0.15 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/40
+* chore(deps): bump maven-release-plugin from 3.0.0-M6 to 3.0.0-M7 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/41
+* chore(deps): bump maven-plugin-plugin from 3.6.4 to 3.7.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/42
+* chore(deps): bump maven-plugin-annotations from 3.6.4 to 3.7.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/43
+* chore(deps): bump maven-install-plugin from 3.0.1 to 3.1.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/44
+* chore(deps): bump apache from 27 to 28 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/45
+* chore(deps): bump maven-dependency-plugin from 3.3.0 to 3.4.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/46
+* chore(deps): bump maven-invoker-plugin from 3.3.0 to 3.4.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/49
+* chore(deps): bump apache from 28 to 29 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/48
+* chore(deps): bump maven-site-plugin from 4.0.0-M3 to 4.0.0-M4 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/47
+* chore(deps): bump maven-plugin-annotations from 3.7.0 to 3.7.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/53
+* chore(deps): bump maven-plugin-plugin from 3.7.0 to 3.7.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/52
+* chore(deps): bump maven-project-info-reports-plugin from 3.4.1 to 3.4.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/51
+* chore(deps): bump maven-dependency-plugin from 3.4.0 to 3.5.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/50
+* chore(deps): bump maven-javadoc-plugin from 3.4.1 to 3.5.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/57
+* chore(deps): bump maven-invoker-plugin from 3.4.0 to 3.5.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/56
+* chore(deps): bump maven-site-plugin from 4.0.0-M4 to 4.0.0-M5 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/55
+* chore(deps): bump maven-deploy-plugin from 3.0.0 to 3.1.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/54
+* chore(deps): bump maven-clean-plugin from 3.1.0 to 3.2.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/59
+* chore(deps): bump maven-assembly-plugin from 3.4.2 to 3.5.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/58
+* chore(deps): bump maven-compiler-plugin from 3.10.1 to 3.11.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/60
+* chore(deps): bump maven-plugin-plugin from 3.7.1 to 3.8.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/62
+* chore(deps): bump maven-plugin-annotations from 3.7.1 to 3.8.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/61
+* chore(deps): bump maven-release-plugin from 3.0.0-M7 to 3.0.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/64
+* chore(deps): bump maven-site-plugin from 4.0.0-M5 to 4.0.0-M6 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/65
+* chore(deps): bump maven-surefire-plugin from 2.22.2 to 3.0.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/63
+* chore(deps): bump maven-invoker-plugin from 3.5.0 to 3.5.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/69
+* chore(deps): bump maven-resources-plugin from 3.3.0 to 3.3.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/68
+* chore(deps): bump maven-install-plugin from 3.1.0 to 3.1.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/67
+* chore(deps): bump maven-deploy-plugin from 3.1.0 to 3.1.1 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/66
+* chore(deps): bump maven-project-info-reports-plugin from 3.4.2 to 3.4.3 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/71
+* chore(deps): bump maven-site-plugin from 4.0.0-M6 to 4.0.0-M7 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/70
+* chore(deps): bump maven-site-plugin from 4.0.0-M7 to 4.0.0-M8 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/75
+* chore(deps): bump download-maven-plugin from 1.6.8 to 1.7.0 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/74
+* chore(deps): bump maven-plugin-plugin from 3.8.1 to 3.8.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/73
+* chore(deps): bump maven-plugin-annotations from 3.8.1 to 3.8.2 by @dependabot in https://github.com/apache/plc4x-build-tools/pull/72
+
+## New Contributors
+* @NiklasMerz made their first contribution in https://github.com/apache/plc4x-build-tools/pull/1
+* @dominikriemer made their first contribution in https://github.com/apache/plc4x-build-tools/pull/2
+* @splatch made their first contribution in https://github.com/apache/plc4x-build-tools/pull/4
+* @hutcheb made their first contribution in https://github.com/apache/plc4x-build-tools/pull/5
+* @hboutemy made their first contribution in https://github.com/apache/plc4x-build-tools/pull/7
+
+**Full Changelog**: https://github.com/apache/plc4x-build-tools/compare/rel/1.0...rel/1.7
+
+### Feature
+
+- general:
+  - Added a MetadataField interface to support metadata fields in dataIo types ([24d3152](https://github.com/apache/plc4x-build-tools/commit/24d3152751ad19214f16cf00120af19f9680b19a))
+
+- code-gen:
+  - typeSwitches in typeSwitches now allowed. ([31f96b6](https://github.com/apache/plc4x-build-tools/commit/31f96b6eb98ff14f9094020d8f78ced87dfe316e))
+
+- build-tools:
+  - Added a getNullBytesHex() method to access the hullBytesHex attribute on optional fields. ([a66b0a5](https://github.com/apache/plc4x-build-tools/commit/a66b0a56cf20ea9a6716228e64493d8f1acd1c09))
+
+### Documentation
+
+- code-gen:
+  - add docs for isDiscriminatorOnAnyLevel and isDiscriminatorFieldInThisTypeOrAnyChild ([86a7cff](https://github.com/apache/plc4x-build-tools/commit/86a7cff204720d23101e8f13a7a0a3d6cb9bfba4))
+
+### Refactor
+
+- code-gen:
+  - optimize optional usage ([0de6012](https://github.com/apache/plc4x-build-tools/commit/0de6012b219c7e818f985bddcd483430fa8fbbf6))
+  - Introduced two code-gen options: generate-properties-for-parser-arguments and generate-properties-for-reserved-fields ([ed9647e](https://github.com/apache/plc4x-build-tools/commit/ed9647e8e9625c4a8598d2cc7b1aef4e94f89c1d))
+
 ## [releases/code-generation/1.6.0](https://github.com/apache/plc4x-build-tools/releases/tag/releases/code-generation/1.6.0) - 2022-09-22 12:04:36
 
 **Full Changelog**: https://github.com/apache/plc4x-build-tools/compare/rel/1.6...releases/code-generation/1.6.0
@@ -208,5 +313,9 @@ fix: Set a byteOrder argument on every root-type in our mspec grammars ([629ed6e
 ## [release/code-generation/1.0.0](https://github.com/apache/plc4x-build-tools/releases/tag/release/code-generation/1.0.0) - 2019-09-26 10:12:44
 
 **Full Changelog**: https://github.com/apache/plc4x-build-tools/commits/release/code-generation/1.0.0
+
+## [rel/1.0](https://github.com/apache/plc4x-build-tools/releases/tag/rel/1.0) - 2019-09-26 09:56:59
+
+**Full Changelog**: https://github.com/apache/plc4x-build-tools/commits/rel/1.0
 
 \* *This CHANGELOG was automatically generated by [auto-generate-changelog](https://github.com/BobAnkh/auto-generate-changelog)*
