@@ -51,6 +51,13 @@ public class GenerateMojo extends AbstractMojo {
     private MavenProject project;
 
     /**
+     * Tells the plugin, if we should skip code-generation.
+     * (Required for reproducible builds)
+     */
+    @Parameter(defaultValue = "false", required = false)
+    private boolean skip;
+
+    /**
      * Where to generate the code.
      */
     @Parameter(defaultValue = "${project.build.directory}/generated-sources/plc4x/", required = true)
@@ -89,6 +96,11 @@ public class GenerateMojo extends AbstractMojo {
 
     public void execute()
             throws MojoExecutionException {
+
+        if(skip) {
+            getLog().info("Skipping code-generation as 'skip' was set to 'true'.");
+            return;
+        }
 
         // Make sure the output directory exists.
         if (!outputDir.exists()) {
