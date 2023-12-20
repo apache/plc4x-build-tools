@@ -41,8 +41,6 @@
   <description>This module groups all the modules that will be moved outside the core repository.</description>
 
   <properties>
-    <java.version>11</java.version>
-
     <!-- Timestamp for the reproducible builds -->
     <project.build.outputTimestamp>1695380900</project.build.outputTimestamp>
   </properties>
