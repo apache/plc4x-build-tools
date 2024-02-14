@@ -81,7 +81,7 @@ Therefore we use metadata to check programmatically, if a given feature is avail
 
 ----
 // Check if this connection support reading of data.
-if (!plcConnection.getMetadata().canRead()) {
+if (!plcConnection.getMetadata().isReadSupported()) {
   logger.error("This connection doesn't support reading.");
   return;
 }
