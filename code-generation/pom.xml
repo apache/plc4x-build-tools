@@ -43,6 +43,7 @@
   <properties>
     <!-- Timestamp for the reproducible builds -->
     <project.build.outputTimestamp>1695380900</project.build.outputTimestamp>
+    <java.version>11</java.version>
   </properties>
 
   <scm>
