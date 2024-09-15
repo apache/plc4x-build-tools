@@ -32,6 +32,12 @@ These usually are, but are not limited to:
 
 We are a very friendly bunch and don't be afraid to step forward.
 
+=== Commits
+
+We make use of https://www.conventionalcommits.org/en/v1.0.0/[conventional commits].
+As plc4x is a monolithic polyglot repository we usually define the scope as `...(plc4[language shortcut here]/subcomponent)`
+(e.g. a new feature in Bacnet in the Golang part would have a message of `feat(plc4go/bacnet): cool new feature for...`).
+
 === Pull-Requests
 
 The simplest way to submit code changes, is via a GitHub pull-request.
@@ -127,7 +133,7 @@ The PLC4X project uses the following branching model.
 
 The same model is used for a wide variety of other projects, so it should be pretty straight forward.
 
-- `master` contains the latest released state.
+- `release` contains the latest released state.
 - Development is performed on the `develop` branch.
 - Features are developed in Feature-Branches with a prefix `feature/`
 - Each minor release has a corresponding release branch `rel/{major-version}.{minor-version}`
@@ -149,8 +155,8 @@ digraph g{
         fontcolor="deepskyblue", font="Arial bold", fontsize="14pt" ];
     edge [color="#909090", penwidth=3];
 
-    node  [group="master"];
-    m1    [label="master", width=0.9];
+    node  [group="release"];
+    m1    [label="release", width=0.9];
     m2   [label="0.2.0", width=0.9];
     m3   [label="0.2.1", width=0.9];
     m4   [label="", shape=circle, color="#b0b0b0"];

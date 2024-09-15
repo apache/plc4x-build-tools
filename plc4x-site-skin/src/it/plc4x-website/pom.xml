@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
-    <version>27</version>
+    <version>33</version>
   </parent>
 
   <groupId>org.apache.maven.skins.its</groupId>
@@ -99,14 +99,16 @@
     <!-- Please check out these default skins: https://github.com/darshandsoni/asciidoctor-skins/tree/gh-pages/css -->
     <asciidoctor-theme>asciidoctor</asciidoctor-theme>
     <!--asciidoctor-theme>boot-cyborg</asciidoctor-theme-->
-    <asciidoctor.maven.plugin.version>2.0.0-RC.1</asciidoctor.maven.plugin.version>
-    <asciidoctorj.version>2.5.5</asciidoctorj.version>
-    <asciidoctorj.diagram.version>2.2.3</asciidoctorj.diagram.version>
+    <asciidoctor.maven.plugin.version>3.0.0</asciidoctor.maven.plugin.version>
+    <asciidoctorj.version>3.0.0</asciidoctorj.version>
+    <asciidoctorj.diagram.version>2.3.1</asciidoctorj.diagram.version>
     <reflow.skin.version>1.5.0</reflow.skin.version>
     <bootstrap.version>3.3.7</bootstrap.version>
     <jquery.version>3.3.1</jquery.version>
     <anchorjs.version>3.2.2</anchorjs.version>
     <fontawesome.version>5.2.0</fontawesome.version>
+    <groovy.version>4.0.23</groovy.version>
+    <pcap4j.version>1.8.2</pcap4j.version>
   </properties>
 
   <build>
@@ -115,8 +117,24 @@
       <plugin>
         <groupId>org.codehaus.gmaven</groupId>
         <artifactId>groovy-maven-plugin</artifactId>
+        <version>2.1.1</version>
         <executions>
-          <!-- Set some dynamic variables which are useful for the site generation -->
+          <!-- Do some pre-build checks and report any findings to the user -->
+          <execution>
+            <id>prerequisite-check</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <inherited>false</inherited>
+            <configuration>
+              <source>${project.basedir}/src/main/script/prerequisiteCheck.groovy</source>
+            </configuration>
+          </execution>
+          <!--
+            Set some dynamic variables which are useful for the site generation and
+            generate an 'pom.adoc' file containing them in a format asciidoc can use.
+          -->
           <execution>
             <id>provide-custom-properties</id>
             <phase>pre-site</phase>
@@ -124,38 +142,7 @@
               <goal>execute</goal>
             </goals>
             <configuration>
-              <source>
-                print "\nCalculating some additional properties:"
-                // Get the current year
-                def currentYear = Calendar.getInstance().get(Calendar.YEAR) as String
-                print "\nCurrent year:                     " + currentYear
-                project.properties['current-year'] = currentYear
-
-                // Calculate some version related stuff
-                def currentVersion = project.version as String
-                def match = (currentVersion =~ /(\d+)\.(\d+)\.(\d+)(-SNAPSHOT)?/)
-                print "\nCurrent version:                  " + currentVersion
-                if(match.count &gt;= 1) {
-                  def majorVersion = match[0][1] as Integer
-                  def minorVersion = match[0][2] as Integer
-                  def bugfixVersion = match[0][3] as Integer
-
-                  def currentFullVersion = majorVersion + "." + minorVersion + "." + bugfixVersion
-                  def currentShortVersion = majorVersion + "." + minorVersion
-                  def currentNextIncrementalVersion = majorVersion + "." + minorVersion + "." + (bugfixVersion + 1)
-                  def currentNextMinorVersion = majorVersion + "." + (minorVersion + 1) + ".0"
-
-                  print "\nCurrent full version:             " + currentFullVersion + " (current-full-version)"
-                  project.properties['current-full-version'] = currentFullVersion
-                  print "\nCurrent short version:            " + currentShortVersion + "   (current-short-version)"
-                  project.properties['current-short-version'] = currentShortVersion
-                  print "\nCurrent next incremental version: " + currentNextIncrementalVersion + " (current-next-incremental-version)"
-                  project.properties['current-next-incremental-version'] = currentNextIncrementalVersion
-                  print "\nCurrent next minor version:       " + currentNextMinorVersion + " (current-next-minor-version)"
-                  project.properties['current-next-minor-version'] = currentNextMinorVersion
-                }
-                print "\n"
-              </source>
+              <source>${project.basedir}/src/main/script/preSiteGeneration.groovy</source>
             </configuration>
           </execution>
         </executions>
@@ -163,67 +150,68 @@
           <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <version>2.10.5</version>
+            <version>2.12.7</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <version>${groovy.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.pcap4j</groupId>
+            <artifactId>pcap4j-core</artifactId>
+            <version>${pcap4j.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.pcap4j</groupId>
+            <artifactId>pcap4j-packetfactory-static</artifactId>
+            <version>${pcap4j.version}</version>
           </dependency>
         </dependencies>
       </plugin>
 
-      <!-- Write all the properties into a file so we can access them from asciidoctor -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>properties-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>pre-site</phase>
-            <goals>
-              <goal>write-project-properties</goal>
-            </goals>
-            <configuration>
-              <outputFile>${project.build.directory}/pom.adoc</outputFile>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <!-- Download a set of different themes -->
-      <plugin>
-        <groupId>com.googlecode.maven-download-plugin</groupId>
-        <artifactId>download-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>get-fontawesome</id>
-            <!-- Only execute this for the parent module -->
-            <inherited>false</inherited>
-            <phase>pre-site</phase>
-            <goals>
-              <goal>wget</goal>
-            </goals>
-            <configuration>
-              <url>https://github.com/darshandsoni/asciidoctor-skins/archive/gh-pages.zip</url>
-              <unpack>true</unpack>
-              <outputDirectory>${project.build.directory}/dependency</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <executions>
           <execution>
-            <id>copy-site-themes</id>
+            <id>copy-site-resources</id>
+            <!-- Only execute this for the parent module -->
+            <inherited>false</inherited>
             <phase>pre-site</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${project.build.directory}/site/css/themes</outputDirectory>
+              <outputDirectory>${project.build.directory}/site</outputDirectory>
               <resources>
                 <resource>
-                  <directory>${project.build.directory}/dependency/asciidoctor-skins-gh-pages/css</directory>
-                  <includes>
-                    <include>*.css</include>
-                  </includes>
+                  <directory>${project.basedir}/src/site/resources-filtered</directory>
+                  <filtering>true</filtering>
+                  <targetPath>${project.build.directory}/site</targetPath>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <!--
+            Copy the schemas that might be distributed throughout the codebase to a central "schemas"
+            directory so IDEs can automatically pull them in.
+          -->
+          <execution>
+            <id>copy-schemas</id>
+            <!-- Only execute this for the parent module -->
+            <inherited>false</inherited>
+            <phase>pre-site</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/site</outputDirectory>
+              <resources>
+                <!-- Copy the resources for the test-suites -->
+                <resource>
+                  <directory>${project.basedir}/plc4j/utils/test-utils/src/main/resources/schemas</directory>
+                  <targetPath>${project.build.directory}/site/schemas</targetPath>
                 </resource>
               </resources>
             </configuration>
@@ -235,103 +223,51 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>properties-maven-plugin</artifactId>
-          <version>1.1.0</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>buildnumber-maven-plugin</artifactId>
-          <version>1.4</version>
-        </plugin>
-
-        <plugin>
           <groupId>org.codehaus.gmaven</groupId>
           <artifactId>groovy-maven-plugin</artifactId>
           <version>2.1.1</version>
         </plugin>
 
         <plugin>
-          <groupId>com.google.code.maven-replacer-plugin</groupId>
-          <artifactId>replacer</artifactId>
-          <version>1.5.3</version>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.7.0</version>
         </plugin>
 
         <!-- Configure the Site generation -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
-          <version>4.0.0-M3</version>
+          <version>3.12.1</version>
           <configuration>
             <!--templateFile>${session.executionRootDirectory}/src/site/template/site.vm</templateFile-->
             <generateReports>true</generateReports>
             <generateSitemap>true</generateSitemap>
-            <relativizeDecorationLinks>false</relativizeDecorationLinks>
             <locales>en</locales>
             <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
             <outputEncoding>${project.reporting.outputencoding}</outputEncoding>
             <!--
               IntelliJ can't find the asciidoc config option in the site plugin, which is correct.
-              However this config section is used by the asciidoctor site plugin extension. So plead
+              However, this config section is used by the asciidoctor site plugin extension. So plead
               ignore this error, it's actually ok.
             -->
-            <asciidoc>
+            <!--asciidoc>
+              <requires>
+                <require>asciidoctor-diagram</require>
+              </requires>
               <attributes>
                 <source-highlighter>prettify</source-highlighter>
                 <imagesoutdir>${project.build.directory}/site/images</imagesoutdir>
                 <pom-adoc>${project.build.directory}/pom.adoc</pom-adoc>
               </attributes>
-              <requires>
-                <require>asciidoctor-diagram</require>
-              </requires>
-            </asciidoc>
+            </asciidoc-->
           </configuration>
           <dependencies>
             <!-- All dependencies needed by the reflow skin -->
             <dependency>
-              <groupId>io.github.devacfr.maven.skins</groupId>
-              <artifactId>reflow-velocity-tools</artifactId>
-              <version>${reflow.skin.version}</version>
-            </dependency>
-
-            <!-- add support for scm/git site deployment -->
-            <dependency>
-              <groupId>org.apache.maven.wagon</groupId>
-              <artifactId>wagon-scm</artifactId>
-              <version>2.12</version>
-            </dependency>
-            <dependency>
-              <groupId>org.apache.maven.scm</groupId>
-              <artifactId>maven-scm-api</artifactId>
-              <version>1.9.5</version>
-            </dependency>
-            <dependency>
-              <groupId>org.apache.maven.scm</groupId>
-              <artifactId>maven-scm-manager-plexus</artifactId>
-              <version>1.9.5</version>
-            </dependency>
-            <dependency>
-              <groupId>org.apache.maven.scm</groupId>
-              <artifactId>maven-scm-provider-gitexe</artifactId>
-              <version>1.9.5</version>
-            </dependency>
-
-            <!-- Add support for asciidoctor -->
-            <dependency>
               <groupId>org.asciidoctor</groupId>
-              <artifactId>asciidoctor-maven-plugin</artifactId>
+              <artifactId>asciidoctor-parser-doxia-module</artifactId>
               <version>${asciidoctor.maven.plugin.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>org.asciidoctor</groupId>
-              <artifactId>asciidoctorj</artifactId>
-              <version>${asciidoctorj.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>org.asciidoctor</groupId>
-              <artifactId>asciidoctorj-diagram</artifactId>
-              <version>${asciidoctorj.diagram.version}</version>
             </dependency>
           </dependencies>
         </plugin>

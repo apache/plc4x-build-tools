@@ -18,3 +18,5 @@
 :icons: font
 
 == Apache Camel
+The Camel Component for PLC4X allows you to create routes using the PLC4X API to read from a PLC device or write to it.
+This component is now maintained within the https://camel.apache.org/components/next/plc4x-component.html[Apache Camel] Project.
