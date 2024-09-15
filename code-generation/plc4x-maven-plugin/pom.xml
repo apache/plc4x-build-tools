@@ -146,7 +146,7 @@
 
   <profiles>
     <profile>
-      <id>run-its</id>
+      <id>enable-all-checks</id>
       <build>
 
         <plugins>
