@@ -94,6 +94,9 @@ public class GenerateMojo extends AbstractMojo {
     @Parameter(required = false)
     private Map<String, String> options;
 
+    @Parameter(required = false)
+    private Map<String, String> externalTypes;
+
     public void execute()
             throws MojoExecutionException {
 
@@ -181,7 +184,9 @@ public class GenerateMojo extends AbstractMojo {
                 }
             }
             // Generate output for the type definitions.
-            language.generate(outputDir, project.getVersion(), languageName, protocolName, outputFlavor, types, options == null ? Collections.emptyMap() : options);
+            language.generate(outputDir, project.getVersion(), languageName, protocolName, outputFlavor, types,
+                    externalTypes == null ? Collections.emptyMap() : externalTypes,
+                    options == null ? Collections.emptyMap() : options);
         } catch (GenerationException e) {
             throw new MojoExecutionException("Error generating sources", e);
         }

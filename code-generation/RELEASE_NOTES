@@ -1,9 +1,30 @@
 ==============================================================
-(Unreleased) Apache PLC4X Build-Tools Code-Generation 1.7.0-SNAPSHOT
+(Unreleased) Apache PLC4X Build-Tools Code-Generation 1.8.0-SNAPSHOT
 ==============================================================
 
 New Features
 ------------
+- Updated to the latest maven project maven-wrapper.
+
+Incompatible changes
+--------------------
+- Added support for providing external type information when
+  using external API types in the mspec (Such as PlcValueType
+  or PlcResponseCode)
+- LanguageOutput now requires an additional Map<String,String>
+  argument for the type information.
+
+Bug Fixes
+---------
+
+==============================================================
+Apache PLC4X Build-Tools Code-Generation 1.7.0
+==============================================================
+
+New Features
+------------
+- Added a new "skip" option to the mojo.
+- Added a "nullBytesHex" option to optional fields.
 
 Incompatible changes
 --------------------
