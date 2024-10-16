@@ -31,6 +31,7 @@ import org.apache.plc4x.plugins.codegenerator.protocol.TypeContext;
 import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
 import org.apache.plc4x.plugins.codegenerator.types.exceptions.GenerationException;
 import org.apache.plc4x.plugins.codegenerator.protocol.Protocol;
+import org.codehaus.plexus.configuration.PlexusConfiguration;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -92,10 +93,7 @@ public class GenerateMojo extends AbstractMojo {
      * Additional options which should be passed to code generator.
      */
     @Parameter(required = false)
-    private Map<String, String> options;
-
-    @Parameter(required = false)
-    private Map<String, String> externalTypes;
+    private PlexusConfiguration options;
 
     public void execute()
             throws MojoExecutionException {
@@ -175,24 +173,40 @@ public class GenerateMojo extends AbstractMojo {
             // Parse the type definitions.
             TypeContext typeContext = protocol.getTypeContext();
             Map<String, TypeDefinition> types = typeContext.getTypeDefinitions();
+
+            // Parse and validate the options.
             Set<String> supportedOptions = language.supportedOptions();
+            Map<String, Object> optionsMap = new HashMap<>();
             if (options != null) {
-                for (String option : options.keySet()) {
-                    if (!supportedOptions.contains(option)) {
-                        throw new MojoExecutionException("Unsupported option '" + option + "' for language " + languageName);
+                optionsMap = parseOptions(options);
+                for (String optionName : optionsMap.keySet()) {
+                    if (!supportedOptions.contains(optionName)) {
+                        throw new MojoExecutionException("Unsupported option '" + optionName + "' for language " + languageName);
                     }
                 }
             }
+
             // Generate output for the type definitions.
-            language.generate(outputDir, project.getVersion(), languageName, protocolName, outputFlavor, types,
-                    externalTypes == null ? Collections.emptyMap() : externalTypes,
-                    options == null ? Collections.emptyMap() : options);
+            language.generate(outputDir, project.getVersion(), languageName, protocolName, outputFlavor, types, optionsMap);
         } catch (GenerationException e) {
             throw new MojoExecutionException("Error generating sources", e);
         }
 
         // Add the generated sources to the project internally.
         project.addCompileSourceRoot(outputDir.getPath());
+    }
+
+    protected Map<String, Object> parseOptions(PlexusConfiguration options) {
+        Map<String, Object> optionsMap = new HashMap<>();
+        for (PlexusConfiguration child : options.getChildren()) {
+            String optionName = child.getName();
+            if(child.getChildCount() == 0) {
+                optionsMap.put(optionName, child.getValue());
+            } else {
+                optionsMap.put(optionName, parseOptions(child));
+            }
+        }
+        return optionsMap;
     }
 
 }

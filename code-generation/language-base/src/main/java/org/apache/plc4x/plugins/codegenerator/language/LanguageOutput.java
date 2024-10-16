@@ -45,8 +45,7 @@ public interface LanguageOutput {
      */
     Set<String> supportedOptions();
 
-    void generate(File outputDir, String version, String languageName, String protocolName, String outputFlavor, Map<String, TypeDefinition> types,
-        Map<String, String> options, Map<String, String> externalTypes)
-        throws GenerationException;
+    void generate(File outputDir, String version, String languageName, String protocolName, String outputFlavor,
+                  Map<String, TypeDefinition> types, Map<String, Object> options) throws GenerationException;
 
 }
