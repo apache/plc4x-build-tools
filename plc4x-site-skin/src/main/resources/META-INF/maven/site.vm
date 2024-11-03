@@ -32,7 +32,12 @@
         #set ( $sectionName = $sectionName.substring(0, $sectionName.indexOf('/')) )
     #end
     <meta http-equiv="Content-Type" content="text/html; charset=${outputEncoding}"/>
-    <title>$title</title>
+    #if ($sectionName == "home" )
+        <title>PLC4X - The Industrial IoT Adaptor</title>
+    #else
+        <title>$title</title>
+    #end
+
     <script src="$relativePath/js/jquery.slim.min.js" type="text/javascript"></script>
     <!--script src="$relativePath/js/popper.min.js" type="javascript"></script-->
     <script src="$relativePath/js/bootstrap.bundle.min.js" type="text/javascript"></script>
