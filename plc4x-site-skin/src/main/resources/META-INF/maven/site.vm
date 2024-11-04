@@ -61,6 +61,7 @@
     #if( $decoration.body.head )
         $render.eval( $decoration.body.head )
     #end
+    <link rel="icon" type="image/x-icon" href="icon.ico">
     $headContent
 </head>
 <body class="composite">
@@ -114,7 +115,8 @@
         </main>
         <footer class="pt-4 my-md-5 pt-md-5 w-100 border-top">
             <div class="row justify-content-md-center" style="font-size: 13px">
-                <div class="col col-6 text-center">
+                <div class="col"></div>
+                <div class="col-6 text-center">
                 #if( $decoration.body.footer )
                     $render.eval( $decoration.body.footer )
                 #else
@@ -127,6 +129,7 @@
                     and blur effect added.</div>
                 #end
                 </div>
+                <div class="col"></div>
             </div>
         </footer>
     </div>
@@ -139,21 +142,21 @@
 <script src="$relativePath/js/popper.min.js"></script>
 <script src="$relativePath/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-    $('.carousel .carousel-item').each(function(){
-        var next = $(this).next();
-        if (!next.length) {
-            next = $(this).siblings(':first');
-        }
-        next.children(':first-child').clone().appendTo($(this));
+    let items = document.querySelectorAll('.carousel .carousel-item')
 
-        for (let i = 0; i < 3; i++) {
-            next=next.next();
-            if (!next.length) {
-                next = $(this).siblings(':first');
-            }
-            next.children(':first-child').clone().appendTo($(this));
+		items.forEach((el) => {
+			const minPerSlide = 4
+			let next = el.nextElementSibling
+			for (var i=1; i<minPerSlide; i++) {
+				if (!next) {
+            // wrap carousel by using first child
+            next = items[0]
         }
-    });
+        let cloneChild = next.cloneNode(true)
+        el.appendChild(cloneChild.children[0])
+        next = next.nextElementSibling
+        }
+    })
 </script>
 </body>
 </html>

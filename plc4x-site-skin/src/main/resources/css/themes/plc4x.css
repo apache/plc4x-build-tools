@@ -852,20 +852,20 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 
 @media (min-width: 768px) {
 
-  .carousel-inner .carousel-item-right.active,
+  .carousel-inner .carousel-item-end.active,
   .carousel-inner .carousel-item-next {
     transform: translateX(33.333%);
   }
 
-  .carousel-inner .carousel-item-left.active,
+  .carousel-inner .carousel-item-start.active,
   .carousel-inner .carousel-item-prev {
     transform: translateX(-33.333%);
   }
 }
 
-.carousel-inner .carousel-item-right,
-.carousel-inner .carousel-item-left{
-  transform: translateX(0);
+.carousel-inner .carousel-item-end,
+.carousel-inner .carousel-item-start {
+    transform: translateX(0);
 }
 
 #integrationCarousel {
