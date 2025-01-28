@@ -25,10 +25,10 @@
 Apache PLC4X Build-Tools
 ========================
 
-Apache PLC4X Build-Tools is a sub-project of the Apache PLC4X project and contains
+Apache PLC4X Build-Tools is a subproject of the Apache PLC4X project and contains
 all the tools needed to build the main project.
 
-Currently the only tools it contains is a maven plugin used to generate drivers and
+Currently, the only tools it contains is a maven plugin used to generate drivers and
 a new maven-site-plugin site theme.
 
 It currently doesn't contain any actual code-generation modules, but just the plugin
@@ -39,7 +39,7 @@ The actual code-generation modules are located inside the main project.
 Environment
 -----------
 
-Currently the project is configured to require the following software:
+Currently, the project is configured to require the following software:
 
 1) Java >=9 JDK: For running Maven in general as well as compiling the Java and Scala
 modules JAVA_HOME configured to point to that.
