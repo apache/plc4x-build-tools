@@ -32,7 +32,6 @@
 
   <modules>
     <module>code-generation</module>
-    <module>plc4x-site-skin</module>
   </modules>
 
 </project>
