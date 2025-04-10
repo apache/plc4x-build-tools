@@ -5,12 +5,14 @@
 New Features
 ------------
 - Updated to the latest maven project maven-wrapper.
-
-Incompatible changes
---------------------
+- Added a 'skip' option to the plugin config.
 - Added support for providing external type information when
   using external API types in the mspec (Such as PlcValueType
   or PlcResponseCode)
+
+Incompatible changes
+--------------------
+
 - LanguageOutput now requires an additional Map<String,String>
   argument for the type information.
 
