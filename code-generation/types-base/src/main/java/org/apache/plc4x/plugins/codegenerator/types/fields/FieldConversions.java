@@ -18,6 +18,7 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.fields;
 
+import javax.swing.plaf.nimbus.State;
 import java.util.Optional;
 
 /**
@@ -263,6 +264,20 @@ public interface FieldConversions {
     }
 
     /**
+     * @return true if {@code this} is instance of {@link StateField}
+     */
+    default boolean isStateField() {
+        return this instanceof StateField;
+    }
+
+    /**
+     * @return a {@link StateField} if castable.
+     */
+    default Optional<StateField> asStateField() {
+        return Optional.of(this).filter(StateField.class::isInstance).map(StateField.class::cast);
+    }
+
+    /**
      * @return true if {@code this} is instance of {@link SwitchField}
      */
     default boolean isSwitchField() {
@@ -317,7 +332,7 @@ public interface FieldConversions {
     default Optional<VirtualField> asVirtualField() {
         return Optional.of(this).filter(VirtualField.class::isInstance).map(VirtualField.class::cast);
     }
-    
+
     /**
      * @return true if {@code this} is instance of {@link ValidationField}
      */
