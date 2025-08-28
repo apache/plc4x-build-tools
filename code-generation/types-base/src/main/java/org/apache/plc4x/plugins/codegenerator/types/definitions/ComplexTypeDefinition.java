@@ -64,6 +64,13 @@ public interface ComplexTypeDefinition extends TypeDefinition {
     List<VirtualField> getAllVirtualFields();
 
     /**
+     * Get only the fields which are of type StateField.
+     *
+     * @return all state fields
+     */
+    List<StateField> getStateFields();
+
+    /**
      * Get only the fields which are of type ConstField.
      *
      * @return all constant fields
