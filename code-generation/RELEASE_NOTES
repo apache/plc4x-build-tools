@@ -3,6 +3,8 @@
 
 New Features
 ------------
+- Added a new type for 'constants'
+- Added a new field type for 'state'
 
 Incompatible changes
 --------------------
