@@ -18,7 +18,6 @@
  */
 package org.apache.plc4x.plugins.codegenerator.types.fields;
 
-import javax.swing.plaf.nimbus.State;
 import java.util.Optional;
 
 /**
