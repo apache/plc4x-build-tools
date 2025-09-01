@@ -41,7 +41,7 @@ Environment
 
 Currently, the project is configured to require the following software:
 
-1) Java >=9 JDK: For running Maven in general as well as compiling the Java and Scala
+1) Java >=21 JDK: For running Maven in general as well as compiling the Java and Scala
 modules JAVA_HOME configured to point to that.
 
 
