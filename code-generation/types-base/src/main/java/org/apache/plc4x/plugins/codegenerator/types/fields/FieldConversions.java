@@ -351,12 +351,10 @@ public interface FieldConversions {
      * is instance of {@link ManualArrayField} with {@link ManualArrayField.LoopType}{@code .COUNT}
      */
     default boolean isCountArrayField() {
-        if (this instanceof ArrayField) {
-            ArrayField arrayField = (ArrayField) this;
+        if (this instanceof ArrayField arrayField) {
             return arrayField.getLoopType() == ArrayField.LoopType.COUNT;
         }
-        if (this instanceof ManualArrayField) {
-            ManualArrayField arrayField = (ManualArrayField) this;
+        if (this instanceof ManualArrayField arrayField) {
             return arrayField.getLoopType() == ManualArrayField.LoopType.COUNT;
         }
         return false;
@@ -367,12 +365,10 @@ public interface FieldConversions {
      * is instance of {@link ManualArrayField} with {@link ManualArrayField.LoopType}{@code .LENGTH}
      */
     default boolean isLengthArrayField() {
-        if (this instanceof ArrayField) {
-            ArrayField arrayField = (ArrayField) this;
+        if (this instanceof ArrayField arrayField) {
             return arrayField.getLoopType() == ArrayField.LoopType.LENGTH;
         }
-        if (this instanceof ManualArrayField) {
-            ManualArrayField arrayField = (ManualArrayField) this;
+        if (this instanceof ManualArrayField arrayField) {
             return arrayField.getLoopType() == ManualArrayField.LoopType.LENGTH;
         }
         return false;
@@ -383,12 +379,10 @@ public interface FieldConversions {
      * is instance of {@link ManualArrayField} with {@link ManualArrayField.LoopType}{@code .TERMINATED}
      */
     default boolean isTerminatedArrayField() {
-        if (this instanceof ArrayField) {
-            ArrayField arrayField = (ArrayField) this;
+        if (this instanceof ArrayField arrayField) {
             return arrayField.getLoopType() == ArrayField.LoopType.TERMINATED;
         }
-        if (this instanceof ManualArrayField) {
-            ManualArrayField arrayField = (ManualArrayField) this;
+        if (this instanceof ManualArrayField arrayField) {
             return arrayField.getLoopType() == ManualArrayField.LoopType.TERMINATED;
         }
         return false;

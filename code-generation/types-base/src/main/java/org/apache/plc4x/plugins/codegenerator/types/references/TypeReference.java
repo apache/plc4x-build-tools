@@ -42,10 +42,9 @@ public interface TypeReference extends TypeReferenceConversions {
             return Optional.of(this);
         }
         // If we're accessing a child, then the root must be a complex type.
-        if (!(this instanceof ComplexTypeReference)) {
+        if (!(this instanceof ComplexTypeReference complexTypeReference)) {
             return Optional.empty();
         }
-        ComplexTypeReference complexTypeReference = (ComplexTypeReference) this;
         final ComplexTypeDefinition complexTypeDefinition = complexTypeReference.getTypeDefinition();
         VariableLiteral childVariableLiteral = variableLiteral.getChild().get();
         return complexTypeDefinition.getTypeReferenceForProperty(childVariableLiteral.getName())
