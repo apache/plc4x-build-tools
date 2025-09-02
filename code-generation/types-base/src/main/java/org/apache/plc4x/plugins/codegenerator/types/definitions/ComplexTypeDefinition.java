@@ -379,9 +379,7 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return boolean returns true if the variable's name is an virtual field
      */
     default boolean isVariableLiteralVirtualField(VariableLiteral variableLiteral) {
-        return getAllPropertyFields().stream()
-                .filter(FieldConversions::isVirtualField)
-                .map(VirtualField.class::cast)
+        return getAllVirtualFields().stream()
                 .anyMatch(virtualField -> variableLiteral.getName().equals(virtualField.getName()));
     }
 
