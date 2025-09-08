@@ -47,4 +47,6 @@ public interface TypeDefinition extends TypeDefinitionConversions {
      */
     Optional<List<Argument>> getAllParserArguments();
 
+    Optional<String> getComment();
+
 }
