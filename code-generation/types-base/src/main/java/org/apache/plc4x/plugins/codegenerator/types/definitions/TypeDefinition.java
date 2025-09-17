@@ -29,6 +29,8 @@ public interface TypeDefinition extends TypeDefinitionConversions {
 
     String getName();
 
+    Set<String> getAttributeNames();
+
     Optional<Term> getAttribute(String attributeName);
 
     default Optional<Term> getEncoding() {
