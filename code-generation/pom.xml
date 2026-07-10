@@ -17,9 +17,7 @@
   specific language governing permissions and limitations
   under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 http://maven.apache.org/xsd/maven-4.1.0.xsd">
 
   <!--
     This is intentionally set to the apache parent as this way
@@ -44,6 +42,13 @@
     <!-- Timestamp for the reproducible builds -->
     <project.build.outputTimestamp>1744388104</project.build.outputTimestamp>
     <java.version>21</java.version>
+    <!--
+      Maven version the plc4x-maven-plugin is built against.
+      Pinned explicitly as otherwise Maven's built-in ${maven.version} property
+      (the version of the Maven runtime executing the build) would apply, which
+      under Maven 4 would retarget the plugin to the Maven 4 plugin API.
+    -->
+    <maven.version>3.9.9</maven.version>
   </properties>
 
   <scm>
@@ -52,13 +57,6 @@
     <url>https://github.com/apache/plc4x-build-tools</url>
     <tag>releases/code-generation/1.4</tag>
   </scm>
-
-  <modules>
-    <module>types-base</module>
-    <module>language-base</module>
-    <module>protocol-base</module>
-    <module>plc4x-maven-plugin</module>
-  </modules>
 
   <build>
     <plugins>
