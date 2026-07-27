@@ -32,7 +32,7 @@
 
   <groupId>org.apache.plc4x.plugins</groupId>
   <artifactId>plc4x-code-generation</artifactId>
-  <version>1.9.0-SNAPSHOT</version>
+  <version>1.9.0</version>
   <packaging>pom</packaging>
 
   <name>PLC4X Build Tools: Code Generation</name>
@@ -40,7 +40,7 @@
 
   <properties>
     <!-- Timestamp for the reproducible builds -->
-    <project.build.outputTimestamp>1785155786</project.build.outputTimestamp>
+    <project.build.outputTimestamp>1785157013</project.build.outputTimestamp>
     <java.version>21</java.version>
     <!--
       The apache parent pom uses this property to drive maven.compiler.source/target/release
@@ -62,7 +62,7 @@
     <connection>scm:git:https://gitbox.apache.org/repos/asf/plc4x-build-tools.git</connection>
     <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/plc4x-build-tools.git</developerConnection>
     <url>https://github.com/apache/plc4x-build-tools</url>
-    <tag>releases/code-generation/1.9</tag>
+    <tag>releases/code-generation/1.9.0</tag>
   </scm>
 
   <build>
