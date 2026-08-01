@@ -25,7 +25,7 @@ import java.util.Optional;
 /**
  * Can be used to validate/assert state during parsing/serializing
  */
-public interface ValidationField extends FieldConversions {
+public interface ValidationField extends Field, FieldConversions {
 
     /**
      * @return the expression that should evaluate to true to let the validation pass

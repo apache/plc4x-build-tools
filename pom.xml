@@ -17,10 +17,9 @@
   specific language governing permissions and limitations
   under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.1.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 http://maven.apache.org/xsd/maven-4.1.0.xsd">
 
   <groupId>org.apache.plc4x.plugins</groupId>
   <artifactId>plc4x-build-tools</artifactId>
@@ -30,9 +29,17 @@
   <name>PLC4X Build-Tools</name>
   <description>This is just a pom to ease importing the repo into a Maven supporting IDE</description>
 
-  <modules>
-    <module>code-generation</module>
-    <module>plc4x-site-skin</module>
-  </modules>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- Lock the version of the default-binding plugins (this pom has no parent doing so) -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>3.1.4</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
 </project>

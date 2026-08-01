@@ -38,4 +38,6 @@ public interface EnumValue {
      */
     Optional<String> getConstant(String name);
 
+    Optional<String> getComment();
+
 }

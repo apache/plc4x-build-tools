@@ -65,19 +65,27 @@ public interface Term extends TermConversions {
     default String getDiscriminatorName() {
         if (isLiteral()) {
             Literal literal = (Literal) this;
-            if (literal instanceof NullLiteral) {
-                return "null";
-            } else if (literal instanceof BooleanLiteral) {
-                return Boolean.toString(((BooleanLiteral) literal).getValue());
-            } else if (literal instanceof NumericLiteral) {
-                return ((NumericLiteral) literal).getNumber().toString();
-            } else if (literal instanceof HexadecimalLiteral) {
-                return ((HexadecimalLiteral) literal).getHexString();
-            } else if (literal instanceof StringLiteral) {
-                return ((StringLiteral) literal).getValue();
-            } else if (literal instanceof VariableLiteral) {
-                VariableLiteral variableLiteral = (VariableLiteral) literal;
-                return variableLiteral.getVariableLiteralName();
+            switch (literal) {
+                case NullLiteral nullLiteral -> {
+                    return "null";
+                }
+                case BooleanLiteral booleanLiteral -> {
+                    return Boolean.toString(booleanLiteral.getValue());
+                }
+                case NumericLiteral numericLiteral -> {
+                    return numericLiteral.getNumber().toString();
+                }
+                case HexadecimalLiteral hexadecimalLiteral -> {
+                    return hexadecimalLiteral.getHexString();
+                }
+                case StringLiteral stringLiteral -> {
+                    return stringLiteral.getValue();
+                }
+                case VariableLiteral variableLiteral -> {
+                    return variableLiteral.getVariableLiteralName();
+                }
+                default -> {
+                }
             }
         } else if (isUnaryTerm()) {
             UnaryTerm unaryTerm = (UnaryTerm) this;

@@ -41,7 +41,7 @@ pipeline {
 
     tools {
         maven 'maven_3_latest'
-        jdk 'jdk_11_latest'
+        jdk 'jdk_21_latest'
     }
 
     options {
@@ -82,7 +82,7 @@ pipeline {
             }
             steps {
                 echo 'Building'
-                sh 'mvn -P${JENKINS_PROFILE},development,with-cpp,with-java,with-dotnet,with-python,with-proxies,with-sandbox ${MVN_TEST_FAIL_IGNORE} ${MVN_LOCAL_REPO_OPT} clean install'
+                sh './mvnw -P${JENKINS_PROFILE},development,with-cpp,with-java,with-dotnet,with-python,with-proxies,with-sandbox ${MVN_TEST_FAIL_IGNORE} ${MVN_LOCAL_REPO_OPT} clean install'
             }
             post {
                 always {
@@ -105,7 +105,7 @@ pipeline {
 
                 // We'll deploy to a relative directory so we can save
                 // that and deploy in a later step on a different node
-                sh 'mvn -U -P${JENKINS_PROFILE},development,with-java,with-dotnet,with-cpp,with-python,with-proxies,with-sandbox ${MVN_TEST_FAIL_IGNORE} ${JQASSISTANT_NEO4J_VERSION} -DaltDeploymentRepository=snapshot-repo::default::file:./local-snapshots-dir clean deploy'
+                sh './mvnw -U -P${JENKINS_PROFILE},development,with-java,with-dotnet,with-cpp,with-python,with-proxies,with-sandbox ${MVN_TEST_FAIL_IGNORE} ${JQASSISTANT_NEO4J_VERSION} -DaltDeploymentRepository=snapshot-repo::default::file:./local-snapshots-dir clean deploy'
 
                 // Stash the build results so we can deploy them on another node
                 stash name: 'plc4x-build-snapshots', includes: 'local-snapshots-dir/**'
@@ -139,7 +139,7 @@ pipeline {
                 unstash name: 'plc4x-build-snapshots'
 
                 // Deploy the artifacts using the wagon-maven-plugin.
-                sh 'mvn -f jenkins.pom -X -P deploy-snapshots wagon:upload'
+                sh './mvnw -f jenkins.pom -X -P deploy-snapshots wagon:upload'
 
                 // Clean up the snapshots directory (freeing up more space after deploying).
                 dir("local-snapshots-dir/") {

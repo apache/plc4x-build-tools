@@ -16,22 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.plugins.codegenerator.types.fields;
 
-import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
+package org.apache.plc4x.plugins.codegenerator.types.references;
 
-import java.util.Optional;
-
-public interface OptionalField extends PropertyField {
-
-    default String getTypeName() {
-        return "optional";
-    }
-
-    Optional<Term> getConditionExpression();
-
-    default Optional<Term> getNullBytesHex() {
-        return this.getAttribute("nullBytesHex");
-    }
+public interface ByteOrderTypeReference extends TypeReference {
 
 }

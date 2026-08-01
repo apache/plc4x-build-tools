@@ -263,6 +263,20 @@ public interface FieldConversions {
     }
 
     /**
+     * @return true if {@code this} is instance of {@link StateField}
+     */
+    default boolean isStateField() {
+        return this instanceof StateField;
+    }
+
+    /**
+     * @return a {@link StateField} if castable.
+     */
+    default Optional<StateField> asStateField() {
+        return Optional.of(this).filter(StateField.class::isInstance).map(StateField.class::cast);
+    }
+
+    /**
      * @return true if {@code this} is instance of {@link SwitchField}
      */
     default boolean isSwitchField() {
@@ -317,7 +331,7 @@ public interface FieldConversions {
     default Optional<VirtualField> asVirtualField() {
         return Optional.of(this).filter(VirtualField.class::isInstance).map(VirtualField.class::cast);
     }
-    
+
     /**
      * @return true if {@code this} is instance of {@link ValidationField}
      */
@@ -337,12 +351,10 @@ public interface FieldConversions {
      * is instance of {@link ManualArrayField} with {@link ManualArrayField.LoopType}{@code .COUNT}
      */
     default boolean isCountArrayField() {
-        if (this instanceof ArrayField) {
-            ArrayField arrayField = (ArrayField) this;
+        if (this instanceof ArrayField arrayField) {
             return arrayField.getLoopType() == ArrayField.LoopType.COUNT;
         }
-        if (this instanceof ManualArrayField) {
-            ManualArrayField arrayField = (ManualArrayField) this;
+        if (this instanceof ManualArrayField arrayField) {
             return arrayField.getLoopType() == ManualArrayField.LoopType.COUNT;
         }
         return false;
@@ -353,12 +365,10 @@ public interface FieldConversions {
      * is instance of {@link ManualArrayField} with {@link ManualArrayField.LoopType}{@code .LENGTH}
      */
     default boolean isLengthArrayField() {
-        if (this instanceof ArrayField) {
-            ArrayField arrayField = (ArrayField) this;
+        if (this instanceof ArrayField arrayField) {
             return arrayField.getLoopType() == ArrayField.LoopType.LENGTH;
         }
-        if (this instanceof ManualArrayField) {
-            ManualArrayField arrayField = (ManualArrayField) this;
+        if (this instanceof ManualArrayField arrayField) {
             return arrayField.getLoopType() == ManualArrayField.LoopType.LENGTH;
         }
         return false;
@@ -369,12 +379,10 @@ public interface FieldConversions {
      * is instance of {@link ManualArrayField} with {@link ManualArrayField.LoopType}{@code .TERMINATED}
      */
     default boolean isTerminatedArrayField() {
-        if (this instanceof ArrayField) {
-            ArrayField arrayField = (ArrayField) this;
+        if (this instanceof ArrayField arrayField) {
             return arrayField.getLoopType() == ArrayField.LoopType.TERMINATED;
         }
-        if (this instanceof ManualArrayField) {
-            ManualArrayField arrayField = (ManualArrayField) this;
+        if (this instanceof ManualArrayField arrayField) {
             return arrayField.getLoopType() == ManualArrayField.LoopType.TERMINATED;
         }
         return false;

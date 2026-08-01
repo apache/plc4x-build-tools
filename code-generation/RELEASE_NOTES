@@ -1,4 +1,69 @@
 ==============================================================
+Apache PLC4X Build-Tools Code-Generation 1.9.0
+==============================================================
+
+New Features
+------------
+- Added a new type for 'constants'
+- Added a new field type for 'state'
+- Added support for comments in the mspec.
+- Fields and types now expose the set of attribute names
+  explicitly set on them, as well as which attributes are set
+  on the current level versus inherited from a parent.
+
+Incompatible changes
+--------------------
+- Raised the Java baseline to Java 21.
+- Migrated the build to Apache Maven 4.
+
+Changed Maven Coordinates
+-------------------------
+
+- None. The groupId and artifactIds are unchanged in this release.
+
+Bug Fixes
+---------
+- Fixed 'isVariableLiteralVirtualField' which incorrectly only
+  inspected the property fields and so never matched virtual
+  fields.
+
+==============================================================
+Apache PLC4X Build-Tools Code-Generation 1.8.0
+==============================================================
+
+New Features
+------------
+- Updated to the latest maven project maven-wrapper.
+- Added a 'skip' option to the plugin config.
+- Added support for providing external type information when
+  using external API types in the mspec (Such as PlcValueType
+  or PlcResponseCode)
+
+Incompatible changes
+--------------------
+
+- LanguageOutput now requires an additional Map<String,String>
+  argument for the type information.
+
+Bug Fixes
+---------
+
+==============================================================
+Apache PLC4X Build-Tools Code-Generation 1.7.0
+==============================================================
+
+New Features
+------------
+- Added a new "skip" option to the mojo.
+- Added a "nullBytesHex" option to optional fields.
+
+Incompatible changes
+--------------------
+
+Bug Fixes
+---------
+
+==============================================================
 Apache PLC4X Build-Tools Code-Generation 1.6.0
 ==============================================================
 

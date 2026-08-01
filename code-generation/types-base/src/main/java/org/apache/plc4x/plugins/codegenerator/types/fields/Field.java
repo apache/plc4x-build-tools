@@ -23,12 +23,17 @@ import org.apache.plc4x.plugins.codegenerator.types.definitions.TypeDefinition;
 import org.apache.plc4x.plugins.codegenerator.types.terms.Term;
 
 import java.util.Optional;
+import java.util.Set;
 
 public interface Field extends FieldConversions {
 
     TypeDefinition getOwner();
 
     String getTypeName();
+
+    Set<String> getAllAttributeNames();
+
+    Set<String> getCurrentAttributeNames();
 
     Optional<Term> getAttribute(String attributeName);
 
@@ -39,5 +44,7 @@ public interface Field extends FieldConversions {
     default Optional<Term> getByteOrder() {
         return getAttribute(Constants.ATTRIBUTE_BYTE_ORDER);
     }
+
+    Optional<String> getComment();
 
 }

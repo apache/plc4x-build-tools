@@ -17,14 +17,12 @@
   specific language governing permissions and limitations
   under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 http://maven.apache.org/xsd/maven-4.1.0.xsd">
 
   <parent>
     <groupId>org.apache.plc4x.plugins</groupId>
     <artifactId>plc4x-code-generation</artifactId>
-    <version>1.6.0</version>
+    <version>1.9.0</version>
   </parent>
 
   <artifactId>plc4x-maven-plugin</artifactId>
@@ -40,28 +38,28 @@
     <dependency>
       <groupId>org.apache.plc4x.plugins</groupId>
       <artifactId>plc4x-code-generation-language-base</artifactId>
-      <version>1.6.0</version>
+      <version>1.9.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.plc4x.plugins</groupId>
       <artifactId>plc4x-code-generation-protocol-base</artifactId>
-      <version>1.6.0</version>
+      <version>1.9.0</version>
     </dependency>
 
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-      <version>1.9.4</version>
+      <version>1.11.0</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.11.0</version>
+      <version>2.18.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.12.0</version>
+      <version>3.17.0</version>
     </dependency>
 
     <dependency>
@@ -85,7 +83,7 @@
     <dependency>
       <groupId>org.apache.maven.plugin-tools</groupId>
       <artifactId>maven-plugin-annotations</artifactId>
-      <version>3.6.4</version>
+      <version>3.15.1</version>
       <scope>provided</scope>
     </dependency>
 
@@ -119,7 +117,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>3.6.4</version>
+        <version>3.15.1</version>
         <configuration>
           <!-- <goalPrefix>maven-archetype-plugin</goalPrefix> -->
           <!--skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound-->
@@ -146,14 +144,14 @@
 
   <profiles>
     <profile>
-      <id>run-its</id>
+      <id>enable-all-checks</id>
       <build>
 
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-invoker-plugin</artifactId>
-            <version>3.3.0</version>
+            <version>3.7.0</version>
             <configuration>
               <debug>true</debug>
               <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>

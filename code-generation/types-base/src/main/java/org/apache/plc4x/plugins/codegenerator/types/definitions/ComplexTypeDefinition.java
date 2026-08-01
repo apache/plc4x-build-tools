@@ -64,6 +64,13 @@ public interface ComplexTypeDefinition extends TypeDefinition {
     List<VirtualField> getAllVirtualFields();
 
     /**
+     * Get only the fields which are of type StateField.
+     *
+     * @return all state fields
+     */
+    List<StateField> getStateFields();
+
+    /**
      * Get only the fields which are of type ConstField.
      *
      * @return all constant fields
@@ -136,13 +143,13 @@ public interface ComplexTypeDefinition extends TypeDefinition {
     }
 
     /**
+     * If the type has a parent type, it's a child aka discriminated child type definition.
+     *
      * @return true if {@code this} is a discriminated child.
      */
     default boolean isDiscriminatedChildTypeDefinition() {
         return asDiscriminatedComplexTypeDefinition()
-                .map(ComplexTypeDefinition::isAbstract)
-                .map(isAbstract -> !isAbstract)
-                .orElse(false);
+                .map(ComplexTypeDefinition::getParentType).isPresent();
     }
 
     /**
@@ -156,6 +163,47 @@ public interface ComplexTypeDefinition extends TypeDefinition {
     default boolean isDiscriminatorField(String discriminatorName) {
         return getDiscriminatorNames().stream()
                 .anyMatch(field -> field.equals(discriminatorName));
+    }
+
+    /**
+     * Checks if the <code>discriminatorName</code> can be found on any level. This is done by going recursively to the
+     * top level and start checking from there using {@link #isDiscriminatorFieldInThisTypeOrAnyChild(String)}
+     *
+     * @param discriminatorName the discriminator name to be found
+     * @return true if the <code>discriminatorName</code> can be found
+     */
+    default boolean isDiscriminatorOnAnyLevel(String discriminatorName) {
+        return getParentType()
+                .map(complexTypeDefinition -> complexTypeDefinition.isDiscriminatorOnAnyLevel(discriminatorName))
+                .orElse(isDiscriminatorFieldInThisTypeOrAnyChild(discriminatorName));
+    }
+
+    /**
+     * Checks if the <code>discriminatorName</code> can be found in the {@link SwitchField#getDiscriminatorExpressions()}
+     * or in the {@link SwitchField#getCases()} types.
+     *
+     * @param discriminatorName the discriminator name to be found
+     * @return true if the <code>discriminatorName</code> can be found
+     */
+    default boolean isDiscriminatorFieldInThisTypeOrAnyChild(String discriminatorName) {
+        // Check if there's any expression in this type's typeSwitch, that uses
+        // the given property name as variable (aka being a discriminator)
+        boolean isDiscriminatorName = getSwitchField()
+                .map(SwitchField::getDiscriminatorExpressions)
+                .stream()
+                .flatMap(List::stream)
+                .map(Term::getDiscriminatorName)
+                .anyMatch(curDiscriminatorName -> curDiscriminatorName.equals(discriminatorName));
+        if (isDiscriminatorName) {
+            return true;
+        }
+
+        // If we've checked this level, check any children.
+        return getSwitchField()
+                .map(SwitchField::getCases)
+                .stream()
+                .flatMap(List::stream)
+                .anyMatch(subType -> subType.isDiscriminatorFieldInThisTypeOrAnyChild(discriminatorName));
     }
 
     /**
@@ -331,9 +379,7 @@ public interface ComplexTypeDefinition extends TypeDefinition {
      * @return boolean returns true if the variable's name is an virtual field
      */
     default boolean isVariableLiteralVirtualField(VariableLiteral variableLiteral) {
-        return getAllPropertyFields().stream()
-                .filter(FieldConversions::isVirtualField)
-                .map(VirtualField.class::cast)
+        return getAllVirtualFields().stream()
                 .anyMatch(virtualField -> variableLiteral.getName().equals(virtualField.getName()));
     }
 
@@ -388,7 +434,7 @@ public interface ComplexTypeDefinition extends TypeDefinition {
             return virtualFieldOptional.map(VirtualField::getType);
         }
         // Check if the expression root is referencing an argument
-        final Optional<Argument> argumentOptional = getParserArguments()
+        final Optional<Argument> argumentOptional = getAllParserArguments()
                 .orElse(Collections.emptyList())
                 .stream()
                 .filter(argument -> argument.getName().equals(propertyName))
