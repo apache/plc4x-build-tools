@@ -44,7 +44,7 @@ Currently, the project is configured to require the following software:
 1) Java >=21 JDK: For running Maven in general as well as compiling the Java and Scala
 modules JAVA_HOME configured to point to that.
 
-2) Maven 4.0.0-rc-5 or newer: For building the project (the bundled Maven-Wrapper `mvnw`
+2) Maven 4.0.0-rc-6 or newer: For building the project (the bundled Maven-Wrapper `mvnw`
 takes care of this automatically).
 
 
